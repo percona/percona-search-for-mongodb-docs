@@ -180,21 +180,20 @@ extra:
 nav:
   - Home: index.md
   - get-help.md
-  - Search:
-    - vector_search/overview-search.md
-    - vector_search/vector-search-architecture.md
-    - vector_search/vector-search-compatibility.md
-    - vector_search/install-mongot.md
-    - Search indexes:
-      - "Search index overview": vector_search/search-index-overview.md
-      - "Create a search index": vector_search/create-search-index.md
-      - "Update search index": vector_search/update-search-index.md
-      - "Delete search index": vector_search/delete-search-index.md
-      - Run search queries:
-        - Query with $search: vector_search/query-search.md
-        - Retrieve metadata with $searchMeta: vector_search/query-searchmeta.md
-        - Operators: vector_search/operators.md                 # phase 2 candidate
-        - Scoring: vector_search/scoring.md 
+  - Search Overview: vector_search/overview-search.md
+  - Search Architecture: vector_search/vector-search-architecture.md
+  - Search Compatibility: vector_search/vector-search-compatibility.md
+  - Install and Configure mongot: vector_search/install-mongot.md
+  - Search indexes:
+    - "Search index overview": vector_search/search-index-overview.md
+    - "Create a search index": vector_search/create-search-index.md
+    - "Update search index": vector_search/update-search-index.md
+    - "Delete search index": vector_search/delete-search-index.md
+  - Run search queries:
+    - Query with $search: vector_search/query-search.md
+    - Retrieve metadata with $searchMeta: vector_search/query-searchmeta.md
+    - Operators: vector_search/operators.md                 # phase 2 candidate
+    - Scoring: vector_search/scoring.md 
   - Reference:
       - glossary.md
       - telemetry.md
