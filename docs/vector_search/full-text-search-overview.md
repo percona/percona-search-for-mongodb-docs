@@ -4,3 +4,5 @@ Percona Search for MongoDB provides integrated full-text search for data stored 
 
 Full-text search examines the content and meaning of indexed text instead of matching only exact field values. It also supports capabilities such autocomplete, filtering, highlighting, faceting, and relevance-based ranking.
 
+
+

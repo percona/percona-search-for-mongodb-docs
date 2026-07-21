@@ -22,8 +22,6 @@ Percona Search for MongoDB supports two index types:
 - Search indexes power full-text search with the `$search` and `$searchMeta` stages. They support text analyzers, relevance-based scoring, autocomplete, faceting, and highlighting.
 - Vector search indexes power semantic and similarity search with the `$vectorSearch` stage. They index vector embeddings that you store in your documents and support [approximate nearest neighbor (ANN) :octicons-link-external-16:](https://www.mongodb.com/resources/basics/ann-search){:target="_blank"} search. 
 
-For more information, see [how vector search works]().
-
 ## Field mappings
 
 A search index definition specifies which fields to index and how to index them. You can choose between two mapping strategies:
