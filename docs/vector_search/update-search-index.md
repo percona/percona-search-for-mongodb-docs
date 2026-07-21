@@ -11,7 +11,10 @@ After you update an index, mongot rebuilds it in the background. The index conti
 
 ## Update single Search Index
 
-Suppose the `products_text_idx `index currently includes the `name` and `description` fields. The following operation updates the index to include the `category` field as well:
+The following example updates `search_idx` to index only the text field:
+{.power-number}
+
+1. Update the search index:
 
 ```javascript
 db.docs.updateSearchIndex(
@@ -27,6 +30,70 @@ db.docs.updateSearchIndex(
     }
   }
 )
+```
+
+2. Check the index status:
+
+```javascript
+db.docs.getSearchIndexes()
+[
+  {
+    id: '6a5f4e46f961b92133ad8c73',
+    name: 'search_idx',
+    status: 'READY',
+    queryable: true,
+    latestDefinitionVersion: { version: 1, createdAt: ISODate('2026-07-21T10:48:12.000Z') },
+    latestDefinition: { mappings: { dynamic: false, fields: { text: { type: 'string' } } } },
+    statusDetail: [
+      {
+        hostname: '6a57ac86331e2c0925871f72',
+        status: 'READY',
+        queryable: true,
+        mainIndex: {
+          status: 'READY',
+          queryable: true,
+          definitionVersion: { version: 1, createdAt: ISODate('2026-07-21T10:48:12.000Z') },
+          definition: {
+            mappings: {
+              dynamic: false,
+              fields: {
+                text: {
+                  type: 'string',
+                  indexOptions: 'offsets',
+                  store: true,
+                  norms: 'include'
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        hostname: '6a57ac8646c3f951ee8ce224',
+        status: 'READY',
+        queryable: true,
+        mainIndex: {
+          status: 'READY',
+          queryable: true,
+          definitionVersion: { version: 1, createdAt: ISODate('2026-07-21T10:48:12.000Z') },
+          definition: {
+            mappings: {
+              dynamic: false,
+              fields: {
+                text: {
+                  type: 'string',
+                  indexOptions: 'offsets',
+                  store: true,
+                  norms: 'include'
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+]
 ```
 
 ## Update a Vector Search index
