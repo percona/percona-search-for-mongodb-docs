@@ -1,14 +1,14 @@
 # MkDocs configuration for builds with material theme
 
-site_name: Percona Server for MongoDB 8.0
+site_name: Percona Search for MongoDB
 site_description: Documentation
 site_author: Percona LLC
 copyright: >
   <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2026 — <a href="#__consent">Cookie Consent</a>
 
 
-repo_name: percona/psmdb-docs
-repo_url: https://github.com/percona/psmdb-docs
+repo_name: percona/percona-search-for-mongodb-docs
+repo_url: https://github.com/percona/percona-search-for-mongodb-docs
 edit_uri: edit/8.0/docs/
 
 use_directory_urls: false
@@ -180,89 +180,9 @@ extra:
 nav:
   - Home: index.md
   - get-help.md
-  - Get started: 
-      - Quickstart guides: 'install/index.md'
-      - Infrastructure requirements:
-        - 'System requirements': 'system-requirements.md'
-        - install/cloud-deployments.md
-      - 1. Install:  
-        - "On Debian and Ubuntu": install/apt.md
-        - "On RHEL and derivatives": install/yum.md
-        - "On Rocky Linux": install/rocky-linux.md
-        - "On Amazon Linux 2023": install/amazon-linux.md
-        - "From tarballs": install/tarball.md
-        - install/source.md
-        - "Run in Docker": install/docker.md
-      - "2. Connect to Percona Server for MongoDB": connect.md
-      - "3. Manipulate data in Percona Server for MongoDB": crud.md
-      - "4. What's next?": what-next.md
-  - Features: 
-      - Feature comparison with MongoDB: comparison.md
-      - Storage:
-        - "Percona Memory Engine": "inmemory.md"
-      - Backup:
-        - "Hot Backup": "hot-backup.md"
-        - backup-cursor.md
-      - Authentication:
-        - "Authentication overview": "authentication.md"
-        - AWS IAM:
-          - AWS IAM authentication: aws-iam.md
-          - aws-iam-setup.md
-        - kerberos.md
-        - LDAP:
-          - LDAP authorization: authorization.md
-          - sasl-auth.md
-          - x509-ldap.md
-          - ldap-setup.md
-          - ldap-parameters.md
-        - OIDC:
-          - OIDC authentication: oidc.md
-          - Configure OIDC authentication:
-             - With Okta: oidc-okta.md
-             - With Microsoft Entra: oidc-entra.md
-             - With Ping Identity: oidc-ping.md
-             - With Keycloak: oidc-keycloak.md
-             - OIDC authentication and LDAP authorization: oidc-ldap.md
-        - enable-auth.md  
-      - Encryption:
-        - "Data at rest encryption": "data-at-rest-encryption.md"
-        - "Use Vault": vault.md
-        - "Use OpenBao": openbao.md
-        - "Use KMIP" : kmip.md
-        - "Use local keyfile": keyfile.md
-        - "Migrate from keyfile to Vault": encryption-mode-switch.md
-        - fips.md
-      - fcbis.md
-      - audit-logging.md 
-      - rate-limit.md
-      - log-redaction.md
-      - ngram-full-text-search.md
-  - Administration:
-      - "Tune parameters": "set-parameter.md"
-      - log-rotation.md
-      - Connect from an external network: 
-        - "Split-DNS Horizons usage with Percona Server for MongoDB": horizon.md
-        - "Configure Horizons in Percona Server for MongoDB": horizon-setup.md
-      - mongos-config.md
-      - Upgrade:
-        - "Upgrade from 7.0 to 8.0": "install/upgrade-from-70.md"
-        - "Upgrade from MongoDB Community": "install/upgrade-from-mongodb.md"
-        - install/minor-upgrade.md
-      - install/uninstall.md
   - Release notes:
-      - "Release notes index": "release_notes/index.md"
-      - release_notes/8.0.26-11.md
-      - release_notes/8.0.23-10.md
-      - release_notes/8.0.21-9.md
-      - release_notes/8.0.20-8.md
-      - release_notes/8.0.19-7.md
-      - release_notes/8.0.17-6.md
-      - release_notes/8.0.16-5.md
-      - release_notes/8.0.12-4.md
-      - release_notes/8.0.8-3.md
-      - release_notes/8.0.4-2.md
-      - release_notes/8.0.4-1.md
   - faq.md
+
   - Reference:
       - glossary.md
       - telemetry.md
