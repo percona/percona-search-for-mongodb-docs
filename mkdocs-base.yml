@@ -184,8 +184,9 @@ nav:
   - Search Architecture: vector_search/vector-search-architecture.md
   - Search Compatibility: vector_search/vector-search-compatibility.md
   - Install and Configure mongot: vector_search/install-mongot.md
+  - Search Indexes: vector_search/search-indexes.md
   - Full-text search:
-    - Overview: vector_search/search-index-overview.md
+    - Overview: vector_search/full-text-search-overview.md
     - Create a search index: vector_search/create-search-index.md
     - Update search index: vector_search/update-search-index.md
     - Query with $search: vector_search/query-search.md
