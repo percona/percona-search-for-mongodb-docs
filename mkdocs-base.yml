@@ -184,16 +184,20 @@ nav:
   - Search Architecture: vector_search/vector-search-architecture.md
   - Search Compatibility: vector_search/vector-search-compatibility.md
   - Install and Configure mongot: vector_search/install-mongot.md
-  - Search indexes:
-    - "Search index overview": vector_search/search-index-overview.md
-    - "Create a search index": vector_search/create-search-index.md
-    - "Update search index": vector_search/update-search-index.md
-    - "Delete search index": vector_search/delete-search-index.md
-  - Run search queries:
+  - Full-text search:
+    - Overview: vector_search/search-index-overview.md
+    - Create a search index: vector_search/create-search-index.md
+    - Update search index: vector_search/update-search-index.md
     - Query with $search: vector_search/query-search.md
     - Retrieve metadata with $searchMeta: vector_search/query-searchmeta.md
     - Operators: vector_search/operators.md                 # phase 2 candidate
-    - Scoring: vector_search/scoring.md 
+    - Scoring: vector_search/scoring.md
+  - Vector search:
+    - Overview: vector_search/vector-search-overview.md
+    - Create a vector search index: vector_search/create-vector-search-index.md
+    - Update a vector search index: vector_search/update-vector-search-index.md
+    - Query with $vectorSearch: vector_search/query-vector-search.md
+    - Retrieve metadata with $vectorSearchMeta: vector_search/query-vector-searchmeta.md
   - Reference:
       - telemetry.md
       - code-of-conduct.md
