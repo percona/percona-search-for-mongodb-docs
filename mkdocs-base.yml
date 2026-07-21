@@ -195,7 +195,6 @@ nav:
         - Retrieve metadata with $searchMeta: vector_search/query-searchmeta.md
         - Operators: vector_search/operators.md                 # phase 2 candidate
         - Scoring: vector_search/scoring.md 
-  - faq.md
   - Reference:
       - glossary.md
       - telemetry.md
