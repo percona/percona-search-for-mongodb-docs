@@ -7,7 +7,7 @@ mongosh: '2.8.3'
 year: "2026"
 
 product:
-  psmdb_full_name: "Percona Search for MongoDB"
+  ps4m_full_name: "Percona Search for MongoDB"
 
 date:
   8_0_26: "2026-06-25"
