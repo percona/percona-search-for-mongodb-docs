@@ -14,28 +14,19 @@ After you update an index, mongot rebuilds it in the background. The index conti
 Suppose the `products_text_idx `index currently includes the `name` and `description` fields. The following operation updates the index to include the `category` field as well:
 
 ```javascript
-db.products.updateSearchIndex(
-  "products_text_idx",
+db.docs.updateSearchIndex(
+  "search_idx",
   {
     mappings: {
       dynamic: false,
       fields: {
-        name: {
-          type: "string",
-          analyzer: "lucene.standard"
-        },
-        description: {
-          type: "string",
-          analyzer: "lucene.standard"
-        },
-        category: {
-          type: "string",
-          analyzer: "lucene.standard"
+        text: {
+          type: "string"
         }
       }
     }
   }
-);
+)
 ```
 
 ## Update a Vector Search index
