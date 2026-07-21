@@ -71,6 +71,17 @@ Follow these steps to create a single search index:
     ]
     ```
 
+4. Perform a text search:
+
+```javascript
+db.docs.aggregate([ { $search: { index: "search_idx", text: { query: "future", path: "text" } }}])
+[
+  {
+    _id: ObjectId('69ebae2599c54be2ea44ba8a'),
+    text: 'Vector search is the future'
+  }
+```
+
 ## Create multiple Search Indexes
 
 The following example creates two Search indexes:
