@@ -192,7 +192,6 @@ nav:
     - Delete search index: vector_search/delete-search-index.md
     - Query with $search: vector_search/query-search.md
     - Relevance scores: vector_search/relevance-scores.md
-    - Operators: vector_search/operators.md                 # phase 2 candidate
   - Vector search:
     - Overview: vector_search/vector-search-overview.md
     - Create a vector search index: vector_search/create-vector-search-index.md
