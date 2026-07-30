@@ -93,9 +93,14 @@ The `$search` stage accepts the following fields:
       }
     ```
 
+## Operators
+
+Search operators define the conditions that `$search` apply to indexed fields. Each operator supports a specific type of query, such as matching text, checking a value range, or combining several search conditions. The queried fields must be included in the Search index with compatible field types.
+
 ??? example "Example: Combine multiple operators"
   
-    Use the compound operator to combine multiple search conditions in a single query. Its clauses determine which conditions are required, which conditions improve the [relevance score](), and which conditions filter the results.
+    The `compound` operator combines multiple search conditions in a single query. Its clauses determine which conditions are required, which conditions affect the [relevance score :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/score/overview/){:target="_blank"}, and which conditions filter the results.
+
 
     ```javascript
     {
