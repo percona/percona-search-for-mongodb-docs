@@ -59,7 +59,7 @@ The `$search` stage accepts the following fields:
 | `searchNodePreference` | Object  | Optional    | Routes repeated queries to a preferred Search node when possible. This is an upstream Atlas-specific option whose PSMDB support should be verified. |
 
 
-??? example "Search a text field"
+??? example "Example: Search a text field"
     
     This $search stage uses the `products_text_idx` index to search the `name` field in the `products` collection for documents matching either `athletic` or `footwear`:
 
@@ -77,7 +77,7 @@ The `$search` stage accepts the following fields:
 
     The `text` operator analyzes the query text and compares it with the indexed values in the specified field.
 
-??? example "Search multiple indexed fields"
+??? example "Example: Search multiple indexed fields"
   
     To search multiple indexed fields, specify an array of field names in path. The following query searches the name and description fields:
 
@@ -93,4 +93,50 @@ The `$search` stage accepts the following fields:
       }
     ```
 
-For the complete syntax and available options, see the [upstream MongoDB documentation :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/aggregation-stages/search/){:target="_blank"} for the $search aggregation stage.
+??? example "Example: Combine multiple operators"
+  
+    Use the compound operator to combine multiple search conditions in a single query. Its clauses determine which conditions are required, which conditions improve the [relevance score](), and which conditions filter the results.
+
+    ```javascript
+    {
+      $search: {
+        index: "products_text_idx",
+        compound: {
+          must: [
+            {
+              text: {
+                query: "shoes",
+                path: "name"
+              }
+            }
+          ],
+          should: [
+            {
+              text: {
+                query: "waterproof",
+                path: "description"
+              }
+            }
+          ],
+          filter: [
+            {
+              range: {
+                path: "price",
+                gte: 50,
+                lte: 200
+              }
+            }
+          ]
+        }
+      }
+    }
+    ```
+    
+    The clauses work as follows:
+      - `must` requires the name field to match shoes. This match contributes to the relevance score.
+      - `should` gives a higher score to products whose description contains waterproof. This condition is optional.
+      - `filter` restricts the results to products priced from 50 through 200, inclusive. It does not affect the relevance score.
+
+    The `products_text_idx index` must cover the `name`, `description`, and `price` fields with the appropriate field types.
+
+For more information, see the upstream MongoDB documentation for the [compound operator :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/operators-collectors/compound/?utm_source=chatgpt.com){:target="_blank"} and [range operator :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/operators-collectors/range/?utm_source=chatgpt.com){:target="_blank"}.
