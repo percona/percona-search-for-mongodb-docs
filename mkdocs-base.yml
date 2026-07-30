@@ -189,6 +189,7 @@ nav:
     - Overview: vector_search/full-text-search-overview.md
     - Create a search index: vector_search/create-search-index.md
     - Update search index: vector_search/update-search-index.md
+    - Delete search index: vector_search/delete-search-index.md
     - Query with $search: vector_search/query-search.md
     - Retrieve metadata with $searchMeta: vector_search/query-searchmeta.md
     - Operators: vector_search/operators.md                 # phase 2 candidate

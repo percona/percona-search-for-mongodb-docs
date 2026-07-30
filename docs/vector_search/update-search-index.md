@@ -7,7 +7,7 @@ You can use the `updateSearchIndex()` method to update a Search or Vector Search
 
 You cannot rename an index with this method. To rename an index, drop it and create a new one with the desired name.
 
-After you update an index, mongot rebuilds it in the background. The index continues to serve queries with the old definition until the rebuild completes. Use `getSearchIndexes()` to check the rebuild status.
+After you update an index, `mongot` rebuilds it in the background. The index continues to serve queries with the old definition until the rebuild completes. Use `getSearchIndexes()` to check the rebuild status.
 
 ## Update single Search Index
 
@@ -16,21 +16,21 @@ The following example updates `search_idx` to index only the text field:
 
 1. Update the search index:
 
-```javascript
-db.docs.updateSearchIndex(
-  "search_idx",
-  {
-    mappings: {
-      dynamic: false,
-      fields: {
-        text: {
-          type: "string"
+    ```javascript
+    db.docs.updateSearchIndex(
+      "search_idx",
+      {
+        mappings: {
+          dynamic: false,
+          fields: {
+            text: {
+              type: "string"
+            }
+          }
         }
       }
-    }
-  }
-)
-```
+    )
+    ```
 
 2. Check the index status:
 
