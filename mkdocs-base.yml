@@ -196,6 +196,7 @@ nav:
     - Overview: vector_search/vector-search-overview.md
     - Create a vector search index: vector_search/create-vector-search-index.md
     - Update a vector search index: vector_search/update-vector-search-index.md
+    - Delete a vector search index: vector_search/delete-vector-search-index.md
     - Query with $vectorSearch: vector_search/query-vector-search.md
     - Retrieve metadata with $vectorSearchMeta: vector_search/query-vector-searchmeta.md
   - Reference:
