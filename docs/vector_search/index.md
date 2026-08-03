@@ -9,7 +9,9 @@ The `mongot` process maintains Lucene-based search indexes and executes queries 
 
     [Compatibility and limitations :material-arrow-right:](vector-search-compatibility.md){ .md-button }
 
-## :material-progress-download: Get started { .title }
+## :material-rocket-launch: Get started { .title }
+
+### :material-progress-download: Get started { .title }
 
 Ready to add search to Percona Server for MongoDB? Review the requirements, start the `mongot` service, configure its connection to the database, and verify that the components can communicate.
 
@@ -32,3 +34,12 @@ Create, inspect, update, and delete full-text and vector search indexes. `mongot
 Search by keywords, semantic meaning, or both. Choose manual embeddings for direct control from your application or automatic embeddings with Voyage AI when supported by your deployment.
 
 [Explore vector search :material-arrow-right:](vector-search-overview.md){ .md-button }
+
+
+### :material-book-open-page-variant: Upstream references { .title }
+
+For MongoDB-compatible concepts and aggregation-stage syntax, see:
+
+- [MongoDB Vector Search overview :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/){:target="_blank"}
+- [Automated Embedding overview :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}
+- [`$vectorSearch` aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/vectorsearch/){:target="_blank"}
