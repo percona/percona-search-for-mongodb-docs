@@ -96,6 +96,6 @@ db.docs.getSearchIndexes()
 ]
 ```
 
-[Delete a search index :material-arrow-right:](../delete-search-index.md){.md-button}
+[Delete a search index :material-arrow-right:](delete-search-index.md){.md-button}
 
 
