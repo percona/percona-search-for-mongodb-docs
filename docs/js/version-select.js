@@ -101,9 +101,9 @@ function makeSelect() {
     const select_active_option = custom_select.getElementsByClassName('select-active-text')[0];
     const custom_select_list = document.getElementById('custom_select_list');
 
-    select_active_option.innerHTML = window.location.href.includes('') ?
-        custom_select_list.getElementsByClassName('custom-select__option')[1].innerHTML :
-        custom_select_list.getElementsByClassName('custom-select__option')[0].innerHTML;
+    const options = Array.from(custom_select_list.getElementsByClassName('custom-select__option'));
+    const activeOption = options.find(option => window.location.href.includes(option.href)) || options[0];
+    select_active_option.innerHTML = activeOption.innerHTML;
 
     document.addEventListener('click', event => {
         if (event.target.parentElement.id === 'custom_select' || event.target.id === 'custom_select') {
