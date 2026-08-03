@@ -132,10 +132,10 @@ The following field types are supported:
 | `objectId`          | `ObjectId`                    | Supports matching, filtering, and range operations on `ObjectId` values.                           |
 | `string`            | String                        | Analyzes text for full-text operators such as `text`, `phrase`, `regex`, and `wildcard`. |
 
-For detailed inforamtion on supported feild types, see [MongoDB documentation](https://www.mongodb.com/docs/search/index/define-field-mappings/#mongodb-search-field-types)
+For detailed information on supported field types, see [MongoDB documentation](https://www.mongodb.com/docs/search/index/define-field-mappings/#mongodb-search-field-types).
 
 
-[Update a search index :material-arrow-right:](../update-search-index.md){.md-button}
+[Update a search index :material-arrow-right:](update-search-index.md){.md-button}
 
-[Delete a search index :material-arrow-right:](../delete-search-index.md){.md-button}
+[Delete a search index :material-arrow-right:](delete-search-index.md){.md-button}
 
