@@ -4,17 +4,11 @@ Percona Search for MongoDB supports full-text and vector search for Percona Serv
 
 The `mongot` process maintains Lucene-based search indexes and executes search queries. Applications query Percona Server for MongoDB with `$search`, `$searchMeta`, and `$vectorSearch` aggregation stages.
 
-
-!!! tip "New to Percona Search for MongoDB?"
-    Review the requirements, install and configure `mongot`, create an index, and run a query.
-
-    [Get started :material-arrow-right:](install-mongot.md){ .md-button .md-button--primary }
-
 ## :material-rocket-launch: Get started { .title }
 
 ### :material-sitemap: Plan your deployment { .title }
 
-Understand the components, supported topologies, resource requirements, network connectivity, and current limitations before installing the search service.
+Understand the components, supported deployment topologies, resource requirements, and current limitations before installing the Percona Search for MongoDB .
 
 [Architecture :material-arrow-right:](vector-search-architecture.md){ .md-button }
 [Deployment :material-arrow-right:](vector-search-deployment.md){ .md-button }
@@ -66,12 +60,6 @@ Create, inspect, update, and delete full-text and vector search indexes. Index d
 [Search index overview :material-arrow-right:](search-index-overview.md){ .md-button }
 [Update an index :material-arrow-right:](update-search-index.md){ .md-button }
 [Delete an index :material-arrow-right:](delete-search-index.md){ .md-button }
-
-### Validate behavior and performance
-
-Use representative data and queries to evaluate index readiness, relevance, filtering, latency, memory consumption, and result quality before moving a workload to production.
-
-[Query and index guidance :material-arrow-right:](vector-search-best-practices.md){ .md-button }
 
 ## :material-book-open-page-variant: Upstream references { .title }
 
