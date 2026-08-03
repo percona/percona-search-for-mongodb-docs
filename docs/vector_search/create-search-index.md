@@ -117,43 +117,6 @@ This creates:
 - `search_idx`, which dynamically indexes supported fields.
 - `text_search_idx`, which indexes only the text field.
 
-## Create Search and Vector Search Indexes together
-
-You can include Search and Vector Search index definitions in the same command.
-
-```javascript
-db.docs.createSearchIndexes([
-  {
-    name: "search_idx",
-    type: "search",
-    definition: {
-      mappings: {
-        dynamic: false,
-        fields: {
-          text: {
-            type: "string"
-          }
-        }
-      }
-    }
-  },
-  {
-    name: "vector_idx",
-    type: "vectorSearch",
-    definition: {
-      fields: [
-        {
-          type: "vector",
-          path: "embedding",
-          numDimensions: 3,
-          similarity: "cosine"
-        }
-      ]
-    }
-  }
-])
-[ 'search_idx', 'vector_idx' ]
-```
 
 ## Supported field types
 
@@ -169,7 +132,7 @@ The following field types are supported:
 | `objectId`          | `ObjectId`                    | Supports matching, filtering, and range operations on `ObjectId` values.                           |
 | `string`            | String                        | Analyzes text for full-text operators such as `text`, `phrase`, `regex`, and `wildcard`. |
 
-For detailed inforamtion on supported feild types, see MongoDB documentation](https://www.mongodb.com/docs/search/index/define-field-mappings/#mongodb-search-field-types)
+For detailed inforamtion on supported feild types, see [MongoDB documentation](https://www.mongodb.com/docs/search/index/define-field-mappings/#mongodb-search-field-types)
 
 
 [Update a search index :material-arrow-right:](../update-search-index.md){.md-button}
