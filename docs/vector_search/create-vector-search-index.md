@@ -46,13 +46,13 @@ Follow these steps to create and query a Vector Search index.
     })
     ```
 
-The index definition specifies that:
+    The index definition specifies that:
 
-- Embedding contains the vectors to index.
-- Each vector has three dimensions.
-- Vector similarity is calculated using cosine similarity
+    - Embedding contains the vectors to index.
+    - Each vector has three dimensions.
+    - Vector similarity is calculated using cosine similarity.
 
-2. Check the index status:
+3. Check the index status:
 
     ```javascript
     db.docs.getSearchIndexes()
