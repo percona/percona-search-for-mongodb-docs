@@ -143,11 +143,9 @@ section {
     margin: 0.5em 0.25em 0 0;
 }
 
-<<<<<<< HEAD
 /*.git-revision-date-localized-plugin:before {
   content: url('https://api.iconify.design/mdi/clock-edit-outline.svg');
 }*/
-=======
 /* Custom highlights */
 i[info],
 i[warning] {
