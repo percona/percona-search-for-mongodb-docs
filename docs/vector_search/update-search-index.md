@@ -96,30 +96,6 @@ db.docs.getSearchIndexes()
 ]
 ```
 
-## Update a Vector Search index
-
-Suppose `products_vector_idx` currently indexes the `embedding` field. The following operation adds `category` as a filter field:
-
-```javascript
-db.products.updateSearchIndex(
-  "products_vector_idx",
-  {
-    fields: [
-      {
-        type: "vector",
-        path: "embedding",
-        numDimensions: 768,
-        similarity: "cosine"
-      },
-      {
-        type: "filter",
-        path: "category"
-      }
-    ]
-  }
-);
-```
-
 [Delete a search index :material-arrow-right:](../delete-search-index.md){.md-button}
 
 
