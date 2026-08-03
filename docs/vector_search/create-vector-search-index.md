@@ -150,6 +150,6 @@ Follow these steps to create and query a Vector Search index.
 
         4. `$project` shapes that output. The `score` field comes from `$meta: "vectorSearchScore"`. Percona Search for MongoDB calculates the score during the exchange described above and does not store it in the document, which is why you read it as metadata rather than as a field. A higher score means a closer match.
 
-[Update a search index :material-arrow-right:](../cupdate-search-index.md){.md-button}
+[Update a search index :material-arrow-right:](update-search-index.md){.md-button}
 
-[Delete a search index :material-arrow-right:](../delete-search-index.md){.md-button}
+[Delete a search index :material-arrow-right:](delete-search-index.md){.md-button}
