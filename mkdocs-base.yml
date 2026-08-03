@@ -182,6 +182,8 @@ nav:
   - get-help.md
   - Search Overview: vector_search/overview-search.md
   - Search Architecture: vector_search/vector-search-architecture.md
+  - Search Deployment: vector_search/vector-search-deployment.md
+  - Embedding Models: vector_search/embeddings.md
   - Search Compatibility: vector_search/vector-search-compatibility.md
   - Install and Configure mongot: vector_search/install-mongot.md
   - Search Indexes: vector_search/search-indexes.md
