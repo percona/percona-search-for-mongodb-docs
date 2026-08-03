@@ -63,7 +63,7 @@ Follow these steps to create and query a Vector Search index.
         [  
             {
             id: '69ebbabd651bce4d10f57be5',
-            name: 'vector_index',
+            name: 'vector_idx',
             status: 'READY',
             queryable: true,
             latestDefinitionVersion: { version: 0, createdAt: ISODate('2026-04-24T18:47:25.000Z') },
