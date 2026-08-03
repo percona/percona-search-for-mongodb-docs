@@ -48,10 +48,7 @@ The `mongot` process maintains Lucene-based search indexes and executes queries 
 
 -   :material-database-search: **Create and manage search indexes**
 
-    Create, inspect, update, and delete full-text and vector search indexes. Learn how `mongot` synchronizes indexes with changes to the source collections.
-
-    [Search index overview :material-arrow-right:](search-index-overview.md){ .md-button }
-
+    [Search index overview :material-arrow-right:](search-indexes.md){ .md-button }
 -   :material-magnify: **Build search experiences**
 
     Search by keywords, semantic meaning, or both. Use manual embeddings for application-level control or automatic embeddings when supported by your deployment.
