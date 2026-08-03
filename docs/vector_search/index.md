@@ -11,17 +11,17 @@ The `mongot` process maintains Lucene-based search indexes and executes queries 
 
 ## :material-rocket-launch: Get started { .title }
 
-### :material-progress-download: Get started { .title }
+### :material-sitemap: Plan your deployment { .title }
 
-Ready to add search to Percona Server for MongoDB? Review the requirements, start the `mongot` service, configure its connection to the database, and verify that the components can communicate.
+Understand the components, supported deployment topologies, resource requirements, and current limitations before installing the search service.
+
+[Explore the deployments :material-arrow-right:](vector-search-architecture.md){ .md-button }
+
+### :material-download: Install and configure `mongot` { .title }
+
+Start the `mongot` service, connect it to Percona Server for MongoDB, and verify communication between the database and search components.
 
 [Install and configure `mongot` :material-arrow-right:](install-mongot.md){ .md-button }
-
-### :material-sitemap: Understand architecture and deployment { .title }
-
-Learn how Percona Server for MongoDB, `mongot`, and the search indexes work together. Review replica-set and sharded-cluster topologies, component placement, communication flow, and deployment requirements.
-
-[Explore the architecture :material-arrow-right:](vector-search-architecture.md){ .md-button }
 
 ### :material-database-search: Create and manage search indexes { .title }
 
