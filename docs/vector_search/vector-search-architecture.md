@@ -1,28 +1,50 @@
-# Architecture
+# Percona Search for MongoDB architecture
 
-`mongod` and `mongot` work together to provide full-text and vector search capabilities. While `mongod` continues to store and manage your application data, `mongot` is responsible for building search indexes and executing search queries. The two processes run alongside each other and communicate internally to keep search indexes synchronized with the underlying data.
+The architecture describes the components that provide search and how data, search requests, and results move between them. It is independent of the number of replica set members or shards in the deployment.
 
-## Components
 
-| **Component** | **Description** |
-|-----------|-------------|
-| `Application` | Sends vector search requests using the `$vectorSearch` aggregation stage. |
-| `mongod` | Stores application data, manages vector search indexes, forwards vector search requests to `mongot`, retrieves matching documents, and returns the final results. |
-| `mongos` | Routes vector search requests to the appropriate shard in sharded deployments. |
-| `mongot` | Builds and maintains vector indexes, synchronizes them with data stored in `mongod`, performs nearest-neighbor searches, and returns matching document identifiers with similarity scores. |
-| Vector indexes | Specialized indexes maintained by `mongot` to efficiently perform semantic similarity searches over vector embeddings. |
+## Core components
 
-## How vector search works
+|Component|Purpose|
+|---|---|
+|Application|Connects to `mongod` in a replica set or to `mongos` in a sharded cluster. It never connects directly to `mongot`.|
+|`mongod`|Stores application data, forwards search requests to `mongot`, and retrieves matching documents.|
+|`mongos`|Routes search requests across shards and merges the results.|
+|`mongot`|Maintains Lucene-based indexes and executes full-text and vector searches.|
+|Search index storage|Stores search indexes separately from the database files managed by `mongod`.|
+|Embedding model|Converts content into vectors for semantic search.|
+|Generative LLM|Uses retrieved documents as context to generate responses in a RAG application.|
 
-The following steps describe how a vector search request is processed:
+## Communication between mongod and mongot
+
+Applications never communicate with `mongot` directly. They send database and search operations to `mongod`, or to `mongos` when the cluster is sharded.
+
+Communication between Percona Server for MongoDB and Percona Search for MongoDB works in both directions:
+
+- `mongod` to `mongot`: `mongod` forwards search queries and search index management commands over gRPC.
+
+- `mongot` to `mongod`: `mongot` reads source documents and change events to build and refresh its indexes.
+
+Use TLS for communication between the database and search processes. The mongot process must also authenticate to the database with the privileges required to read source data, monitor changes, and manage search indexes.
+
+## Search query processing
+
+A search query follows this general path:
 {.power-number}
 
-1. The application converts the search query into a vector embedding using an embedding model.
-2. The application submits the vector search request to `mongod` or `mongos` using the `$vectorSearch` aggregation stage.
-3. `mongod` forwards the vector search portion of the request to `mongot`.
-4. `mongot` searches the vector index for the nearest matching embeddings. The vector indexes are continuously synchronized with the data stored in `mongod`, ensuring that search results reflect the latest changes.
-5. `mongot` returns the matching document identifiers and similarity scores to `mongod`.
-6. `mongod` retrieves the corresponding documents from the database, applies any remaining aggregation pipeline stages, and returns the final results to the application.
+1. The application sends a `$search`, `$searchMeta`, or `$vectorSearch` aggregation to `mongod` or `mongos`.
+
+2. A `mongod` member that owns the relevant data forwards the search stage to mongot over gRPC.
+
+3. `mongot` searches its local Lucene-based index.
+
+4. `mongot` returns matching document identifiers and relevance scores to `mongod`.
+
+5. `mongod` loads the corresponding documents from the collection.
+
+6. In a sharded cluster, mongos combines the partial results from the shards.
+
+7. The application receives the final result set.
 
 ## Data synchronization
 `mongot` does not store the primary copy of your data. Instead, it maintains vector indexes that are synchronized with the collections stored in `mongod`. Whenever documents are inserted, updated, or deleted, the corresponding vector indexes are updated automatically. This synchronization ensures that vector search queries operate on current data without requiring manual index maintenance.
