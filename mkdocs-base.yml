@@ -178,7 +178,7 @@ extra:
 #  homepage: https://docs.percona.com
 
 nav:
-  - Home: index.md
+  - Home: vector_search/index.md
   - get-help.md
   - Search Overview: vector_search/overview-search.md
   - Search Architecture: vector_search/vector-search-architecture.md
