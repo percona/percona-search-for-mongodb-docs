@@ -1,4 +1,4 @@
-# Vector search Overview
+# Vector search overview
 
 ## What is a vector database?
 
