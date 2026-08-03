@@ -1,6 +1,6 @@
 # Percona Search for MongoDB documentation
 
-Percona Search for MongoDB adds full-text and vector search capabilities to Percona Server for MongoDB deployments. Use it to build semantic search, keyword search, hybrid search, recommendations, and retrieval-augmented generation (RAG) applications.
+Percona Search for MongoDB adds full-text and vector search capabilities to self-managed Percona Server for MongoDB deployments. Use it to build semantic search, keyword search, hybrid search, recommendations, and retrieval-augmented generation (RAG) applications.
 
 The `mongot` process maintains Lucene-based search indexes and executes queries submitted through the `$search`, `$searchMeta`, and `$vectorSearch` aggregation stages.
 
@@ -9,37 +9,30 @@ The `mongot` process maintains Lucene-based search indexes and executes queries 
 
     [Compatibility and limitations :material-arrow-right:](vector-search-compatibility.md){ .md-button }
 
-## :material-rocket-launch: Get started { .title }
+<div class="grid cards" markdown>
 
-### :material-sitemap: Plan your deployment { .title }
+-   :material-progress-download: **Get started**
 
-Understand the components, supported deployment topologies, resource requirements, and current limitations before installing the search service.
+    Review the requirements, start the `mongot` service, configure its connection to Percona Server for MongoDB, and verify that the components can communicate.
 
-[Explore the deployments :material-arrow-right:](vector-search-architecture.md){ .md-button }
+    [Install and configure `mongot` :material-arrow-right:](install-mongot.md){ .md-button }
 
-### :material-download: Install and configure `mongot` { .title }
+-   :material-sitemap: **Understand architecture and deployment**
 
-Start the `mongot` service, connect it to Percona Server for MongoDB, and verify communication between the database and search components.
+    Learn how Percona Server for MongoDB, `mongot`, and the search index work together. Review component placement, communication flow, topologies, and deployment requirements.
 
-[Install and configure `mongot` :material-arrow-right:](install-mongot.md){ .md-button }
+    [Explore the architecture :material-arrow-right:](vector-search-architecture.md){ .md-button }
 
-### :material-database-search: Create and manage search indexes { .title }
+-   :material-database-search: **Create and manage search indexes**
 
-Create, inspect, update, and delete full-text and vector search indexes. `mongot` keeps the indexes synchronized with changes to the source collections.
+    Create, inspect, update, and delete full-text and vector search indexes. Learn how `mongot` synchronizes indexes with changes to the source collections.
 
-[Search index overview :material-arrow-right:](search-index-overview.md){ .md-button }
+    [Search index overview :material-arrow-right:](search-index-overview.md){ .md-button }
 
-### :material-magnify: Build search experiences { .title }
+-   :material-magnify: **Build search experiences**
 
-Search by keywords, semantic meaning, or both. Choose manual embeddings for direct control from your application or automatic embeddings with Voyage AI when supported by your deployment.
+    Search by keywords, semantic meaning, or both. Use manual embeddings for application-level control or automatic embeddings when supported by your deployment.
 
-[Explore vector search :material-arrow-right:](vector-search-overview.md){ .md-button }
+    [Explore vector search :material-arrow-right:](vector-search-overview.md){ .md-button }
 
-
-### :material-book-open-page-variant: Upstream references { .title }
-
-For MongoDB-compatible concepts and aggregation-stage syntax, see:
-
-- [MongoDB Vector Search overview :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/){:target="_blank"}
-- [Automated Embedding overview :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}
-- [`$vectorSearch` aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/vectorsearch/){:target="_blank"}
+</div>
