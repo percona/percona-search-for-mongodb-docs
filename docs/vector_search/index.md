@@ -4,55 +4,42 @@ Percona Search for MongoDB adds full-text and vector search capabilities to self
 
 The `mongot` process maintains Lucene-based search indexes and executes queries submitted through the `$search`, `$searchMeta`, and `$vectorSearch` aggregation stages.
 
-!!! tip ""
+!!! hint ""
     Applications connect to `mongod` in a replica set or to `mongos` in a sharded cluster. They never connect directly to `mongot`. Percona Server for MongoDB sends search requests to `mongot` and returns the retrieved documents to the application.
 
     [Compatibility and limitations :material-arrow-right:](vector-search-compatibility.md){ .md-button }
 
-<style>
-  .search-home-cards > ul > li {
-    display: flex;
-    min-height: 16rem;
-    flex-direction: column;
-  }
+<div data-grid markdown><div data-banner markdown>
 
-  .search-home-cards > ul > li > p:last-child {
-    margin-top: auto;
-    margin-bottom: 0;
-  }
+## :material-progress-download: Get started { .title }
 
-  .search-home-cards .md-button {
-    white-space: nowrap;
-  }
+Review the requirements, start the `mongot` service, configure its connection to Percona Server for MongoDB, and verify that the components can communicate.
 
-  @media screen and (max-width: 44.9844em) {
-    .search-home-cards > ul > li {
-      min-height: auto;
-    }
-  }
-</style>
+[Install and configure `mongot` :material-arrow-right:](install-mongot.md){ .md-button }
 
-<div class="grid cards search-home-cards" markdown>
+</div><div data-banner markdown>
 
--   :material-progress-download: **Get started**
+### :material-sitemap: Understand architecture and deployment { .title }
 
-    Review the requirements, start the `mongot` service, configure its connection to Percona Server for MongoDB, and verify that the components can communicate.
+Learn how Percona Server for MongoDB, `mongot`, and the search index work together. Review component placement, communication flow, topologies, and deployment requirements.
 
-    [Install and configure `mongot` :material-arrow-right:](install-mongot.md){ .md-button }
+[Explore the architecture :material-arrow-right:](vector-search-architecture.md){ .md-button }
 
--   :material-sitemap: **Understand architecture and deployment**
+</div><div data-banner markdown>
 
-    Learn how Percona Server for MongoDB, `mongot`, and the search index work together. Review component placement, communication flow, topologies, and deployment requirements.
+### :material-database-search: Create and manage search indexes { .title }
 
-    [Explore the architecture :material-arrow-right:](vector-search-architecture.md){ .md-button }
+Create, inspect, update, and delete full-text and vector search indexes. Learn how `mongot` synchronizes indexes with changes to the source collections.
 
--   :material-database-search: **Create and manage search indexes**
+[Search index overview :material-arrow-right:](search-index-overview.md){ .md-button }
 
-    [Search index overview :material-arrow-right:](search-indexes.md){ .md-button }
--   :material-magnify: **Build search experiences**
+</div><div data-banner markdown>
 
-    Search by keywords, semantic meaning, or both. Use manual embeddings for application-level control or automatic embeddings when supported by your deployment.
+### :material-magnify: Build search experiences { .title }
 
-    [Explore vector search :material-arrow-right:](vector-search-overview.md){ .md-button }
+Search by keywords, semantic meaning, or both. Use manual embeddings for application-level control or automatic embeddings when supported by your deployment.
 
+[Explore vector search :material-arrow-right:](vector-search-overview.md){ .md-button }
+
+</div>
 </div>
