@@ -19,17 +19,23 @@ To create an index, see [Create a vector search index](create-vector-search-inde
 ## Syntax
 
 ```javascript
-db.<collection>.aggregate([
-  {
-    $vectorSearch: {
-      index: "<index-name>",
-      path: "<vector-field>",
-      queryVector: <query-vector>,
-      numCandidates: <number>,
-      limit: <number>
-    }
+{
+  "$vectorSearch": {
+    "exact": true | false,
+    "filter": {<filter-specification>},
+    "index": "<index-name>",
+    "limit": <number-of-results>,
+    "model": "<model-name>",
+    "numCandidates": <number-of-candidates>,
+    "path": "<field-to-search>",
+    "query": {
+      "text": "<query-text>"
+    },
+    "searchNodePreference": {
+      "key": <preference-string>
+    }      
   }
-]);
+}
 ```
 
 The `$vectorSearch` stage accepts the following fields:
