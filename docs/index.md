@@ -26,33 +26,15 @@ See how Percona Server for MongoDB, `mongot`, and the search indexes work togeth
 
 Create, inspect, update, and delete full-text and vector search indexes. Learn how `mongot` keeps an index synchronized with changes to its source collection.
 
-[Search index overview :material-arrow-right:](search-index-overview.md){ .md-button }
+[Search index overview :material-arrow-right:](search-indexes.md){ .md-button }
 
 </div><div data-banner markdown>
 
-## :material-text-search: Run full-text searches { .title }
+## :material-vector-point: Generate embeddings { .title }
 
-Query text fields with `$search` to match on keywords, phrases, and fuzzy terms. Use `$searchMeta` to return facets, counts, and other result metadata.
+Learn how to generate and manage vector embeddings for semantic search. Generate embeddings manually in your application, or configure automatic embedding with a supported Voyage AI model.
 
-[Explore full-text search :material-arrow-right:](search-overview.md){ .md-button }
-
-<!-- TBD-DOCS: confirm the filename of the full-text search overview page. -->
-
-</div><div data-banner markdown>
-
-## :material-vector-point: Run vector searches { .title }
-
-Query embeddings with `$vectorSearch` to match on meaning rather than wording. Generate embeddings in your application for full control, or use automatic embeddings where your deployment supports them.
-
-[Explore vector search :material-arrow-right:](vector-search-overview.md){ .md-button }
-
-</div><div data-banner markdown>
-
-## :material-clipboard-check: Check compatibility and limitations { .title }
-
-Review the supported Percona Server for MongoDB versions and deployment types, and the search features, operators, and options that are not yet available.
-
-[Compatibility and limitations :material-arrow-right:](vector-search-compatibility.md){ .md-button }
+[Explore embedding models :material-arrow-right:](embeddings.md){ .md-button }
 
 </div>
 </div>
