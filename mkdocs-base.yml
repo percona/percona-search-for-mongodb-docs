@@ -178,29 +178,29 @@ extra:
 #  homepage: https://docs.percona.com
 
 nav:
-  - Home: vector_search/index.md
+  - Home: index.md
   - get-help.md
-  - Search Overview: vector_search/overview-search.md
-  - Search Architecture: vector_search/vector-search-architecture.md
-  - Search Deployment: vector_search/vector-search-deployment.md
-  - Embedding Models: vector_search/embeddings.md
-  - Search Compatibility: vector_search/vector-search-compatibility.md
-  - Install and Configure mongot: vector_search/install-mongot.md
-  - Search Indexes: vector_search/search-indexes.md
+  - Search Overview: overview-search.md
+  - Search Architecture: vector-search-architecture.md
+  - Search Deployment: vector-search-deployment.md
+  - Embedding Models: embeddings.md
+  - Search Compatibility: vector-search-compatibility.md
+  - Install and Configure mongot: install-mongot.md
+  - Search Indexes: search-indexes.md
   - Full-text search:
-    - Overview: vector_search/full-text-search-overview.md
-    - Create a search index: vector_search/create-search-index.md
-    - Update search index: vector_search/update-search-index.md
-    - Delete search index: vector_search/delete-search-index.md
-    - Query with $search: vector_search/query-search.md
-    - Relevance scores: vector_search/relevance-scores.md
+    - Overview: full-text-search-overview.md
+    - Create a search index: create-search-index.md
+    - Update search index: update-search-index.md
+    - Delete search index: delete-search-index.md
+    - Query with $search: query-search.md
+    - Relevance scores: relevance-scores.md
   - Vector search:
-    - Overview: vector_search/vector-search-overview.md
-    - Create a vector search index: vector_search/create-vector-search-index.md
-    - Update a vector search index: vector_search/update-vector-search-index.md
-    - Delete a vector search index: vector_search/delete-vector-search-index.md
-    - Query with $vectorSearch: vector_search/query-vector-search.md
-    - Retrieve metadata with $vectorSearchMeta: vector_search/query-vector-searchmeta.md
+    - Overview: vector-search-overview.md
+    - Create a vector search index: create-vector-search-index.md
+    - Update a vector search index: update-vector-search-index.md
+    - Delete a vector search index: delete-vector-search-index.md
+    - Query with $vectorSearch: query-vector-search.md
+    - Retrieve metadata with $vectorSearchMeta: query-vector-searchmeta.md
   - Reference:
       - telemetry.md
       - code-of-conduct.md
