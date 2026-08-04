@@ -30,11 +30,11 @@ Create, inspect, update, and delete full-text and vector search indexes. Learn h
 
 </div><div data-banner markdown>
 
-## :material-vector-point: Generate embeddings { .title }
+## :material-magnify: **Build search experiences**
 
-Learn how to generate and manage vector embeddings for semantic search. Generate embeddings manually in your application, or configure automatic embedding with a supported Voyage AI model.
+Search by keywords, semantic meaning, or both. Use manual embeddings for application-level control or automatic embeddings when supported by your deployment.
 
-[Explore embedding models :material-arrow-right:](embeddings.md){ .md-button }
+[Explore vector search :material-arrow-right:](vector-search-overview.md){ .md-button }
 
 </div>
 </div>
