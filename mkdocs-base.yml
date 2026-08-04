@@ -212,7 +212,8 @@ nav:
       - Query with $vectorSearch: query-vector-search.md
   
   - Release notes:
-      - Release notes: 1.70.1-1.md 
+      - Release notes index: release_notes/index.md:
+      - release_notes/1.70.1-1.md 
 
   - Reference:
       - Telemetry: telemetry.md
