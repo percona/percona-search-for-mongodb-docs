@@ -9,7 +9,7 @@ copyright: >
 
 repo_name: percona/percona-search-for-mongodb-docs
 repo_url: https://github.com/percona/percona-search-for-mongodb-docs
-edit_uri: edit/8.0/docs/
+edit_uri: edit/1.17.0/docs/
 
 use_directory_urls: false
 
@@ -155,7 +155,7 @@ plugins:
 #Plugin for PDF generation
   print-site:
       add_to_navigation: false
-      print_page_title: 'Percona Server for MongoDB documentation'
+      print_page_title: 'Percona Search for MongoDB documentation'
       add_print_site_banner: false
       # Table of contents
       add_table_of_contents: true
