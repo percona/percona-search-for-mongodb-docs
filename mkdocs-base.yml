@@ -189,7 +189,8 @@ nav:
   - Deploy Percona Search:
       - Deployment topologies: vector-search-deployment.md
       - Compatibility and limitations: vector-search-compatibility.md
-      - Install and configure mongot: install-mongot.md
+  
+  - Install and configure mongot: install-mongot.md
 
   - Search indexes overview: search-indexes.md
 
