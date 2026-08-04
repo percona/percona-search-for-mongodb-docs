@@ -141,8 +141,8 @@ plugins:
     touchNavigation: false
   git-committers:
     enabled: !ENV [CI, false]
-    repository: percona/psmdb-docs
-    branch: "8.0"
+    repository: percona/percona-search-for-mongodb-docs
+    branch: "main"
   macros:
       include_yaml:
         - 'variables.yml' # Use in markdown as '{{ VAR }}'   
