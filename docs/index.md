@@ -30,7 +30,7 @@ Create, inspect, update, and delete full-text and vector search indexes. Learn h
 
 </div><div data-banner markdown>
 
-## :material-magnify: :Build search experiences { .title }
+## :material-magnify: Build search experiences { .title }
 
 Search by keywords, semantic meaning, or both. Use manual embeddings for application-level control or automatic embeddings when supported by your deployment.
 
