@@ -1,5 +1,7 @@
 ## Initial feature comparison
 
+Percona Search for MongoDB is currently available as a technical preview. The following table provides a snapshot of its capabilities compared with MongoDB Community Edition, MongoDB Enterprise Advanced, and MongoDB Atlas. The comparison will be updated as Percona introduces new capabilities and MongoDB moves preview features to general availability.
+
 |**Capability**|**Percona Search for MongoDB**|**MongoDB Community|MongoDB Enterprise Advanced**|**MongoDB Atlas**|
 |---|---|---|---|---|
 |Operating model|Self-managed|Self-managed (tarball, Docker, or package manager); Kubernetes Operator support available as a Preview feature|`mongot` managed through the MongoDB Controllers for Kubernetes Operator|Fully managed|
