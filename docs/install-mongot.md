@@ -462,6 +462,61 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
         ```text
         SERVING
         ```
+=== "RPM packages"
+
+    ### Install `mongot` on RHEL and derivatives
+
+    Follow these steps to install `mongot` using the Percona RPM repository:
+    {.power-number}
+
+    1. Install the Percona repository.
+
+        ```sh
+        sudo yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+        ```
+
+    2. Enable the Percona Search for MongoDB repository.
+
+        ```sh
+        sudo percona-release enable ps4m release
+        ```
+
+    3. Install `mongot`.
+
+        ```sh
+        sudo yum install percona-search-mongodb
+        ```
+
+    After installing the package, continue with the configuration steps starting from **Configure `mongod` to communicate with `mongot`**.
+
+=== "DEB packages"
+
+    ### Install `mongot` on Debian and Ubuntu
+
+    Follow these steps to install `mongot` using the Percona APT repository:
+    {.power-number}
+
+    1. Install the Percona repository.
+
+        ```sh
+        wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
+
+        sudo apt install ./percona-release_latest.$(lsb_release -sc)_all.deb
+        ```
+
+    2. Enable the Percona Search for MongoDB repository.
+
+        ```sh
+        sudo percona-release enable ps4m release
+        ```
+
+    3. Install `mongot`.
+
+        ```sh
+        sudo apt install percona-search-mongodb
+        ```
+
+    After installing the package, continue with the configuration steps starting from **Configure `mongod` to communicate with `mongot`**.
 
 
 
