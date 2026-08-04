@@ -210,6 +210,9 @@ nav:
       - Update a vector search index: update-vector-search-index.md
       - Delete a vector search index: delete-vector-search-index.md
       - Query with $vectorSearch: query-vector-search.md
+  
+  - Release notes:
+      - Release notes: 1.70.1-1.md 
 
   - Reference:
       - Telemetry: telemetry.md
