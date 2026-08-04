@@ -215,7 +215,6 @@ nav:
       - release_notes/1.70.1-1.md 
 
   - Reference:
-      - Telemetry: telemetry.md
       - Code of conduct: code-of-conduct.md
       - Copyright: copyright.md
       - Trademark policy: trademark-policy.md
