@@ -179,30 +179,41 @@ extra:
 
 nav:
   - Home: index.md
-  - get-help.md
-  - Search overview: overview-search.md
-  - Search architecture: vector-search-architecture.md
-  - Deployment topologies: vector-search-deployment.md
-  - Search compatibility: vector-search-compatibility.md
-  - Install and configure mongot: install-mongot.md
-  - Search indexes: search-indexes.md
+  - Get help: get-help.md
+
+  - About Percona Search for MongoDB:
+      - Overview: overview-search.md
+      - Feature comparison: feature-comparison.md
+      - Architecture: vector-search-architecture.md
+
+  - Deploy Percona Search:
+      - Deployment topologies: vector-search-deployment.md
+      - Compatibility and limitations: vector-search-compatibility.md
+      - Install and configure mongot: install-mongot.md
+
+  - Search indexes overview: search-indexes.md
+
   - Full-text search:
-    - Overview: full-text-search-overview.md
-    - Create a search index: create-search-index.md
-    - Update search index: update-search-index.md
-    - Delete search index: delete-search-index.md
-    - Query with $search: query-search.md
-    - Relevance scores: relevance-scores.md
+      - Overview: full-text-search-overview.md
+      - Create a search index: create-search-index.md
+      - Update a search index: update-search-index.md
+      - Delete a search index: delete-search-index.md
+      - Query with $search: query-search.md
+      - Retrieve metadata with $searchMeta: query-searchmeta.md
+      - Understand relevance scores: relevance-scores.md
+
   - Vector search:
-    - Overview: vector-search-overview.md
-    - Create a vector search index: create-vector-search-index.md
-    - Update a vector search index: update-vector-search-index.md
-    - Delete a vector search index: delete-vector-search-index.md
-    - Query with $vectorSearch: query-vector-search.md
-    - Embedding models: embeddings.md
+      - Overview: vector-search-overview.md
+      - Manual and automatic embeddings: embeddings.md
+      - Create a vector search index: create-vector-search-index.md
+      - Update a vector search index: update-vector-search-index.md
+      - Delete a vector search index: delete-vector-search-index.md
+      - Query with $vectorSearch: query-vector-search.md
+
   - Reference:
-      - telemetry.md
-      - code-of-conduct.md
-      - copyright.md
-      - trademark-policy.md 
-  - "Percona Software and Platform Lifecycle": "lifecycle.md"
+      - Telemetry: telemetry.md
+      - Code of conduct: code-of-conduct.md
+      - Copyright: copyright.md
+      - Trademark policy: trademark-policy.md
+
+  - "Percona Software and Platform Lifecycle": lifecycle.md
