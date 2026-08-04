@@ -1,147 +1,172 @@
-# Query with $search
+# Query with `$vectorSearch`
 
-The `$search` aggregation stage performs **full-text search** on fields covered by a search index. It returns documents ordered by relevance, with the most relevant document returned first.
+Use the `$vectorSearch` aggregation stage to find documents whose vector embeddings are closest to a query vector. Percona Search for MongoDB returns the closest matches first.
+
+`$vectorSearch` must be the first stage in the aggregation pipeline.
 
 ## Before you begin
 
-- `mongot` is running and connected to your Percona Search for MongoDB deployment.
-- A search index exists for the collection.
-- The index includes the fields you want to search.
+Make sure that:
 
-## General syntax for $search
+- Percona Search for MongoDB is running and connected to Percona Server for MongoDB.
+- The collection contains vector embeddings.
+- A vector search index exists for the field you want to query.
+- The query vector has the same number of dimensions as the vectors indexed in the collection.
+- The query vector was generated with the same embedding model used for the stored embeddings.
 
-  ```javascript
+To create an index, see [Create a vector search index](create-vector-search-index.md).
+
+## Syntax
+
+```javascript
+db.<collection>.aggregate([
   {
-    $search: {
+    $vectorSearch: {
       index: "<index-name>",
-      "<operator-name>": {
-        <operator-options>
-      },
-      highlight: {
-        <highlight-options>
-      },
-      concurrent: true | false,
-      count: {
-        <count-options>
-      },
-      searchAfter: "<encoded-token>",
-      scoreDetails: true | false,
-      sort: {
-        "<field>": 1 | -1
-      },
-      returnScope: {
-        path: "<embedded-document-field>"
-      },
-      returnStoredSource: true | false,
-      searchNodePreference: {
-        key: "<preference-string>"
+      path: "<vector-field>",
+      queryVector: <query-vector>,
+      numCandidates: <number>,
+      limit: <number>
+    }
+  }
+]);
+```
+
+The `$vectorSearch` stage accepts the following fields:
+
+| Field | Description |
+|---|---|
+| `index` | Name of the vector search index. |
+| `path` | Document field that contains the indexed embeddings. |
+| `queryVector` | Vector that represents the search query. |
+| `numCandidates` | Number of candidate vectors to consider during an approximate nearest neighbor search. |
+| `limit` | Maximum number of documents to return. |
+| `filter` | Optional filter that limits which documents are considered. The filtered fields must be included in the index as `filter` fields. |
+| `exact` | Set to `true` to run an exact nearest neighbor search. Omit this field for an approximate nearest neighbor search. |
+
+## Run an approximate nearest neighbor query
+
+Approximate nearest neighbor (ANN) search uses the HNSW index to find close matches without comparing the query vector with every indexed vector. This approach is suitable for larger datasets where query speed is important.
+
+Assume that the `queryVector` variable contains the complete embedding generated for the search text. The following query searches the `embedding` field and returns the five closest matches:
+
+```javascript
+db.products.aggregate([
+  {
+    $vectorSearch: {
+      index: "products_vector_idx",
+      path: "embedding",
+      queryVector: queryVector,
+      numCandidates: 100,
+      limit: 5
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      description: 1,
+      score: {
+        $meta: "vectorSearchScore"
       }
     }
   }
-  ```
+]);
+```
 
-The `$search` stage accepts the following fields:
+The query considers 100 candidate vectors and returns the five closest matches.
 
-| Field  | Type    | Requirement | Description |
-| -------| ------- | ----------- | ------------|
-| `index`| String  | Optional    | Specifies the Search index. The default value is `default`.|
-| `<operator-name>`| Object  | Conditional | Specifies an operator such as `text`, `phrase`, or `compound`. Either an operator or a collector is required.|
-| `<collector-name>`     | Object  | Conditional | Specifies a collector and its options. Either a collector or an operator is required.|
-| `highlight`            | Object  | Optional    | Returns matching search terms in their original context.|
-| `concurrent`           | Boolean | Optional    | Runs the search across index segments concurrently. The default value is `false`.|
-| `count`                | Object  | Optional    | Returns count metadata for the matching documents.|
-| `searchAfter`   | String  | Optional    | Returns results after the specified pagination token. It cannot be combined with `searchBefore`.|
-| `searchBefore`         | String  | Optional    | Returns results before the specified pagination token. It cannot be combined with `searchAfter`. |
-| `scoreDetails`         | Boolean | Optional    | Returns detailed scoring information. The default value is `false`.|
-| `sort`| Object  | Optional    | Sorts results by score or supported indexed fields.|
-| `returnScope`          | Object  | Optional    | Sets the query context to an embedded document field. Requires `returnStoredSource: true`. |
-| `returnStoredSource`   | Boolean | Conditional | Returns stored source fields directly from the Search index. The default value is `false`.|
-| `searchNodePreference` | Object  | Optional    | Routes repeated queries to a preferred Search node when possible. This is an upstream Atlas-specific option whose PSMDB support should be verified. |
+A higher `numCandidates` value can improve result accuracy because the search examines more possible matches. It also requires more processing time. As a starting point, set `numCandidates` to at least 20 times the value of `limit`, and then adjust it for your data and performance requirements.
 
+## Check the similarity score
 
-??? example "Example: Search a text field"
-    
-    This $search stage uses the `products_text_idx` index to search the `name` field in the `products` collection for documents matching either `athletic` or `footwear`:
+The `$project` stage adds the vector search score to each result:
 
-    ```javascript
-      {
-        $search: {
-          index: "products_text_idx",
-          text: {
-            query: "athletic footwear",
-            path: "name"
-          }
-        }
-      }
-    ```
+```javascript
+score: {
+  $meta: "vectorSearchScore"
+}
+```
 
-    The `text` operator analyzes the query text and compares it with the indexed values in the specified field.
+The score ranges from `0` to `1`. A higher score means that the document vector is closer to the query vector.
 
-??? example "Example: Search multiple indexed fields"
-  
-    To search multiple indexed fields, specify an array of field names in path. The following query searches the name and description fields:
+Percona Search for MongoDB calculates the score when the query runs. The score is not stored in the source document.
 
-    ```javascript
-      {
-        $search: {
-          index: "products_text_idx",
-          text: {
-            query: "athletic footwear",
-            path: ["name", "description"]
-          }
-        }
-      }
-    ```
+The example does not return the `embedding` field. Excluding large embedding arrays can reduce the amount of data returned by the query.
 
-## Operators
+## Filter the search
 
-Search operators define the conditions that `$search` apply to indexed fields. Each operator supports a specific type of query, such as matching text, checking a value range, or combining several search conditions. The queried fields must be included in the Search index with compatible field types.
+Use the `filter` field to limit which documents are considered before the vector comparison.
 
-??? example "Example: Combine multiple operators"
-  
-    The `compound` operator combines multiple search conditions in a single query. Its clauses determine which conditions are required, which conditions affect the [relevance score :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/score/overview/){:target="_blank"}, and which conditions filter the results.
+The following query searches only products in the `footwear` category:
 
-
-    ```javascript
-    {
-      $search: {
-        index: "products_text_idx",
-        compound: {
-          must: [
-            {
-              text: {
-                query: "shoes",
-                path: "name"
-              }
-            }
-          ],
-          should: [
-            {
-              text: {
-                query: "waterproof",
-                path: "description"
-              }
-            }
-          ],
-          filter: [
-            {
-              range: {
-                path: "price",
-                gte: 50,
-                lte: 200
-              }
-            }
-          ]
-        }
+```javascript
+db.products.aggregate([
+  {
+    $vectorSearch: {
+      index: "products_vector_idx",
+      path: "embedding",
+      queryVector: queryVector,
+      filter: {
+        category: "footwear"
+      },
+      numCandidates: 100,
+      limit: 5
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      category: 1,
+      score: {
+        $meta: "vectorSearchScore"
       }
     }
-    ```
-    
-    The clauses work as follows:
-      - `must` requires the name field to match shoes. This match contributes to the relevance score.
-      - `should` gives a higher score to products whose description contains waterproof. This condition is optional.
-      - `filter` restricts the results to products priced from 50 through 200, inclusive. It does not affect the relevance score.
+  }
+]);
+```
 
-    The `products_text_idx index` must cover the `name`, `description`, and `price` fields with the appropriate field types.
+For this query to work, the vector search index must include `category` as a `filter` field.
 
-For more information, see the upstream MongoDB documentation for the [compound operator :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/operators-collectors/compound/?utm_source=chatgpt.com){:target="_blank"} and [range operator :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/operators-collectors/range/?utm_source=chatgpt.com){:target="_blank"}.
+Keep filters broad enough to include relevant documents. A restrictive filter can exclude documents that are close to the query vector.
+
+## Run an exact nearest neighbor query
+
+Exact nearest neighbor (ENN) search compares the query vector with every indexed vector that meets the filter conditions. It returns the exact nearest matches but can take longer on large datasets.
+
+Set `exact` to `true` and omit `numCandidates`:
+
+```javascript
+db.products.aggregate([
+  {
+    $vectorSearch: {
+      index: "products_vector_idx",
+      path: "embedding",
+      queryVector: queryVector,
+      exact: true,
+      limit: 5
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      description: 1,
+      score: {
+        $meta: "vectorSearchScore"
+      }
+    }
+  }
+]);
+```
+
+ENN search is useful when you need the exact closest matches or when you want to compare the accuracy of ANN results.
+
+## Considerations
+
+- `$vectorSearch` must be the first stage in the aggregation pipeline.
+- You cannot run `$vectorSearch` inside a `$facet` stage or a `$lookup` subpipeline.
+- You can add stages such as `$project`, `$match`, and `$limit` after `$vectorSearch` to process the results.
+- Increasing `numCandidates` can improve ANN accuracy, but it can also increase query latency.
+- Exclude the vector field from the returned documents unless your application needs it.
