@@ -204,7 +204,7 @@ nav:
 
   - Vector search:
       - Overview: vector-search-overview.md
-      - Manual and automatic embeddings: embeddings.md
+      - Create and manage embeddings: embeddings.md
       - Create a vector search index: create-vector-search-index.md
       - Update a vector search index: update-vector-search-index.md
       - Delete a vector search index: delete-vector-search-index.md
