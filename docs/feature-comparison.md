@@ -11,7 +11,7 @@ The following table compares the current capabilities of Percona Search for Mong
 | Vector search | Yes | Yes | Yes | Yes |
 | `$search`, `$searchMeta`, `$vectorSearch` | Yes | Yes | Yes | Yes |
 | Manual embeddings | Yes | Yes | Yes | Yes |
-| Automatic embeddings | Planned | Preview (Kubernetes Operator deployments) | Not yet available | Yes |
+| Automatic embeddings | Yes | Yes | Yes | Yes |
 | Replica sets | Yes | Yes | Yes | Yes |
 | Sharded clusters | Yes | Yes | Yes | Yes |
 | Search index management through MongoDB commands | Yes | Yes | Yes | Yes |
