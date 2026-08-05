@@ -16,7 +16,11 @@ Follow these steps to create a search index:
     { text: "Vector search is the future" },
     { text: "Full text search with mongot" }
     ])
+    ```
 
+    Output:
+
+    ```javascript
     {
     acknowledged: true,
     insertedIds: {
