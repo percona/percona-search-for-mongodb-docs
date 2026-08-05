@@ -1,6 +1,6 @@
 # Update index
 
-You can use the `updateSearchIndex()` method to update a search or vector search index.
+You can use the [db.collection.updateSearchIndex() :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateSearchIndex/){:target="_blank"} method to update a search index.
 
 !!! warning
     `updateSearchIndex()` replaces the index definition; it does not merge your changes into the existing one. Always submit the complete definition, including the fields you are not changing. Any field you omit is removed from the index.

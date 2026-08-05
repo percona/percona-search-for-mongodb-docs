@@ -1,6 +1,6 @@
 # Update vector search index
 
-You can use the `updateSearchIndex()` method to update a vector search index.
+You can use the [db.collection.updateSearchIndex() :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateSearchIndex/){:target="_blank"} method to update a vector search index.
 
 !!! warning
     `updateSearchIndex()` replaces the index definition; it does not merge your changes into the existing one. Always submit the complete definition, including the fields you are not changing. Any field you omit is removed from the index.
@@ -61,7 +61,6 @@ db.<collection>.updateSearchIndex(
     4. When the rebuild finishes, the new index replaces the previous version.
 
 
-For more information on `updateSearchIndex()`, see [db.collection.updateSearchIndex() :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateSearchIndex/){:target="_blank"} in the MongoDB documentation.
-
+## Next steps
 
 [Delete a search index :material-arrow-right:](delete-vector-search-index.md){.md-button}
