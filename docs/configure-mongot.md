@@ -1,6 +1,6 @@
 # Configure mongot
 
-After installing `mongot`, configure it to connect to the Percona Server for MongoDB replica set, store search indexes, and accept search requests from `mongod`.
+After installing `mongot`, configure it to connect to the Percona Server for MongoDB replica set to store search indexes and synchronize data. Additionally, you need to configure Percona Server for MongoDB to run search and vector search queries.
 
 Vector Search requires configuration on both sides:
 
