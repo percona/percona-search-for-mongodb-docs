@@ -110,6 +110,8 @@ Follow these steps to create a search index:
 
 4. Run a text search.
 
+    ??? example "Example"
+
     ```javascript
     db.docs.aggregate([
       {
