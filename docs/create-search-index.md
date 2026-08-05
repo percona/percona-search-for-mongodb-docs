@@ -2,7 +2,7 @@
 
 Before you can run full-text search queries, create a search index on the collection.
 
-Use the [`db.collection.createSearchIndex()` :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.createsearchindex/#mongodb-method-db.collection.createSearchIndex){:target="_blank"} method to create a search index.
+Use the [db.collection.createSearchIndex() :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.createsearchindex/#mongodb-method-db.collection.createSearchIndex){:target="_blank"} method to create a search index.
 
 Follow these steps:
 {.power-number}
