@@ -1,13 +1,13 @@
 # Create index
 
-You can use the `createSearchIndex()` method to create a single Search or Vector Search index on a collection, or the `createSearchIndexes()` method to create multiple indexes simultaneously.
+You can use the `createSearchIndex()` method to create search or Vector Search index on a collection, or the `createSearchIndexes()` method to create multiple indexes simultaneously.
 
 ## Create a search index
 
-Follow these steps to create a single search index:
+Follow these steps to create a search index:
 {.power-number}
 
-1. Insert test data from mongosh:
+1. Insert sample data from `mongosh`:
 
     ```javascript
     use test
@@ -29,22 +29,52 @@ Follow these steps to create a single search index:
 
 2. Create a **search index**:
 
+    **Syntax**
+
     ```javascript
-    db.docs.createSearchIndex({
-    name: "search_idx",
-    definition: {
-        mappings: {
-        dynamic: true
-        }
+    db.<collection>.createSearchIndex(
+    <name>,
+    <type>,
+    {
+        <definition>
     }
-    })
-    search_idx
-    ```
+  )
+  ```
+
+    `createSearchIndex()` accepts these fields:
+
+  | **Field**| **Type**| **Required** | **Description**|
+  | ------------ | ---------- | -------- | ------|
+  | `name`       | `string`   | Optional | Name of the index. If not provided, the index is named `default`. Each collection can have only one index with a given name. |
+  | `type`       | `string`   | Optional | Index type. Use `search` or `vectorSearch`. The default is `search`.|
+  | `definition` | `document` | Required | Defines how the index is configured. The format depends on the selected index type (`search` or `vectorSearch`).|
+   
+  ??? example "Create a search index named `search_idx`"
+    
+      ```javascript
+      db.docs.createSearchIndex({
+      name: "search_idx",
+      definition: {
+          mappings: {
+          dynamic: true
+          }
+      }
+      })
+
+      Output:
+
+      ```
+      search_idx
+      ```
 
 3. Check the status.
 
     ```javascript
     db.docs.getSearchIndexes()
+    ```
+    Output:
+
+    ```javascript
     [
     {
         id: '69ebae2a651bce4d10f57bdc',
@@ -72,14 +102,19 @@ Follow these steps to create a single search index:
 
 4. Perform a text search:
 
-```javascript
-db.docs.aggregate([ { $search: { index: "search_idx", text: { query: "future", path: "text" } }}])
-[
-  {
-    _id: ObjectId('69ebae2599c54be2ea44ba8a'),
-    text: 'Vector search is the future'
-  }
-```
+  ```javascript
+  db.docs.aggregate([ { $search: { index: "search_idx", text: { query: "future", path: "text" } }}])
+  ```
+
+  Output:
+
+    ```javascript
+    [
+      {
+        _id: ObjectId('69ebae2599c54be2ea44ba8a'),
+        text: 'Vector search is the future'
+      }
+    ```
 
 ## Create multiple search indexes
 
@@ -109,13 +144,18 @@ db.docs.createSearchIndexes([
     }
   }
 ])
-[ 'search_idx', 'text_search_idx' ]
 ```
+
+Output:
+
+  ```sh
+  [ 'search_idx', 'text_search_idx' ]
+  ```
+
 This creates:
 
-- `search_idx`, which dynamically indexes supported fields.
-- `text_search_idx`, which indexes only the text field.
-
+  - `search_idx`, which dynamically indexes supported fields.
+  - `text_search_idx`, which indexes only the text field.
 
 ## Supported field types
 
