@@ -26,5 +26,5 @@ The following table compares the current capabilities of Percona Search for Mong
 
 ## Next steps
 
-- Learn about full-text search in [Full-text search overview](full-text-search-overview.md).
-- Learn how embeddings work in [Embeddings](embeddings.md).
+[Full-text search overview](full-text-search-overview.md){.md-button}
+[Embeddings](embeddings.md){.md-button}
