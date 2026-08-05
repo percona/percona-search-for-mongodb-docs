@@ -489,7 +489,6 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
 
      After installing the package, continue with **step 3** in the **Tarballs** tab to configure `mongod` and `mongot`.
 
-
 === "DEB packages"
 
     ### Install `mongot` on Debian and Ubuntu
