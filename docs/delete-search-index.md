@@ -1,6 +1,7 @@
 # Delete a search index
 
-Use the `dropSearchIndex()` method to delete a full-text search index.
+Use the [`db.collection.dropIndex()` :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.dropIndex/){:target="_blank"}
+ method to delete a full-text search index.
 
 ```javascript
 db.<collection>.dropSearchIndex(<name>)
