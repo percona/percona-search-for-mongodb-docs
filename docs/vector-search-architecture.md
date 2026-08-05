@@ -22,9 +22,3 @@ Applications send aggregation pipelines containing `$search`, `$searchMeta`, or 
 `mongod` forwards the search stage to `mongot`, which executes the search against its local indexes and returns the identifiers of the matching documents together with their relevance scores. `mongod` retrieves the corresponding documents from the collection, applies any remaining aggregation stages, and returns the results to the application.
 
 In a sharded deployment, each shard performs the search independently. `mongos` merges the results from all shards before returning the final response.
-
-## Index synchronization
-
-`mongot` maintains search indexes independently of the collection data stored in `mongod`.
-
-After an index is created, `mongot` monitors the collection for inserts, updates, and deletes, and automatically applies those changes to the corresponding search index. This synchronization keeps search indexes current without requiring manual maintenance.
