@@ -487,7 +487,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
         sudo yum install percona-search-mongodb
         ```
 
-     After installing the package, continue with the configuration steps starting from **Step 3** in the **Install `mongot` from tarballs** section.
+     After installing the package, proceed to **step 3** in the **Tarballs** tab to configure `mongod` and `mongot`.
 
 === "DEB packages"
 
@@ -516,7 +516,8 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
         sudo apt install percona-search-mongodb
         ```
 
-    After installing the package, continue with **step 3** of [Install mongot from tarballs](#install-mongot-from-tarballs) to configure `mongod` and `mongot`.
+    After installing the package, proceed to **step 3** in the **Tarballs** tab to configure `mongod` and `mongot`.
+
 
 
 
