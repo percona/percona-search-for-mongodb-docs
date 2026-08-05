@@ -39,7 +39,7 @@ Create, check the status of, update, and delete full-text and vector search inde
 
 ## :material-magnify: Build search experiences { .title }
 
-Query by keyword, by semantic meaning, or combine both in a single pipeline. Percona Search for MongoDB currently works with embeddings you generate yourself, giving your application full control over the embedding model and workflow.
+Query by keyword, by semantic meaning, or combine both in a single pipeline. Percona Search for MongoDB currently works with embeddings you generate yourself or automatically generated, giving your application full control over the embedding model and workflow.
 
 [Explore vector search :material-arrow-right:](vector-search-overview.md){ .md-button }
 
