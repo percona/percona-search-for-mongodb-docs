@@ -38,7 +38,6 @@ Follow these steps to create a single search index:
         }
     }
     })
-
     search_idx
     ```
 
