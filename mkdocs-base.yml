@@ -200,7 +200,7 @@ nav:
       - Update a search index: update-search-index.md
       - Delete a search index: delete-search-index.md
       - Query with $search: query-search.md
-      - $searchMeta: search-meta.md
+      - $searchMeta: searchmeta.md
       - Understand relevance scores: relevance-scores.md
 
   - Vector search:
