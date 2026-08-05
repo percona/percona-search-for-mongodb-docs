@@ -1,6 +1,10 @@
 ## Create a search index
 
-Follow these steps to create a search index:
+Before you can run full-text search queries, create a search index on the collection.
+
+Use the `createSearchIndex()` method to create a search index.
+
+Follow these steps:
 {.power-number}
 
 1. Insert sample documents into the collection from `mongosh`.
@@ -95,6 +99,8 @@ Follow these steps to create a search index:
     db.docs.getSearchIndexes()
     ```
 
+    Index creation runs asynchronously. Wait until the index status is `READY` before running search queries.
+
     **Output**
 
     ```javascript
@@ -108,9 +114,9 @@ Follow these steps to create a search index:
     ]
     ```
 
-4. Run a text search.
+4. Run a full-text search.
 
-    ??? example "Example"
+    ??? example "Search the collection"
 
     ```javascript
     db.docs.aggregate([
@@ -135,3 +141,9 @@ Follow these steps to create a search index:
       }
     ]
     ```
+
+    ## Next steps
+
+    [Update a search index](update-search-index.md){.md-button}
+
+    [Delete a search index](delete-search-index.md){.md-button}
