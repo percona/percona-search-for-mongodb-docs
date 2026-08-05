@@ -2,8 +2,6 @@
 
 Use the `dropSearchIndex()` method to delete a full-text search index.
 
-**Syntax**
-
 ```javascript
 db.<collection>.dropSearchIndex(<name>)
 ```
