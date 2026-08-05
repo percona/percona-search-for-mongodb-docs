@@ -27,7 +27,7 @@ db.<collection>.updateSearchIndex(
 | `name` | `string` | Required | Name of the index to update. |
 | `definition` | `document` | Required | The complete replacement definition for the index. This replaces the existing definition; it is not merged with it. |
 
-??? example "Add category as a filter field to products_vector_idx"
+??? example "Add `category` as a filter field to `products_vector_idx`"
 
     Suppose `products_vector_idx` currently indexes the `embedding` field. The following operation adds `category` as a filter field.
 
@@ -59,5 +59,9 @@ db.<collection>.updateSearchIndex(
     2. `mongot` builds a new version of the index in the background. The existing index remains available for queries while the rebuild is in progress.
     3. The new index contains the `embedding` vectors and the `category` values. During a filtered vector query, `category` narrows the documents considered for similarity search. It does not affect the vector similarity score.
     4. When the rebuild finishes, the new index replaces the previous version.
+
+
+For more information on `updateSearchIndex()`, see [db.collection.updateSearchIndex() :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateSearchIndex/){:target="_blank"} in the MongoDB documentation.
+
 
 [Delete a search index :material-arrow-right:](delete-vector-search-index.md){.md-button}
