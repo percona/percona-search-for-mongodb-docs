@@ -5,8 +5,6 @@ Follow these steps to create a search index:
 
 1. Insert sample documents into the collection from `mongosh`.
 
-    **Syntax**
-
     ```javascript
     db.<collection>.insertMany(
       [
@@ -27,7 +25,7 @@ Follow these steps to create a search index:
     | `documents` | Array of documents | Yes | Documents to insert into the collection. |
     | `options` | Document | No | Additional options, such as `ordered` and `writeConcern`. |
 
-    ??? example "Insert sample documents"
+    ??? example "Example: Insert sample documents"
 
         ```javascript
         use test
@@ -54,8 +52,6 @@ Follow these steps to create a search index:
 
 2. Create a search index.
 
-    **Syntax**
-
     ```javascript
     db.<collection>.createSearchIndex(
       "<name>",
@@ -74,7 +70,7 @@ Follow these steps to create a search index:
     | `type` | `string` | No | Index type. Specify `search` or `vectorSearch`. The default is `search`. |
     | `definition` | `document` | Yes | Defines the index configuration. |
 
-    ??? example "Create a search index"
+    ??? example "Example: Create a search index"
 
         ```javascript
         db.docs.createSearchIndex({
