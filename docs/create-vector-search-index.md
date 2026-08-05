@@ -203,5 +203,5 @@ Follow these steps to create and query a vector search index.
 
 ## Learn more
 
-[$vectorSearch :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/query/aggregation-stages/vector-search-stage/#mongodb-pipeline-pipe.-vectorSearch){:target="_blank"} aggregation stage
+[$vectorSearch aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/query/aggregation-stages/vector-search-stage/#mongodb-pipeline-pipe.-vectorSearch){:target="_blank"}
 
