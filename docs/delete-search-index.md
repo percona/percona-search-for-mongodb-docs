@@ -1,6 +1,20 @@
-# Delete Index
+# Delete search index
 
-Use the `dropSearchIndex()` method to delete a search or vector search index. The method works the same way for both index types:
+Use the `dropSearchIndex()` method to delete a full-text search index.
+
+**Syntax**
+
+```javascript
+db.<collection>.dropSearchIndex(<name>)
+```
+
+`dropSearchIndex()` accepts this field:
+
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| `name` | `string` | Required | Name of the search index to delete. |
+
+**Example**
 
 ```javascript
 db.products.dropSearchIndex("products_text_idx");
@@ -10,5 +24,4 @@ Deleting an index is irreversible. To restore search functionality, create the i
 complete before running queries against it.
 
 !!! warning
-    `$search` and `$vectorSearch` queries that reference an index that does not exist return an empty result set rather than an error. If your application starts receiving empty search results after an index change, verify that the index exists and check its status with `getSearchIndexes()`.
-
+    `$search` queries that reference an index that does not exist return an empty result set rather than an error. If your application starts receiving empty search results after an index change, verify that the index exists and check its status with `getSearchIndexes()`.
