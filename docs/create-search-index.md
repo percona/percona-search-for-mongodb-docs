@@ -9,27 +9,47 @@ Follow these steps to create a search index:
 
 1. Insert sample data from `mongosh`:
 
-    ```javascript
-    use test
-    db.docs.insertMany([
-    { text: "MongoDB search is powerful" },
-    { text: "Vector search is the future" },
-    { text: "Full text search with mongot" }
-    ])
-    ```
-
-    Output:
+    **Syntax**
 
     ```javascript
-    {
-    acknowledged: true,
-    insertedIds: {
-        '0': ObjectId('69ebae2599c54be2ea44ba89'),
-        '1': ObjectId('69ebae2599c54be2ea44ba8a'),
-        '2': ObjectId('69ebae2599c54be2ea44ba8b')
-    }
-    }
+    db.<collection>.insertMany(
+      [ <document1>, <document2>, ... ],
+      {
+        <options>
+      }
+    )
     ```
+
+    `insertMany()` accepts these fields:
+
+    | Field | Type | Required | Description |
+    | ----- | ---- | -------- | ----------- |
+    | `documents` | array of documents | Required | The documents to insert into the collection. |
+    | `options` | document | Optional | Additional options, such as `ordered` (whether to stop on the first error or continue inserting the remaining documents) and `writeConcern`. |
+
+    ??? example "Example"
+
+      ```javascript
+      use test
+      db.docs.insertMany([
+      { text: "MongoDB search is powerful" },
+      { text: "Vector search is the future" },
+      { text: "Full text search with mongot" }
+      ])
+      ```
+
+      Output:
+
+      ```javascript
+      {
+      acknowledged: true,
+      insertedIds: {
+          '0': ObjectId('69ebae2599c54be2ea44ba89'),
+          '1': ObjectId('69ebae2599c54be2ea44ba8a'),
+          '2': ObjectId('69ebae2599c54be2ea44ba8b')
+      }
+      }
+      ```
 
 2. Create a **search index**:
 
