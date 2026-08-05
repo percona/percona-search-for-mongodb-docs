@@ -95,12 +95,12 @@ Follow these steps:
     ]
     ```
 
-    ## Next steps
+## Next steps
 
-    [Update a search index](update-search-index.md){.md-button}
+[Update a search index](update-search-index.md){.md-button}
 
-    [Delete a search index](delete-search-index.md){.md-button}
+[Delete a search index](delete-search-index.md){.md-button}
 
 ## Learn more
 
-[$vectorSearch :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/query/aggregation-stages/vector-search-stage/#mongodb-pipeline-pipe.-vectorSearch){:target="_blank"} aggregation stage
+[$vectorSearch aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/query/aggregation-stages/vector-search-stage/#mongodb-pipeline-pipe.-vectorSearch){:target="_blank"}
