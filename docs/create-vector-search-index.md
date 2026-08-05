@@ -12,8 +12,6 @@ Follow these steps to create and query a vector search index.
 
 1. Insert sample data.
 
-    **Syntax**
-
     ```javascript
     db.<collection>.insertMany(
       [ <documents> ],
@@ -32,19 +30,17 @@ Follow these steps to create and query a vector search index.
     | `ordered` | boolean | Optional | If `true` (the default), MongoDB inserts documents in order and stops after the first error. If `false`, MongoDB continues inserting the rest after an error. |
     | `writeConcern` | document | Optional | Specifies the write concern for the operation. If omitted, the default write concern applies. |
 
-    **Example**
+    ??? example "Example"
 
-    ```javascript
-    db.docs.insertMany([
-      { text: "AI embeddings example", embedding: [0.1, 0.2, 0.3] },
-      { text: "AI embeddings example 2", embedding: [0.5, 0.5, 0.6] },
-      { text: "AI embeddings example 3", embedding: [0.8, 0.8, 0.5] }
-    ])
-    ```
+        ```javascript
+        db.docs.insertMany([
+        { text: "AI embeddings example", embedding: [0.1, 0.2, 0.3] },
+        { text: "AI embeddings example 2", embedding: [0.5, 0.5, 0.6] },
+        { text: "AI embeddings example 3", embedding: [0.8, 0.8, 0.5] }
+        ])
+        ```
 
-2. Create a vector search index named `vector_idx`.
-
-    **Syntax**
+2. Create a vector search index:
 
     ```javascript
     db.<collection>.createSearchIndex(
@@ -74,34 +70,32 @@ Follow these steps to create and query a vector search index.
     | `similarity` | `string` | Required | Similarity metric used to compare vectors. Use `euclidean`, `cosine`, or `dotProduct`. |
     | `quantization` | `string` | Optional | Compresses indexed vectors to reduce storage and memory use. Use `scalar` or `binary`. |
 
-    **Example**
+    ??? example "Example: Create a vector search index named `vector_idx`"
 
-    ```javascript
-    db.docs.createSearchIndex(
-      "vector_idx",
-      "vectorSearch",
-      {
-        fields: [
-          {
-            type: "vector",
-            path: "embedding",
-            numDimensions: 3,
-            similarity: "cosine"
-          }
-        ]
-      }
-    )
-    ```
+        ```javascript
+        db.docs.createSearchIndex(
+        "vector_idx",
+        "vectorSearch",
+        {
+            fields: [
+            {
+                type: "vector",
+                path: "embedding",
+                numDimensions: 3,
+                similarity: "cosine"
+            }
+            ]
+        }
+        )
+        ```
 
-    The example above specifies that:
+        The example above specifies that:
 
-    - The `embedding` field contains the vectors to index.
-    - Each vector has three dimensions.
-    - Vector similarity is calculated using cosine similarity.
+        - The `embedding` field contains the vectors to index.
+        - Each vector has three dimensions.
+        - Vector similarity is calculated using cosine similarity.
 
 3. Check the index status.
-
-    **Syntax**
 
     ```javascript
     db.<collection>.getSearchIndexes(<name>)
@@ -113,61 +107,59 @@ Follow these steps to create and query a vector search index.
     | ----- | ---- | -------- | ----------- |
     | `name` | `string` | Optional | Name of a specific index to return. If omitted, returns all search indexes on the collection. |
 
-    **Example**
+    ??? example "Example"
 
-    ```javascript
-    db.docs.getSearchIndexes()
-    ```
+        ```javascript
+        db.docs.getSearchIndexes()
+        ```
 
-    Output:
+        Output:
 
-    ```javascript
-    [
-      {
-        id: '69ebbabd651bce4d10f57be5',
-        name: 'vector_idx',
-        status: 'READY',
-        queryable: true,
-        latestDefinitionVersion: { version: 0, createdAt: ISODate('2026-04-24T18:47:25.000Z') },
-        latestDefinition: {
-          fields: [
-            {
-              type: 'vector',
-              path: 'embedding',
-              numDimensions: 3,
-              similarity: 'cosine'
-            }
-          ]
-        },
-        statusDetail: [
-          {
-            hostname: '69eb5fc573906b6bfb8cefe7',
+        ```javascript
+        [
+        {
+            id: '69ebbabd651bce4d10f57be5',
+            name: 'vector_idx',
             status: 'READY',
             queryable: true,
-            mainIndex: {
-              status: 'READY',
-              queryable: true,
-              definitionVersion: { version: 0, createdAt: ISODate('2026-04-24T18:47:25.000Z') },
-              definition: {
-                fields: [
-                  {
-                    type: 'vector',
-                    path: 'embedding',
-                    numDimensions: 3,
-                    similarity: 'cosine'
-                  }
-                ]
-              }
+            latestDefinitionVersion: { version: 0, createdAt: ISODate('2026-04-24T18:47:25.000Z') },
+            latestDefinition: {
+            fields: [
+                {
+                type: 'vector',
+                path: 'embedding',
+                numDimensions: 3,
+                similarity: 'cosine'
+                }
+            ]
+            },
+            statusDetail: [
+            {
+                hostname: '69eb5fc573906b6bfb8cefe7',
+                status: 'READY',
+                queryable: true,
+                mainIndex: {
+                status: 'READY',
+                queryable: true,
+                definitionVersion: { version: 0, createdAt: ISODate('2026-04-24T18:47:25.000Z') },
+                definition: {
+                    fields: [
+                    {
+                        type: 'vector',
+                        path: 'embedding',
+                        numDimensions: 3,
+                        similarity: 'cosine'
+                    }
+                    ]
+                }
+                }
             }
-          }
+            ]
+        }
         ]
-      }
-    ]
-    ```
+        ```
 
 4. Perform a vector search.
-
-    **Syntax**
 
     ```javascript
     db.<collection>.aggregate([
@@ -197,29 +189,29 @@ Follow these steps to create and query a vector search index.
 
     For the complete field reference, including filtering and exact nearest neighbor search, see [Query with `$vectorSearch`](query-with-vectorsearch.md).
 
-    **Example**
+    ??? example "Example"
 
-    ```javascript
-    db.docs.aggregate([
-      {
-        $vectorSearch: {
-          index: "vector_idx",
-          queryVector: [0.3, 0.2, 0.3],
-          path: "embedding",
-          numCandidates: 10,
-          limit: 2
+        ```javascript
+        db.docs.aggregate([
+        {
+            $vectorSearch: {
+            index: "vector_idx",
+            queryVector: [0.3, 0.2, 0.3],
+            path: "embedding",
+            numCandidates: 10,
+            limit: 2
+            }
+        },
+        {
+            $project: {
+            _id: 0,
+            text: 1,
+            embedding: 1,
+            score: { $meta: "vectorSearchScore" }
+            }
         }
-      },
-      {
-        $project: {
-          _id: 0,
-          text: 1,
-          embedding: 1,
-          score: { $meta: "vectorSearchScore" }
-        }
-      }
-    ])
-    ```
+        ])
+        ```
 
     ??? info "What happens under the hood"
         **When you create the index**
