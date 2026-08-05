@@ -27,4 +27,5 @@ The following table compares the current capabilities of Percona Search for Mong
 ## Next steps
 
 [Full-text search overview](full-text-search-overview.md){.md-button}
+
 [Embeddings](embeddings.md){.md-button}
