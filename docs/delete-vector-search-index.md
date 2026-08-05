@@ -1,6 +1,6 @@
 # Delete vector search index
 
-Use the `dropSearchIndex()` method to delete a vector search index from a collection.
+Use the [db.collection.dropIndex() :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.dropIndex/){:target="_blank"} method to delete a vector search index from a collection.
 
 ```javascript
 db.<collection>.dropSearchIndex(<name>)
