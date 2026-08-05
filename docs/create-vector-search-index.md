@@ -56,14 +56,6 @@ Follow these steps to create and query a vector search index.
 
     | Field | Type | Required | Description |
     | ----- | ---- | -------- | ----------- |
-    | `name` | `string` | Optional | Name of the index. If not provided, the index is named `default`. |
-    | `type` | `string` | Optional | Index type. Use `search` or `vectorSearch`. The default is `search`. |
-    | `definition` | `document` | Required | Defines how the index is configured. For a vector search index, `definition` contains a `fields` array. |
-
-    The `fields` array in a vector search index definition accepts:
-
-    | Field | Type | Required | Description |
-    | ----- | ---- | -------- | ----------- |
     | `type` | `string` | Required | Set to `vector` to index an embeddings field, or `filter` to index a field used for pre-filtering. |
     | `path` | `string` | Required | The document field that contains the embeddings to index. |
     | `numDimensions` | `int` | Required | Number of dimensions in the indexed vectors. Must match the number of dimensions in your embeddings. |
