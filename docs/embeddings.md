@@ -1,8 +1,10 @@
 # Embeddings for Percona Search for MongoDB
 
-Percona Search for MongoDB can automatically generate and manage vector embeddings for text stored in your collections. When you enable automated embedding, it uses the configured Voyage AI embedding model to generate vectors for selected text fields during indexing. At query time, it converts the query text into a vector with the same model to find semantically similar documents.
+Percona Search for MongoDB supports vector search based on embeddings that you generate and manage yourself. You generate embeddings for your data using an embedding model of your choice, store the resulting vectors in your MongoDB documents, and query them with the `$vectorSearch` aggregation stage to find documents with similar meaning.
 
-This workflow simplifies semantic search because your application does not need to generate, store, or update embeddings.
+Once a document's embedding is stored, it doesn't need to be regenerated for future queries. Each query still requires its own vector, generated from the query text using the same embedding model used for your stored data.
+
+![image](../_images/percona-search-embeddings.png)
 
 ## Manual embeddings
 
@@ -25,5 +27,3 @@ For [RAG applications](https://www.mongodb.com/docs/voyageai/tutorials/rag/?lang
 
 With automatic embeddings, `mongot` sends the indexed text and query text to the configured Voyage AI embedding service. It generates document embeddings during indexing and a query embedding when the application runs a text-based vector search.
 
-
-![image](../_images/percona-search-embeddings.png)
