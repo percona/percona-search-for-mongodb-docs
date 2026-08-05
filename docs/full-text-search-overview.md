@@ -1,4 +1,4 @@
-# Percona full-text search
+# Full-text search
 
 ## Overview
 
