@@ -23,7 +23,7 @@ Check the requirements, start the `mongot` service, connect it to Percona Server
 
 ## :material-sitemap: Understand the architecture { .title }
 
-See how Percona Server for MongoDB, `mongot`, and the search indexes work together. Review component placement, communication flow, supported topologies, and deployment requirements.
+See how `mongod`, `mongot`, and your search indexes work together, from a single query's path through the system to how a sharded cluster splits the work.
 
 [Explore the architecture :material-arrow-right:](vector-search-architecture.md){ .md-button }
 
@@ -31,7 +31,7 @@ See how Percona Server for MongoDB, `mongot`, and the search indexes work togeth
 
 ## :material-database-search: Create and manage search indexes { .title }
 
-Create, inspect, update, and delete full-text and vector search indexes. Learn how `mongot` keeps an index synchronized with changes to its source collection.
+Create, check the status of, update, and delete full-text and vector search indexes as your data and query needs change.
 
 [Search index overview :material-arrow-right:](search-indexes.md){ .md-button }
 
@@ -39,7 +39,7 @@ Create, inspect, update, and delete full-text and vector search indexes. Learn h
 
 ## :material-magnify: Build search experiences { .title }
 
-Search by keywords, semantic meaning, or both. Use manual embeddings for application-level control or automatic embeddings when supported by your deployment.
+Query by keyword, by semantic meaning, or combine both in a single pipeline. Percona Search for MongoDB currently works with embeddings you generate yourself, giving your application full control over the embedding model and workflow.
 
 [Explore vector search :material-arrow-right:](vector-search-overview.md){ .md-button }
 
