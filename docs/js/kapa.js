@@ -82,7 +82,7 @@
 
         script.setAttribute(
             "data-project-logo",
-            "https://docs.percona.com/percona-search-for-mongodb/_images/Percona_Color_Dark.svg"
+            "https://docs.percona.com/percona-search-for-mongodb/_images/percona-logomark-one-color-dark.png"
         );
 
         document.head.appendChild(script);
