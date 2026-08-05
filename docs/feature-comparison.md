@@ -15,7 +15,6 @@ The following table compares the current capabilities of Percona Search for Mong
 | Replica sets | Yes | Yes | Yes | Yes |
 | Sharded clusters | Yes | Yes | Yes | Yes |
 | Search index management through MongoDB commands | Yes | Yes | Yes | Yes |
-| Direct client connection to `mongot` | No | No | No | No |
 | Native LLM answer generation | Integrate an external LLM | Integrate an external LLM | Integrate an external LLM | Integrate an external LLM |
 | Product status | Technical Preview | Generally available | Generally available | Generally available |
 
