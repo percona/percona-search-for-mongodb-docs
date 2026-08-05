@@ -21,11 +21,11 @@ With manual embeddings, the application controls embedding generation:
 
 5. The application passes the generated query vector to $`vectorSearch` through the `queryVector` option.
 
-For [RAG applications](https://www.mongodb.com/docs/voyageai/tutorials/rag/?language-no-interface=python&llm-provider=openai&vector-storage=in-memory), the application sends the user's question and the documents returned by vector search to a generative LLM. The LLM uses the retrieved documents as context to generate the response.
+For [RAG applications :octicons-link-external-16:](https://www.mongodb.com/docs/voyageai/tutorials/rag/?language-no-interface=python&llm-provider=openai&vector-storage=in-memory){:target="_blank"}, the application sends the user's question and the documents returned by vector search to a generative LLM. The LLM uses the retrieved documents as context to generate the response.
 
 ## Automatic embeddings
 
-With automatic embeddings, `mongot` sends the indexed text and query text to the configured Voyage AI embedding service. It generates document embeddings during indexing and a query embedding when the application runs a text-based vector search.
+With [automatic embeddings :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}, `mongot` sends the indexed text and query text to the configured Voyage AI embedding service. It generates document embeddings during indexing and a query embedding when the application runs a text-based vector search.
 
 ## Next steps
 
