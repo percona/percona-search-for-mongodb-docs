@@ -84,7 +84,7 @@ A higher `numCandidates` value can improve result accuracy because the search ex
 
 ## Check the similarity score
 
-The `$project` stage adds the vector search score to each result:
+The [$project :octicons-link-external-16:](https://www.mongodb.com/docs/manual/core/aggregation-pipeline-optimization/#-project-stage-placement){:target="_blank"} stage adds the vector search score to each result:
 
 ```javascript
 score: {
