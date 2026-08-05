@@ -2,7 +2,7 @@
 
 Before you can run full-text search queries, create a search index on the collection.
 
-Use the `createSearchIndex()` method to create a search index.
+Use the `db.collection.createSearchIndex()` method to create a search index.
 
 Follow these steps:
 {.power-number}
