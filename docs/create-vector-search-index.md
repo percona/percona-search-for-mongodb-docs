@@ -1,6 +1,6 @@
 # Create a vector search index
 
-Before running vector search queries, create a vector search index on the field that contains your embeddings. Use the [`db.collection.createSearchIndex()` :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.createsearchindex/#mongodb-method-db.collection.createSearchIndex){:target="_blank"} method to create a vector search index.
+Before running vector search queries, create a vector search index on the field that contains your embeddings. Use the [db.collection.createSearchIndex() :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.createsearchindex/#mongodb-method-db.collection.createSearchIndex){:target="_blank"} method to create a vector search index.
 
 
 !!! info "Important"
