@@ -30,6 +30,7 @@ A search index definition specifies which fields to index and how to index them.
 
 - [Static mapping :octicons-link-external-16:](https://www.mongodb.com/docs/search/index/define-field-mappings/#static-mappings){:target="_blank"} indexes only the fields you explicitly define. To use static mappings to configure index options for only some fields, set `mappings.dynamic` to false and specify the field name, [data type :octicons-link-external-16:](https://www.mongodb.com/docs/search/index/define-field-mappings/#mongodb-search-field-types){:target="_blank"}, and other configuration options for each field that you want to index. You can specify the fields in any order.
 
+## Next steps
 
 [Create a search index :material-arrow-right:](create-search-index.md){.md-button}
 
