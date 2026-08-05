@@ -1,8 +1,8 @@
-# Create Index
+# Create index
 
 You can use the `createSearchIndex()` method to create a single Search or Vector Search index on a collection, or the `createSearchIndexes()` method to create multiple indexes simultaneously.
 
-## Create single Search Index
+## Create a search index
 
 Follow these steps to create a single search index:
 {.power-number}
@@ -27,7 +27,7 @@ Follow these steps to create a single search index:
     }
     ```
 
-2. Create a **single Search Index**:
+2. Create a **search index**:
 
     ```javascript
     db.docs.createSearchIndex({
@@ -81,7 +81,7 @@ db.docs.aggregate([ { $search: { index: "search_idx", text: { query: "future", p
   }
 ```
 
-## Create multiple Search Indexes
+## Create multiple search indexes
 
 The following example creates two Search indexes:
 
