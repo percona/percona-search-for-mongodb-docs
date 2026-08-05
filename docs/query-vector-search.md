@@ -2,8 +2,6 @@
 
 Use the `$vectorSearch` aggregation stage to find documents whose vector embeddings are closest to a query vector. Percona Search for MongoDB returns the closest matches first.
 
-`$vectorSearch` must be the first stage in the aggregation pipeline.
-
 ## Before you begin
 
 Make sure that:
@@ -176,3 +174,5 @@ ENN search is useful when you need the exact closest matches or when you want to
 - You can add stages such as `$project`, `$match`, and `$limit` after `$vectorSearch` to process the results.
 - Increasing `numCandidates` can improve ANN accuracy, but it can also increase query latency.
 - Exclude the vector field from the returned documents unless your application needs it.
+
+For reference, see [$vectorSearch (aggregation stage) :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/vectorsearch/){:target="_blank"} in the MongoDB documentation.
