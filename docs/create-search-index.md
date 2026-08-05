@@ -1,8 +1,8 @@
 # Create index
 
-You can use the `createSearchIndex()` method to create search or Vector Search index on a collection, or the `createSearchIndexes()` method to create multiple indexes simultaneously.
+You can use the `createSearchIndex()` method to create search or Vector Search index on a collection.
 
-## Create a search index
+## Create search index
 
 Follow these steps to create a search index:
 {.power-number}
@@ -140,63 +140,7 @@ Follow these steps to create a search index:
       }
     ```
 
-## Create multiple search indexes
-
-The following example creates two Search indexes:
-
-```javascript
-db.docs.createSearchIndexes([
-  {
-    name: "search_idx",
-    definition: {
-      mappings: {
-        dynamic: true
-      }
-    }
-  },
-  {
-    name: "text_search_idx",
-    definition: {
-      mappings: {
-        dynamic: false,
-        fields: {
-          text: {
-            type: "string"
-          }
-        }
-      }
-    }
-  }
-])
-```
-
-Output:
-
-  ```sh
-  [ 'search_idx', 'text_search_idx' ]
-  ```
-
-This creates:
-
-  - `search_idx`, which dynamically indexes supported fields.
-  - `text_search_idx`, which indexes only the text field.
-
-## Supported field types
-
-The following field types are supported:
-
-| Field type | Supported source data| Use|
-| -----------| ----------------------| --|
-| `boolean`           | Boolean                       | Supports exact matching and filtering on `true` and `false` values.                                |
-| `date`              | BSON Date                     | Supports exact matches, range and proximity queries, sorting, and faceting.                        |
-| `document`          | Object or subdocument         | Defines mappings for fields within a nested object.                                                |
-| `embeddedDocuments` | Array of objects              | Indexes objects within an array so that each embedded object can be evaluated independently.       |
-| `number`            | `int32`, `int64`, or `double` | Supports exact matches, numeric range and proximity queries, sorting, and faceting.                |
-| `objectId`          | `ObjectId`                    | Supports matching, filtering, and range operations on `ObjectId` values.                           |
-| `string`            | String                        | Analyzes text for full-text operators such as `text`, `phrase`, `regex`, and `wildcard`. |
-
-For detailed information on supported field types, see [MongoDB documentation](https://www.mongodb.com/docs/search/index/define-field-mappings/#mongodb-search-field-types).
-
+For the complete createSearchIndex() reference, including the search index and vector search index definition syntax, see [db.collection.createSearchIndex() :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.createSearchIndex/){:target="_blank"} in the MongoDB documentation.
 
 [Update a search index :material-arrow-right:](update-search-index.md){.md-button}
 
