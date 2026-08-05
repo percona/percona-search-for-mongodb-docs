@@ -2,59 +2,12 @@
 
 Before you can run full-text search queries, create a search index on the collection.
 
-Use the `db.collection.createSearchIndex()` method to create a search index.
+Use the [`db.collection.createSearchIndex()` :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.createsearchindex/#mongodb-method-db.collection.createSearchIndex){:target="_blank"} method to create a search index.
 
 Follow these steps:
 {.power-number}
 
-1. Insert sample documents into the collection from `mongosh`.
-
-    ```javascript
-    db.<collection>.insertMany(
-      [
-        <document1>,
-        <document2>,
-        ...
-      ],
-      {
-        <options>
-      }
-    )
-    ```
-
-    `insertMany()` accepts the following parameters:
-
-    | Field | Type | Required | Description |
-    |-------|------|----------|-------------|
-    | `documents` | Array of documents | Yes | Documents to insert into the collection. |
-    | `options` | Document | No | Additional options, such as `ordered` and `writeConcern`. |
-
-    ??? example "Example: Insert sample documents"
-
-        ```javascript
-        use test
-
-        db.docs.insertMany([
-          { text: "MongoDB search is powerful" },
-          { text: "Vector search is the future" },
-          { text: "Full text search with mongot" }
-        ])
-        ```
-
-        **Output**
-
-        ```javascript
-        {
-          acknowledged: true,
-          insertedIds: {
-            "0": ObjectId(...),
-            "1": ObjectId(...),
-            "2": ObjectId(...)
-          }
-        }
-        ```
-
-2. Create a search index.
+1. Create a search index.
 
     ```javascript
     db.<collection>.createSearchIndex(
