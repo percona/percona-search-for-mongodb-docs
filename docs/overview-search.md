@@ -67,7 +67,7 @@ Use cases include:
 - Image or audio similarity search, once the underlying content is converted to vector embeddings
 
 
-## External references
+## Learn more
 
 - [$search aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/aggregation-stages/search/){:target="_blank"}
 - [$searchMeta aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/aggregation-stages/searchMeta/){:target="_blank"}
