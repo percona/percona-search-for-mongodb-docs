@@ -1,4 +1,4 @@
-# Delete search index
+# Delete a search index
 
 Use the `dropSearchIndex()` method to delete a full-text search index.
 
@@ -12,11 +12,11 @@ db.<collection>.dropSearchIndex(<name>)
 | ----- | ---- | -------- | ----------- |
 | `name` | `string` | Required | Name of the search index to delete. |
 
-**Example**
+??? example "Delete a search index"
 
-```javascript
-db.products.dropSearchIndex("products_text_idx");
-```
+    ```javascript
+    db.docs.dropSearchIndex("search_idx")
+    ```
 
 Deleting an index is irreversible. To restore search functionality, create the index again with `createSearchIndex()`, and wait for the initial sync to
 complete before running queries against it.
