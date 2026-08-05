@@ -4,7 +4,6 @@ Percona Search for MongoDB supports vector search based on embeddings that you g
 
 Once an embedding is stored, it can be reused for future searches. Each search query requires its own embedding, generated from the query text using the same embedding model that was used to generate the stored document embeddings.
 
-
 ![image](../_images/percona-search-embeddings.png)
 
 ## Manual embeddings
@@ -28,10 +27,10 @@ For [RAG applications](https://www.mongodb.com/docs/voyageai/tutorials/rag/?lang
 
 With automatic embeddings, `mongot` sends the indexed text and query text to the configured Voyage AI embedding service. It generates document embeddings during indexing and a query embedding when the application runs a text-based vector search.
 
-
 ## Next steps
 
-[Create a vector search index](create-vector-search-index.md)
-[`$vectorSearch`](query-with-vectorsearch.md)
+[Create a vector search index](create-vector-search-index.md){.md-button}
+
+[`$vectorSearch`](query-with-vectorsearch.md){.md-button}
 
 
