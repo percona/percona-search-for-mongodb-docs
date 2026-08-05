@@ -1,148 +1,139 @@
-# Create index
-
-You can use the `createSearchIndex()` method to create search or Vector Search index on a collection.
-
-## Create search index
+## Create a search index
 
 Follow these steps to create a search index:
 {.power-number}
 
-1. Insert sample data from `mongosh`:
+1. Insert sample documents into the collection from `mongosh`.
 
     **Syntax**
 
     ```javascript
     db.<collection>.insertMany(
-      [ <document1>, <document2>, ... ],
+      [
+        <document1>,
+        <document2>,
+        ...
+      ],
       {
         <options>
       }
     )
     ```
 
-    `insertMany()` accepts these fields:
+    `insertMany()` accepts the following parameters:
 
     | Field | Type | Required | Description |
-    | ----- | ---- | -------- | ----------- |
-    | `documents` | array of documents | Required | The documents to insert into the collection. |
-    | `options` | document | Optional | Additional options, such as `ordered` (whether to stop on the first error or continue inserting the remaining documents) and `writeConcern`. |
+    |-------|------|----------|-------------|
+    | `documents` | Array of documents | Yes | Documents to insert into the collection. |
+    | `options` | Document | No | Additional options, such as `ordered` and `writeConcern`. |
 
-    ??? example "Example"
+    ??? example "Insert sample documents"
 
-      ```javascript
-      use test
-      db.docs.insertMany([
-      { text: "MongoDB search is powerful" },
-      { text: "Vector search is the future" },
-      { text: "Full text search with mongot" }
-      ])
-      ```
+        ```javascript
+        use test
 
-      Output:
+        db.docs.insertMany([
+          { text: "MongoDB search is powerful" },
+          { text: "Vector search is the future" },
+          { text: "Full text search with mongot" }
+        ])
+        ```
 
-      ```javascript
-      {
-      acknowledged: true,
-      insertedIds: {
-          '0': ObjectId('69ebae2599c54be2ea44ba89'),
-          '1': ObjectId('69ebae2599c54be2ea44ba8a'),
-          '2': ObjectId('69ebae2599c54be2ea44ba8b')
-      }
-      }
-      ```
+        **Output**
 
-2. Create a **search index**:
+        ```javascript
+        {
+          acknowledged: true,
+          insertedIds: {
+            "0": ObjectId(...),
+            "1": ObjectId(...),
+            "2": ObjectId(...)
+          }
+        }
+        ```
+
+2. Create a search index.
 
     **Syntax**
 
     ```javascript
     db.<collection>.createSearchIndex(
-    <name>,
-    <type>,
-    {
+      "<name>",
+      "<type>",
+      {
         <definition>
-    }
-  )
-  ```
-
-    `createSearchIndex()` accepts these fields:
-
-  | **Field**| **Type**| **Required** | **Description**|
-  | ------------ | ---------- | -------- | ------|
-  | `name`       | `string`   | Optional | Name of the index. If not provided, the index is named `default`. Each collection can have only one index with a given name. |
-  | `type`       | `string`   | Optional | Index type. Use `search` or `vectorSearch`. The default is `search`.|
-  | `definition` | `document` | Required | Defines how the index is configured. The format depends on the selected index type (`search` or `vectorSearch`).|
-   
-  ??? example "Create a search index named `search_idx`"
-    
-      ```javascript
-      db.docs.createSearchIndex({
-      name: "search_idx",
-      definition: {
-          mappings: {
-          dynamic: true
-          }
       }
-      })
+    )
+    ```
 
-      Output:
+    `createSearchIndex()` accepts the following parameters:
 
-      ```
-      search_idx
-      ```
+    | Field | Type | Required | Description |
+    |-------|------|----------|-------------|
+    | `name` | `string` | No | Name of the index. Defaults to `default` if omitted. |
+    | `type` | `string` | No | Index type. Specify `search` or `vectorSearch`. The default is `search`. |
+    | `definition` | `document` | Yes | Defines the index configuration. |
 
-3. Check the status.
+    ??? example "Create a search index"
+
+        ```javascript
+        db.docs.createSearchIndex({
+          name: "search_idx",
+          definition: {
+            mappings: {
+              dynamic: true
+            }
+          }
+        })
+        ```
+
+        **Output**
+
+        ```text
+        search_idx
+        ```
+
+3. Verify that the index is ready.
 
     ```javascript
     db.docs.getSearchIndexes()
     ```
-    Output:
 
-    ```javascript
-    [
-    {
-        id: '69ebae2a651bce4d10f57bdc',
-        name: 'search_idx',
-        status: 'READY',
-        queryable: true,
-        latestDefinitionVersion: { version: 0, createdAt: ISODate('2026-04-24T17:53:46.000Z') },
-        latestDefinition: { mappings: { dynamic: true } },
-        statusDetail: [
-        {
-            hostname: '69eb5fc573906b6bfb8cefe7',
-            status: 'READY',
-            queryable: true,
-            mainIndex: {
-            status: 'READY',
-            queryable: true,
-            definitionVersion: { version: 0, createdAt: ISODate('2026-04-24T17:53:46.000Z') },
-            definition: { mappings: { dynamic: true, fields: {} } }
-            }
-        }
-        ]
-    }
-    ]
-    ```
-
-4. Perform a text search:
-
-  ```javascript
-  db.docs.aggregate([ { $search: { index: "search_idx", text: { query: "future", path: "text" } }}])
-  ```
-
-  Output:
+    **Output**
 
     ```javascript
     [
       {
-        _id: ObjectId('69ebae2599c54be2ea44ba8a'),
-        text: 'Vector search is the future'
+        name: "search_idx",
+        status: "READY",
+        queryable: true,
+        ...
       }
+    ]
     ```
 
-For the complete createSearchIndex() reference, including the search index and vector search index definition syntax, see [db.collection.createSearchIndex() :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/method/db.collection.createSearchIndex/){:target="_blank"} in the MongoDB documentation.
+4. Run a text search.
 
-[Update a search index :material-arrow-right:](update-search-index.md){.md-button}
+    ```javascript
+    db.docs.aggregate([
+      {
+        $search: {
+          index: "search_idx",
+          text: {
+            query: "future",
+            path: "text"
+          }
+        }
+      }
+    ])
+    ```
 
-[Delete a search index :material-arrow-right:](delete-search-index.md){.md-button}
+    **Output**
 
+    ```javascript
+    [
+      {
+        text: "Vector search is the future"
+      }
+    ]
+    ```
