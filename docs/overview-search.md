@@ -66,3 +66,10 @@ Use cases include:
 - Retrieval-augmented generation (RAG) for AI applications
 - Image or audio similarity search, once the underlying content is converted to vector embeddings
 
+
+## External references
+
+- [$search aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/aggregation-stages/search/){:target="_blank"}
+- [$searchMeta aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/aggregation-stages/searchMeta/){:target="_blank"}
+- [$vectorSearch aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/vectorsearch/){:target="_blank"}
+
