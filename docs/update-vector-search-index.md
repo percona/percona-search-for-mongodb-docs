@@ -60,4 +60,4 @@ db.<collection>.updateSearchIndex(
     3. The new index contains the `embedding` vectors and the `category` values. During a filtered vector query, `category` narrows the documents considered for similarity search. It does not affect the vector similarity score.
     4. When the rebuild finishes, the new index replaces the previous version.
 
-[Delete a search index :material-arrow-right:](../delete-search-index.md){.md-button}
+[Delete a search index :material-arrow-right:](delete-vector-search-index.md){.md-button}
