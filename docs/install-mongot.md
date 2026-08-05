@@ -2,9 +2,13 @@
 
 Before deploying Vector Search for Percona Server for MongoDB, ensure that you have:
 
-- Percona Server for MongoDB 8.3 or later installed.
+- Percona Server for MongoDB 8.3 or later, installed as an initiated replica set.
 - Administrative privileges to install and configure `mongot`.
 - A supported Linux operating system.
+- The `mongot` binary installed on the host.
+- Write access to the search data and log directories for the user that runs `mongot`.
+- Network connectivity from the `mongot` host to the replica set.
+- The required ports available.
 
 Additional requirements depend on the installation method:
 
