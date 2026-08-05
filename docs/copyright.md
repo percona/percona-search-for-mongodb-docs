@@ -7,4 +7,4 @@ and is distributed under the [Creative Commons Attribution 4.0 International Lic
 
 ## Software license
 
-Percona Server for MongoDB is [source-available software](https://en.wikipedia.org/wiki/Source-available_software).
+Percona Search for MongoDB is [source-available software](https://en.wikipedia.org/wiki/Source-available_software).
