@@ -1,6 +1,6 @@
 # System requirements and compatibility
 
-Before deploying Vector Search in Percona Server for MongoDB (PSMDB), ensure that your environment meets the software, hardware, and deployment requirements for `mongot`.
+Before deploying Percona Search for MongoDB, ensure that your environment meets the software, hardware, and deployment requirements for `mongot`.
 
 !!! info "Important"
     The requirements listed below provide the minimum supported configuration. Production environments that handle large collections or high search traffic typically require additional CPU, memory, and storage resources.
@@ -27,3 +27,5 @@ Search indexes are maintained in memory whenever possible to improve query perfo
 ## Storage recommendations
 
 Although `mongot` can run on any supported storage device, solid-state drives (SSDs) are strongly recommended for production deployments.
+
+For more information, see the upstream [Introduction to mongot Deployment Sizing](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/introduction/) and [Hardware Considerations for mongot Deployments](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/advanced-guidance/hardware/) documentation.
