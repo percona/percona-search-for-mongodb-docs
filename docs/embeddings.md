@@ -1,6 +1,6 @@
 # Embeddings for Percona Search for MongoDB
 
-Percona Search for MongoDB supports vector search based on embeddings that you generate and manage yourself. You generate embeddings for your data using an embedding model of your choice, store the resulting vectors in your MongoDB documents, and query them with the `$vectorSearch` aggregation stage to find documents with similar meaning.
+Percona Search for MongoDB supports vector search based on embeddings that you generate and manage yourself or on automatically generated ones. You can generate embeddings for your data using an embedding model of your choice, store the resulting vectors in your MongoDB documents, and query them with the `$vectorSearch` aggregation stage to find documents with similar meaning.
 
 Once an embedding is stored, it can be reused for future searches. Each search query requires its own embedding, generated from the query text using the same embedding model that was used to generate the stored document embeddings.
 
