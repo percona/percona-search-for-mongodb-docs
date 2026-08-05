@@ -77,12 +77,12 @@
 
         script.setAttribute(
             "data-modal-example-questions",
-            "How do I get started quickly with Percona Search for MongoDB?, How do I install mongot?, How does Percona Search for MongoDB work?, How do I create a search index in Peronca Search for MongoDB?How do I generate embeddings for vector search?"
+            "How do I get started quickly with Percona Search for MongoDB?, How do I install mongot?, How does Percona Search for MongoDB work?, How do I create a search index in Peronca Search for MongoDB?, How do I generate embeddings for vector search?"
         );
 
         script.setAttribute(
             "data-project-logo",
-            "https://docs.percona.com/percona-search-for-mongodb/_images/percona-logomark-one-color-dark.png"
+            "https://docs.percona.com/percona-search-for-mongodb/_images/Percona_Color_Dark.svg"
         );
 
         document.head.appendChild(script);
