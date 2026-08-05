@@ -15,10 +15,11 @@ Applications continue to connect to MongoDB in the same way they do for other da
 | Search indexes | Stored separately from the data files managed by `mongod` and maintained automatically by `mongot`. |
 | Embedding model | Generates embeddings for semantic search. Applications are responsible for generating embeddings in the current release. |
 
-## Component interaction
+## Component interaction in a sharded cluster
 
-Applications send aggregation pipelines containing `$search`, `$searchMeta`, or `$vectorSearch` stages to `mongod`, or to `mongos` in a sharded cluster.
+In a replica set, `mongod` forwards a `$search`, `$searchMeta`, or `$vectorSearch` stage to `mongot` and assembles the final result, as described in [Search overview](search-overview.md). Sharded clusters work the same way at each shard, with `mongos` handling the extra step of combining results across shards.
 
-`mongod` forwards the search stage to `mongot`, which executes the search against its local indexes and returns the identifiers of the matching documents together with their relevance scores. `mongod` retrieves the corresponding documents from the collection, applies any remaining aggregation stages, and returns the results to the application.
+Each shard runs its own `mongot`, which indexes only the data on that shard. When a query reaches `mongos`, it forwards the search stage to every shard, and each shard's `mongod` and `mongot` execute the search locally. `mongos` then merges the results from all shards into a single response before returning it to the application.
 
-In a sharded deployment, each shard performs the search independently. `mongos` merges the results from all shards before returning the final response.
+If you add a search index to a collection that's already sharded, or add a new shard to a collection that already has a search index, you may see incomplete search results for that shard until its `mongot` finishes an initial sync.
+
