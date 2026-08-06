@@ -7,8 +7,10 @@ Before deploying Percona Search for MongoDB, ensure that you have:
 - The `mongot` binary installed on the host.
 - Write access to the search data and log directories for the user that runs `mongot`.
 - Network connectivity from the `mongot` host to the replica set.
-- The required ports available (27017 and ).
 
+!!! note
+    The examples in this section use a single-node test environment with `mongod` listening on port **27017** and `mongot` listening on port **27028**. Replace the host names, ports, paths, and credentials with values that are applicable for your deployment.
+    
 Additional requirements depend on the installation method:
 
 - **Tarballs** - An initiated replica set with keyfile access control or sharded deployment. `mongosh` installed on the host.
