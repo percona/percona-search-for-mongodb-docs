@@ -30,6 +30,6 @@ Although `mongot` can run on any supported storage device, solid-state drives (S
 
 ## Learn more
 
-- [Introduction to mongot Deployment Sizing](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/introduction/){:target="_blank"}
+- [Introduction to mongot Deployment Sizing :octicons-link-external-16:](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/introduction/){:target="_blank"}
 
-- [Hardware Considerations for mongot Deployments](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/advanced-guidance/hardware/){:target="_blank"}
+- [Hardware Considerations for mongot Deployments :octicons-link-external-16:](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/advanced-guidance/hardware/){:target="_blank"}
