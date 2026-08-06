@@ -139,4 +139,6 @@ Follow these steps to update a search index.
         ]
         ```
 
+## Next steps
+
 [Delete a search index :material-arrow-right:](../delete-search-index.md){.md-button}
