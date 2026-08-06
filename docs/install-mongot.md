@@ -173,7 +173,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
     8. Copy the extracted files to the installation directory.
 
         ```sh
-        sudo cp -a mongot-community/* /opt/mongot/
+        sudo cp -a percona-search-mongodb/* /opt/mongot/
         sudo chown -R mongod:mongod /opt/mongot
         ```
 
