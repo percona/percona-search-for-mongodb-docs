@@ -16,7 +16,7 @@ Full-text search performs lexical matching on indexed text. It supports:
 
 - Faceting
 
-For semantic similarity search, use vector search with embeddings.
+For semantic similarity search, use [vector search with embeddings](embeddings.md), which uses vector embeddings to find documents based on meaning rather than exact keyword matches.
 
 ## How full-text search works
 
