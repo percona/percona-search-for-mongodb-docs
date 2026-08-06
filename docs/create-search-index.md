@@ -46,7 +46,7 @@ Follow these steps:
         search_idx
         ```
 
-3. Verify that the index is ready.
+2. Verify that the index is ready.
 
     ```javascript
     db.docs.getSearchIndexes()
@@ -67,7 +67,7 @@ Follow these steps:
     ]
     ```
 
-4. Run a full-text search.
+3. Run a full-text search.
 
     ??? example "Search the collection"
 
