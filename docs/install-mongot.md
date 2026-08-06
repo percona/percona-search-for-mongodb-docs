@@ -139,27 +139,25 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
             ```yaml
             syncSource:
               replicaSet:
-                hostAndPort: localhost:27017
-                username: <mongot-username>
-                passwordFile: /etc/mongot/mongot.passwd
-                tls: false
-
+                hostAndPort: "localhost:27017"
+                scramAuth:
+                  username: mongotUser
+                  passwordFile: "/etc/mongot/secrets/passwordFile"
+                  authSource: admin
+                  tls:
+                    enabled: false
             storage:
-              dataPath: /var/lib/mongot
-
+              dataPath: "/var/lib/mongot"
             server:
               grpc:
-                address: localhost:27028
+                address: "localhost:27028"
                 tls:
-                  mode: disabled
-
+                  mode: "disabled"
             metrics:
               enabled: true
-              address: localhost:9946
-
+              address: "localhost:9946"
             healthCheck:
-              address: localhost:8080
-
+              address: "localhost:8080"
             logging:
               verbosity: INFO
             ```
