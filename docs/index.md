@@ -1,7 +1,7 @@
 # Percona Search for MongoDB documentation
 
 !!! warning "Technical Preview"
-    Percona Search for MongoDB 1.70.1-1 is available as a technical preview.
+    Percona Search for MongoDB 1.70.3-1 is available as a technical preview.
 
     We recommend that early adopters use this release for testing purposes only and not in production environments.
 
