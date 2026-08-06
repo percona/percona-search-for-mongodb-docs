@@ -1,0 +1,17 @@
+# MkDocs configuration for PDF builds
+
+INHERIT: mkdocs-base.yml
+
+
+site_url: https://docs.percona.com/percona-search-for-mongodb/
+
+theme:
+  name: material
+  custom_dir: _resourcepdf/overrides/
+
+
+#Google Analytics configuration 
+extra:
+  analytics:
+    provider: google
+    property: G-J4J70BNH0G

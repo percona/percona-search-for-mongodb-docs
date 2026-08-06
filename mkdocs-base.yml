@@ -1,0 +1,224 @@
+# MkDocs configuration for builds with material theme
+
+site_name: Percona Search for MongoDB
+site_description: Documentation
+site_author: Percona LLC
+copyright: >
+  <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2026 — <a href="#__consent">Cookie Consent</a>
+
+
+repo_name: percona/percona-search-for-mongodb-docs
+repo_url: https://github.com/percona/percona-search-for-mongodb-docs
+edit_uri: edit/main/docs/
+
+use_directory_urls: false
+
+# Theme setup
+theme:
+  name: material
+  logo: _images/mongodb-mark.svg
+  favicon: _images/mongodb-fav.svg
+  custom_dir: _resource/overrides/
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    edit: material/file-edit-outline
+    view: material/file-eye-outline
+  
+  features:
+    - search.highlight
+    - search.share
+    - search.suggest
+    - navigation.top
+    - navigation.tracking 
+    - navigation.instant
+    - navigation.instant.progress
+    - content.tooltips
+    - content.tabs.link
+    - content.action.view
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+    
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Color theme set to Automatic. Click to change
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Color theme set to Light Mode. Click to change
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Color theme set to Dark Mode. Click to change
+
+
+extra_css:
+  - https://unicons.iconscout.com/release/v3.0.3/css/line.css
+  - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css
+  - css/nocopy.css
+  - css/extra.css
+  - css/design.css
+  - css/osano.css
+  - css/mongodb.css
+  - css/landing.css
+  - css/rating.css
+  - css/kapa.css
+
+extra_javascript:
+  - js/version-select.js
+  - js/promptremover.js
+  - js/rating.js
+  - js/kapa.js
+
+markdown_extensions:
+  abbr: {}
+  attr_list: {}
+  toc:
+    permalink: True
+    title: On this page
+    toc_depth: 3
+  admonition: {}
+  footnotes: {}
+  def_list: {} # https://michelf.ca/projects/php-markdown/extra/#def-list
+  meta: {}
+  md_in_html: {}
+  smarty:
+      {smart_angled_quotes: true}
+  pymdownx.details: {}
+  pymdownx.mark: {}
+  pymdownx.smartsymbols: {}
+  pymdownx.tabbed: 
+      {alternate_style: true}
+  pymdownx.tilde: {}
+  pymdownx.superfences: 
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+  pymdownx.highlight:
+      linenums: false
+  pymdownx.inlinehilite: {}
+  pymdownx.snippets:
+      base_path: 
+        - snippets
+        - docs/install
+        - docs/
+#       auto_append:
+#         - services-banner.md
+  pymdownx.tasklist:
+      custom_checkbox: true
+  pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - _resource/overrides/.icons
+
+       
+
+plugins:
+#  section-index: {}
+  search: 
+    separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  git-revision-date-localized: 
+    enable_creation_date: true
+    enabled: !ENV [ENABLED_GIT_REVISION_DATE, True]
+  meta-descriptions:
+    export_csv: false
+    quiet: false
+    enable_checks: false
+    min_length: 50
+    max_length: 160
+  glightbox: 
+    touchNavigation: false
+  git-committers:
+    enabled: !ENV [CI, false]
+    repository: percona/percona-search-for-mongodb-docs
+    branch: "main"
+  macros:
+      include_yaml:
+        - 'variables.yml' # Use in markdown as '{{ VAR }}'   
+  mike:
+      version_selector: true
+      css_dir: css
+      javascript_dir: js
+      canonical_version: null
+
+#Plugin for PDF generation
+  print-site:
+      add_to_navigation: false
+      print_page_title: 'Percona Search for MongoDB documentation'
+      add_print_site_banner: false
+      # Table of contents
+      add_table_of_contents: true
+      toc_title: 'Table of Contents'
+      toc_depth: 2
+      # Content-related
+      add_full_urls: false
+      enumerate_headings: false
+      enumerate_headings_depth: 1
+      enumerate_figures: true
+      add_cover_page: true
+      cover_page_template: "docs/_templates/pdf_cover_page.tpl"
+      path_to_pdf: ""
+      include_css: true
+      enabled: true
+
+extra:
+  version:
+    provider: mike
+#  homepage: https://docs.percona.com
+
+nav:
+  - Home: index.md
+  - Get help: get-help.md
+
+  - About Percona Search for MongoDB:
+      - Overview: overview-search.md
+      - Feature comparison: feature-comparison.md
+      - Architecture: vector-search-architecture.md
+
+  - Deploy Percona Search:
+      - Deployment topologies: vector-search-deployment.md
+      - Compatibility and requirements: vector-search-compatibility.md
+      - Limitations: limitations.md
+  - Install and configure mongot: install-mongot.md
+
+  - Search indexes overview: search-indexes.md
+
+  - Full-text search:
+      - Overview: full-text-search-overview.md
+      - Create a search index: create-search-index.md
+      - Update a search index: update-search-index.md
+      - Delete a search index: delete-search-index.md
+      - Query with $search: query-search.md
+      - $searchMeta: searchmeta.md
+      - Understand relevance scores: relevance-scores.md
+
+  - Vector search:
+      - Overview: vector-search-overview.md
+      - Create and manage embeddings: embeddings.md
+      - Create a vector search index: create-vector-search-index.md
+      - Update a vector search index: update-vector-search-index.md
+      - Delete a vector search index: delete-vector-search-index.md
+      - Query with $vectorSearch: query-vector-search.md
+  
+  - Release notes:
+      - Release notes index: release_notes/index.md
+      - release_notes/1.70.3-1.md 
+
+  - Reference:
+      - Percona Software and Platform Lifecycle: lifecycle.md
+      - Code of conduct: code-of-conduct.md
+      - Copyright: copyright.md
+      - Trademark policy: trademark-policy.md

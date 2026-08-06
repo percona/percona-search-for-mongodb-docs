@@ -1,0 +1,3 @@
+# Percona Search for MongoDB 1.70.3-1 release notes
+
+* [Percona Search for MongoDB 1.70.3-1 ({{date.1_70_3}})](1.70.3-1.md)
