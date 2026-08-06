@@ -31,24 +31,24 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
 
         === "ARM64"
 
-            Download the [ARM64 tarball :octicons-link-external-16:](https://downloads.mongodb.org/mongodb-search-community/0.53.0/mongot_community_0.53.0_linux_aarch64.tgz){:target="_blank"}.
+            Download the [ARM64 tarball :octicons-link-external-16:](https://downloads.mongodb.org/mongodb-search-community/1.70.3/mongot_community_1.70.3_linux_aarch64.tgz){:target="_blank"}.
 
         === "AMD64 (x86_64)"
 
-            Download the [AMD64 tarball :octicons-link-external-16:](https://downloads.mongodb.org/mongodb-search-community/0.53.0/mongot_community_0.53.0_linux_x86_64.tgz){:target="_blank"}.
+            Download the [AMD64 tarball :octicons-link-external-16:](https://downloads.mongodb.org/mongodb-search-community/1.70.3/mongot_community_1.70.3_linux_x86_64.tgz){:target="_blank"}.
 
     2. Extract the tarball.
 
         === "ARM64"
 
             ```sh
-            tar -zxvf mongot_community_0.53.0_linux_aarch64.tgz
+            tar -zxvf mongot_community_1.70.3_linux_aarch64.tgz
             ```
 
         === "AMD64 (x86_64)"
 
             ```sh
-            tar -zxvf mongot_community_0.53.0_linux_x86_64.tgz
+            tar -zxvf mongot_community_1.70.3_linux_x86_64.tgz
             ```
 
         The extracted archive contains the `mongot` binary, the sample configuration file, the `mongot` launcher script, and the MongoDB Search and Vector Search license files.
