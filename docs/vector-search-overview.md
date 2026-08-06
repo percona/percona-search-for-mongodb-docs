@@ -38,5 +38,3 @@ Percona Search for MongoDB supports vector search, which retrieves results based
 ??? example "Semantic search example"
 
     A keyword search for `payment failure` typically prioritizes documents containing those terms. Vector search can also retrieve records describing a `declined transaction`, `failed card authorization`, or `incomplete payment`, even when the exact phrase `payment failure` is absent.
-
-
