@@ -4,7 +4,7 @@ Percona Search for MongoDB supports vector search based on embeddings that you g
 
 Once an embedding is stored, it can be reused for future searches. Each search query requires its own embedding, generated from the query text using the same embedding model that was used to generate the stored document embeddings.
 
-![image](../_images/percona-search-embeddings.png)
+![image](_images/percona-search-embeddings.png)
 
 ## Manual embeddings
 
