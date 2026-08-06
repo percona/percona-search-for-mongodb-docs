@@ -97,9 +97,9 @@ Follow these steps:
 
 ## Next steps
 
-[Update a search index](update-search-index.md){.md-button}
+[Update a search index :material-arrow-right:](update-search-index.md){.md-button}
 
-[Delete a search index](delete-search-index.md){.md-button}
+[Delete a search index :material-arrow-right:](delete-search-index.md){.md-button}
 
 ## Learn more
 
