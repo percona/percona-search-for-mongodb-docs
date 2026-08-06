@@ -1,6 +1,6 @@
 # Install mongot
 
-Before deploying Vector Search for Percona Server for MongoDB, ensure that you have:
+Before deploying Percona Search for MongoDB, ensure that you have:
 
 - Percona Server for MongoDB 8.3 or later, installed as an initiated replica set.
 - Administrative privileges to install and configure `mongot`.
@@ -51,7 +51,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
             tar -zxvf mongot_community_1.70.3_linux_x86_64.tgz
             ```
 
-        The extracted archive contains the `mongot` binary, the sample configuration file, the `mongot` launcher script, and the MongoDB Search and Vector Search license files.
+        The extracted archive contains the `mongot` binary, the sample configuration file, the `mongot` launcher script, and the Percona Search for MongoDB license files.
 
     3. Configure `mongod` to communicate with `mongot`.
 
