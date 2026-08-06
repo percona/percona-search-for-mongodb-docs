@@ -10,7 +10,7 @@ Before deploying Percona Search for MongoDB, ensure that you have:
 
 !!! note
     The examples in this section use a single-node test environment with `mongod` listening on port **27017** and `mongot` listening on port **27028**. Replace the host names, ports, paths, and credentials with values that are applicable for your deployment.
-    
+
 Additional requirements depend on the installation method:
 
 - **Tarballs** - An initiated replica set with keyfile access control or sharded deployment. `mongosh` installed on the host.
@@ -522,32 +522,3 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
         ```
 
     After installing the package, continue with **step 3** in the **Tarballs** tab to configure `mongod` and `mongot`.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
