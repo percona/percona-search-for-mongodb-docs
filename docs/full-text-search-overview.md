@@ -34,5 +34,3 @@ For semantic similarity search, use [vector search with embeddings](embeddings.m
 ## Next steps
 
 [Create a search index :material-arrow-right:](create-search-index.md){.md-button}
-
-
