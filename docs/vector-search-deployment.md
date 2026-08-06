@@ -4,7 +4,7 @@ Percona Search for MongoDB runs as a separate `mongot` process alongside Percona
 
 Applications continue to connect to `mongod` in a replica set or to `mongos` in a sharded cluster. They never connect directly to `mongot`.
 
-![image](../_images/percona-search-deployment.png)
+![image](_images/percona-search-deployment.png)
 
 ## Replica set deployment
 
