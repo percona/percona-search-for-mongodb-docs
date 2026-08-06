@@ -70,4 +70,8 @@ Use `$searchMeta` with the `count` option to return the total number of document
     ]
     ```
 
-For the more details, see [$searchMeta (aggregation stage) :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/searchmeta/){:target="_blank"} and [Count MongoDB Search Results :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/counting/){:target="_blank"} in the MongoDB documentation.
+## Learn more
+
+- [$searchMeta (aggregation stage) :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/searchmeta/){:target="_blank"}
+
+- [Count MongoDB Search Results :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/counting/){:target="_blank"}
