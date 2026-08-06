@@ -5,7 +5,7 @@
 
     We recommend that early adopters use this release for testing purposes only and not in production environments.
 
-Percona Search for MongoDB adds full-text and vector search to self-managed Percona Server for MongoDB deployments. Use it to build keyword, semantic, and hybrid search, along with recommendation and retrieval-augmented generation (RAG) applications.
+Percona Search for MongoDB adds full-text and vector search to self-managed Percona Server for MongoDB deployments. Use it to build keyword, semantic, and hybrid search, along with recommendation and [retrieval-augmented generation (RAG) :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/tutorials/rag/?embedding=byo&language-no-interface=python&embedding-model=voyage&llm=openai){:target="_blank"} applications.
 
 Search runs in a separate process called `mongot`. This process maintains Apache Lucene-based search indexes and executes the queries that you submit through the `$search`, `$searchMeta`, and `$vectorSearch` aggregation stages.
 
