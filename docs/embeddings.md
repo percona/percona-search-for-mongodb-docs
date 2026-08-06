@@ -29,8 +29,10 @@ With [automatic embeddings :octicons-link-external-16:](https://www.mongodb.com/
 
 ## Next steps
 
+[`$vectorSearch`](query-with-vectorsearch.md){.md-button}
+
 [Create a vector search index](create-vector-search-index.md){.md-button}
 
-[`$vectorSearch`](query-with-vectorsearch.md){.md-button}
+
 
 
