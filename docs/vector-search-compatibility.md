@@ -28,4 +28,8 @@ Search indexes are maintained in memory whenever possible to improve query perfo
 
 Although `mongot` can run on any supported storage device, solid-state drives (SSDs) are strongly recommended for production deployments.
 
-For more information, see the upstream [Introduction to mongot Deployment Sizing](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/introduction/) and [Hardware Considerations for mongot Deployments](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/advanced-guidance/hardware/) documentation.
+## Learn more
+
+- [Introduction to mongot Deployment Sizing](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/introduction/){:target="_blank"}
+
+- [Hardware Considerations for mongot Deployments](https://www.mongodb.com/docs/manual/tutorial/mongot-sizing/advanced-guidance/hardware/){:target="_blank"}
