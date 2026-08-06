@@ -51,7 +51,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
             tar -zxvf mongot_community_0.53.0_linux_x86_64.tgz
             ```
 
-        The extracted archive contains the `mongot` binary, the sample configuration file, the `mongot` launcher script, and the MongoDB Search and Vector Search license files.
+        The extracted archive contains the `mongot` binary, the sample configuration file, the `mongot` launcher script, and the Percona Search for MongoDB license files.
 
     3. Configure `mongod` to communicate with `mongot`.
 
