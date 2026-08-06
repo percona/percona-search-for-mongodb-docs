@@ -117,10 +117,19 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
 
         ```sh
         sudo mkdir -p /etc/mongot
-        echo -n "<mongot-password>" | sudo tee /etc/mongot/mongot.passwd > /dev/null
-        sudo chmod 600 /etc/mongot/mongot.passwd
-        sudo chown mongod:mongod /etc/mongot/mongot.passwd
+        echo -n "<mongot-password>" | sudo tee /etc/mongot/secrets/passwordFile > /dev/null
+        sudo chmod 600 /etc/mongot/secrets/passwordFile
+        sudo chown mongod:mongod /etc/mongot/secrets/passwordFile
         ```
+    6. Create `mongot/secrets`.
+
+      ```sh
+      sudo mkdir -p /var/lib/mongot /etc/mongot/secrets /opt/mongot
+sudo chown -R mongod:mongod /var/lib/mongot /etc/mongot /opt/mongot
+sudo chmod 750 /etc/mongot /etc/mongot/secrets
+    ```
+
+
 
     6. Prepare the required directories.
 
