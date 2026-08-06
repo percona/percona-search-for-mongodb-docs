@@ -32,7 +32,3 @@ With [automatic embeddings :octicons-link-external-16:](https://www.mongodb.com/
 [`$vectorSearch` :material-arrow-right:](query-with-vectorsearch.md){.md-button}
 
 [Create a vector search index :material-arrow-right:](create-vector-search-index.md){.md-button}
-
-
-
-
