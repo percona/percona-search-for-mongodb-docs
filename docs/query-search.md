@@ -56,8 +56,6 @@ The `$search` stage accepts the following fields:
 | `returnScope` | Object | Optional | Sets the query context to an embedded document field. Requires `returnStoredSource: true`. |
 | `returnStoredSource` | Boolean | Conditional | Returns stored source fields directly from the search index instead of performing a full document lookup. Defaults to `false`. Must be `true` if you specify `returnScope`. |
 
-<!-- TBD-ENG: searchNodePreference was removed from this page. It's documented upstream as an Atlas-specific option for routing queries to the same dedicated search node for result consistency. If Percona Search for MongoDB adds equivalent support in the future, reintroduce it here with confirmed behavior. -->
-
 ## Metadata results
 
 `$search` returns only the matching documents. Any metadata you request with `count` or a `facet` collector is stored separately, in the `$$SEARCH_META` aggregation variable, rather than added to the results themselves. To read it, reference `$$SEARCH_META` in a later stage, such as `$project` or `$facet`.
@@ -154,4 +152,8 @@ Search operators define the conditions that `$search` applies to indexed fields.
 
     The `products_text_idx` index must cover the `name`, `description`, and `price` fields with the appropriate field types.
 
-For more information, see the upstream MongoDB documentation for the [compound operator :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/operators-collectors/compound/){:target="_blank"} and [range operator :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/operators-collectors/range/){:target="_blank"}.
+## Learn more
+
+- [compound operator :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/operators-collectors/compound/){:target="_blank"}
+
+- [range operator :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/operators-collectors/range/){:target="_blank"}
