@@ -25,6 +25,6 @@ The following table compares the current capabilities of Percona Search for Mong
 
 ## Next steps
 
-[Full-text search overview](full-text-search-overview.md){.md-button}
+[Full-text search overview :material-arrow-right:](full-text-search-overview.md){.md-button}
 
-[Vector search overview](vector-search-overview.md){.md-button}
+[Vector search overview :material-arrow-right:](vector-search-overview.md){.md-button}

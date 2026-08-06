@@ -175,4 +175,6 @@ ENN search is useful when you need the exact closest matches or when you want to
 - Increasing `numCandidates` can improve ANN accuracy, but it can also increase query latency.
 - Exclude the vector field from the returned documents unless your application needs it.
 
-For reference, see [$vectorSearch (aggregation stage) :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/vectorsearch/){:target="_blank"} in the MongoDB documentation.
+## Learn more
+
+[$vectorSearch (aggregation stage) :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/vectorsearch/){:target="_blank"}
