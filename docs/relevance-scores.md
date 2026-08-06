@@ -33,4 +33,6 @@ db.products.aggregate([
 
 The `score` field contains the relevance score assigned to each result. The documents with the strongest matches appear first.
 
-For more information, see [Score the documents in the results :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/score/overview/?utm_source=chatgpt.com){:target="_blank"} in the upstream MongoDB documentation.
+## Learn more
+
+[Score the documents in the results :octicons-link-external-16:](https://www.mongodb.com/docs/search/query/score/overview/?utm_source=chatgpt.com){:target="_blank"}
