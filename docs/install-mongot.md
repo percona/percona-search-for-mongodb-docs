@@ -113,23 +113,14 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
               roles: ["searchCoordinator"]
             })
             ```
-    5. Create the password file.
-
-        ```sh
-        sudo mkdir -p /etc/mongot
-        echo -n "<mongot-password>" | sudo tee /etc/mongot/secrets/passwordFile > /dev/null
-        sudo chmod 600 /etc/mongot/secrets/passwordFile
-        sudo chown mongod:mongod /etc/mongot/secrets/passwordFile
-        ```
-    6. Create `mongot/secrets`.
+    
+    5. Create `mongot/secrets`.
 
       ```sh
       sudo mkdir -p /var/lib/mongot /etc/mongot/secrets /opt/mongot
 sudo chown -R mongod:mongod /var/lib/mongot /etc/mongot /opt/mongot
 sudo chmod 750 /etc/mongot /etc/mongot/secrets
     ```
-
-
 
     6. Prepare the required directories.
 
@@ -139,7 +130,16 @@ sudo chmod 750 /etc/mongot /etc/mongot/secrets
         sudo chmod 750 /etc/mongot
         ```
 
-    7. Create the `mongot` configuration file.
+    7. Create the password file.
+
+        ```sh
+        sudo mkdir -p /etc/mongot
+        echo -n "<mongot-password>" | sudo tee /etc/mongot/secrets/passwordFile > /dev/null
+        sudo chmod 600 /etc/mongot/secrets/passwordFile
+        sudo chown mongod:mongod /etc/mongot/secrets/passwordFile
+        ```
+
+    8. Create the `mongot` configuration file.
 
         The tarball includes a sample configuration file named `config.default.yml`. Modify it as needed for your deployment.
 
@@ -177,14 +177,14 @@ sudo chmod 750 /etc/mongot /etc/mongot/secrets
 
         For the complete list of configuration options, see the upstream [mongot configuration options :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/configuration-options/#std-label-mongot-configuration-options){:target="_blank"} documentation.
 
-    8. Copy the extracted files to the installation directory.
+    9. Copy the extracted files to the installation directory.
 
         ```sh
         sudo cp -a percona-search-mongodb/* /opt/mongot/
         sudo chown -R mongod:mongod /opt/mongot
         ```
 
-    9. Create the `systemd` service.
+    10. Create the `systemd` service.
 
         Create the following file:
 
@@ -214,7 +214,7 @@ sudo chmod 750 /etc/mongot /etc/mongot/secrets
         WantedBy=multi-user.target
         ```
 
-    10. Set the required file permissions and SELinux contexts.
+    11. Set the required file permissions and SELinux contexts.
 
         ```sh
         sudo chown mongod:mongod /etc/mongot/config.yml
@@ -222,7 +222,7 @@ sudo chmod 750 /etc/mongot /etc/mongot/secrets
         sudo restorecon -Rv /opt/mongot
         ```
 
-    11. Enable and start `mongot`.
+    12. Enable and start `mongot`.
 
         ```sh
         sudo systemctl daemon-reload
@@ -230,7 +230,7 @@ sudo chmod 750 /etc/mongot /etc/mongot/secrets
         sudo systemctl start mongot
         ```
 
-    12. Verify that `mongot` is running.
+    13. Verify that `mongot` is running.
 
         ```sh
         curl localhost:8080/health
