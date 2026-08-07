@@ -117,9 +117,9 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
     5. Prepare the required directories.
 
         ```sh
-        sudo mkdir -p /var/lib/mongot /etc/mongot /opt/mongot
+        sudo mkdir -p /var/lib/mongot /etc/mongot/secrets /opt/mongot
         sudo chown -R mongod:mongod /var/lib/mongot /etc/mongot /opt/mongot
-        sudo chmod 750 /etc/mongot
+        sudo chmod 750 /etc/mongot /etc/mongot/secrets
         ```
 
     6. Create the password file.
@@ -135,7 +135,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
 
         The tarball includes a sample configuration file named `config.default.yml`. Copy it to `mongot.yml` and modify that file as needed."
 
-        ??? example "Example: `config.default.yml`"
+        ??? example "Example: `mongot.yml`"
 
             ```yaml
             syncSource:
@@ -169,7 +169,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
 
         For the complete list of configuration options, see the upstream [mongot configuration options :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/configuration-options/#std-label-mongot-configuration-options){:target="_blank"} documentation.
 
-    9. Copy the extracted files to the installation directory.
+    8. Copy the extracted files to the installation directory.
 
         ```sh
         sudo cp -a percona-search-mongodb/* /opt/mongot/
@@ -491,7 +491,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
         sudo yum install percona-search-mongodb
         ```
 
-     After installing the package, continue with **step 3** in the **Tarballs** tab to configure `mongod` and `mongot`.
+     After installing the package, continue from **step 3 onwards** in the **Tarballs** tab to configure `mongod` and `mongot`.
 
 === "DEB packages"
 
@@ -520,4 +520,4 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
         sudo apt install percona-search-mongodb
         ```
 
-    After installing the package, continue with **step 3** in the **Tarballs** tab to configure `mongod` and `mongot`.
+     After installing the package, continue from **step 3 onwards** in the **Tarballs** tab to configure `mongod` and `mongot`.
