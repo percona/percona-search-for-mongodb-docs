@@ -113,53 +113,52 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
               roles: ["searchCoordinator"]
             })
             ```
-    5. Create the password file.
+  
+    5. Prepare the required directories.
+
+        ```sh
+        sudo mkdir -p /var/lib/mongot /etc/mongot/secrets /opt/mongot
+        sudo chown -R mongod:mongod /var/lib/mongot /etc/mongot /opt/mongot
+        sudo chmod 750 /etc/mongot /etc/mongot/secrets
+        ```
+
+    6. Create the password file.
 
         ```sh
         sudo mkdir -p /etc/mongot
-        echo -n "<mongot-password>" | sudo tee /etc/mongot/mongot.passwd > /dev/null
-        sudo chmod 600 /etc/mongot/mongot.passwd
-        sudo chown mongod:mongod /etc/mongot/mongot.passwd
-        ```
-
-    6. Prepare the required directories.
-
-        ```sh
-        sudo mkdir -p /var/lib/mongot /etc/mongot /opt/mongot
-        sudo chown -R mongod:mongod /var/lib/mongot /etc/mongot /opt/mongot
-        sudo chmod 750 /etc/mongot
+        echo -n "<mongot-password>" | sudo tee /etc/mongot/secrets/passwordFile > /dev/null
+        sudo chmod 600 /etc/mongot/secrets/passwordFile
+        sudo chown mongod:mongod /etc/mongot/secrets/passwordFile
         ```
 
     7. Create the `mongot` configuration file.
 
-        The tarball includes a sample configuration file named `config.default.yml`. Modify it as needed for your deployment.
+        The tarball includes a sample configuration file named `config.default.yml`. Copy it to `mongot.yml` and modify that file as needed.
 
-        ??? example "Example: `config.default.yml`"
+        ??? example "Example: `mongot.yml`"
 
             ```yaml
             syncSource:
               replicaSet:
-                hostAndPort: localhost:27017
-                username: <mongot-username>
-                passwordFile: /etc/mongot/mongot.passwd
-                tls: false
-
+                hostAndPort: "localhost:27017"
+                scramAuth:
+                  username: mongotUser
+                  passwordFile: "/etc/mongot/secrets/passwordFile"
+                  authSource: admin
+                  tls:
+                    enabled: false
             storage:
-              dataPath: /var/lib/mongot
-
+              dataPath: "/var/lib/mongot"
             server:
               grpc:
-                address: localhost:27028
+                address: "localhost:27028"
                 tls:
-                  mode: disabled
-
+                  mode: "disabled"
             metrics:
               enabled: true
-              address: localhost:9946
-
+              address: "localhost:9946"
             healthCheck:
-              address: localhost:8080
-
+              address: "localhost:8080"
             logging:
               verbosity: INFO
             ```
@@ -492,7 +491,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
         sudo yum install percona-search-mongodb
         ```
 
-     After installing the package, continue with **step 3** in the **Tarballs** tab to configure `mongod` and `mongot`.
+     After installing the package, continue from **step 3 onwards** in the **Tarballs** tab to configure `mongod` and `mongot`.
 
 === "DEB packages"
 
@@ -521,4 +520,4 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
         sudo apt install percona-search-mongodb
         ```
 
-    After installing the package, continue with **step 3** in the **Tarballs** tab to configure `mongod` and `mongot`.
+     After installing the package, continue from **step 3 onwards** in the **Tarballs** tab to configure `mongod` and `mongot`.
