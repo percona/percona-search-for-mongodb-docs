@@ -133,7 +133,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
 
     7. Create the `mongot` configuration file.
 
-        The tarball includes a sample configuration file named `config.default.yml`. Copy it to `mongot.yml` and modify that file as needed."
+        The tarball includes a sample configuration file named `config.default.yml`. Copy it to `mongot.yml` and modify that file as needed.
 
         ??? example "Example: `mongot.yml`"
 
