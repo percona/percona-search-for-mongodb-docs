@@ -215,6 +215,7 @@ nav:
   
   - Release notes:
       - Release notes index: release_notes/index.md
+      - release_notes/1.70.3-2.md 
       - release_notes/1.70.3-1.md 
 
   - Reference:
