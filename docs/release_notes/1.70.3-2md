@@ -17,7 +17,7 @@ version: 1.70.3-2
 
 We are pleased to introduce **Percona Search for MongoDB 1.70.3-2**. Percona Search for MongoDB integrates the Apache Lucene-based `mongot` search engine with Percona Server for MongoDB. It keeps search indexes synchronized with database changes and processes search requests received through `mongod` or `mongos`.
 
-This release of Percona Search for MongoDB is based on `mongot 1.70.3`, bringing the latest upstream improvements and fixes. For a complete list of changes, see the [MongoDB release notes :octicons-link-external-16:](https://www.mongodb.com/docs/search/self-managed/current/release-notes/#mongot-v1701){:target="_blank"}.
+This release of Percona Search for MongoDB is based on `mongot 1.70.3`, bringing the latest upstream improvements and fixes. For a complete list of changes, see the [MongoDB release notes :octicons-link-external-16:](https://www.mongodb.com/docs/search/self-managed/current/release-notes/#mongot-v1703){:target="_blank"}.
 
 ## Release highlights
 
