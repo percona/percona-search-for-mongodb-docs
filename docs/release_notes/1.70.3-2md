@@ -6,7 +6,7 @@ authors:
 version: 1.70.3-2
 ---
 
-# Percona Search for MongoDB {{ page.meta.version }} ({{date.1_70_3}})
+# Percona Search for MongoDB {{ page.meta.version }} ({{date.1_70_3_2}})
 
 [Installation](../install-mongot.md){.md-button}
 
