@@ -3,11 +3,12 @@
 
 release: '1.70.3-1'
 version: '1.70.3'
-mongosh: '2.9.2'
+mongosh: '2.10.2'
 year: "2026"
 
 product:
   ps4m_full_name: "Percona Search for MongoDB"
 
 date:
+  1_70_3_2: "2026-09-03"
   1_70_3: "2026-08-06"
