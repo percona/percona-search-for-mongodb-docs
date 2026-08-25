@@ -20,7 +20,7 @@ The `OPENAI_COMPATIBLE` provider works with embedding services that implement th
 !!! note
     The following table shows common examples. Ports are typical defaults. Check the configuration of your embedding server before using them.
 
-| Engine| Typical endpoint | Authentication|
+| **Engine**| **Typical endpoint** | **Authentication**|
 | ------| -----------------| --------------|
 | [Ollama :octicons-link-external-16:](https://ollama.com/){:target="_blank"}               | `http://localhost:11434/v1/embeddings` | Not required by default       |
 | vLLM                                         | `http://localhost:8000/v1/embeddings`  | Not required by default       |
@@ -30,4 +30,13 @@ The `OPENAI_COMPATIBLE` provider works with embedding services that implement th
 | Hugging Face Text Embeddings Inference (TEI) | `http://localhost:8080/v1/embeddings`  | Not required by default       |
 | OpenAI                                       | `https://api.openai.com/v1/embeddings` | `Authorization: Bearer <key>` |
 | Azure OpenAI                                 | Deployment-specific endpoint           | `api-key: <key>`              |
+
+## What to know before you start
+
+- Only **float** output is supported right now. An autoEmbed index asking for int8 or binary quantization will fail with an error.
+- `outputDimensions` in the catalog needs to match what the model actually produces, unless `forwardDimensions: true` is set. Local engines generally serve a fixed dimension and will reject a request that tries to override it.
+- The global `embedding.providerEndpoint` override applies to **VOYAGE models only**. Each `OPENAI_COMPATIBLE` model carries its own `providerEndpoint` in the catalog.
+
+
+
 
