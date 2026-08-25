@@ -1,0 +1,40 @@
+---
+title: Percona Search for MongoDB release notes version 1.70.3-2
+summary: Get to know all improvements, new features, and bug and security vulnerability fixes in the release.
+authors:
+  - Rasika Chivate
+version: 1.70.3-2
+---
+
+# Percona Search for MongoDB {{ page.meta.version }} ({{date.1_70_3}})
+
+[Installation](../install-mongot.md){.md-button}
+
+!!! warning "Technical Preview"
+    Percona Search for MongoDB 1.70.3-2 is available as a technical preview.
+
+    We recommend that early adopters use this release for testing purposes only and not in production environments.
+
+We are pleased to introduce **Percona Search for MongoDB 1.70.3-2**. Percona Search for MongoDB integrates the Apache Lucene-based `mongot` search engine with Percona Server for MongoDB. It keeps search indexes synchronized with database changes and processes search requests received through `mongod` or `mongos`.
+
+This release of Percona Search for MongoDB is based on `mongot 1.70.3`, bringing the latest upstream improvements and fixes. For a complete list of changes, see the [MongoDB release notes :octicons-link-external-16:](https://www.mongodb.com/docs/search/self-managed/current/release-notes/#mongot-v1701){:target="_blank"}.
+
+## Release highlights
+
+Percona Search for MongoDB 1.70.3-2 provides the following capabilities:
+
+- [Full-text search](../full-text-search-overview.md): Run relevance-based searches with the `$search` aggregation stage.
+
+- [Vector search](../vector-search-overview.md): Find documents based on semantic similarity with the $vectorSearch aggregation stage. Create vector indexes, filter the search scope, and retrieve a similarity score for each result.
+
+These capabilities support keyword search, semantic search, recommendation systems, and retrieval-augmented generation applications that work directly with data stored in Percona Server for MongoDB.
+
+## Join us in shaping the future of Percona Search for MongoDB
+
+This technical preview is just the beginning. Your real-world experience and feedback are invaluable as we evolve Percona Search for MongoDB. We encourage you to explore it in your non-production testing and evaluation environments and share your insights:
+
+* What challenges did it solve for you?
+* What features would you like to see next?
+* How can we make it even better for your specific use cases?
+
+We'd love to hear from you. If you have questions or feedback, contact your Percona representative or connect with the community on the [Percona Community Forum](https://forums.percona.com/t/welcome-to-perconas-community-forum/7).
