@@ -106,7 +106,7 @@ The following walkthrough sets up a fully local pipeline:
             initialRetryWaitMs: 200
             maxRetryWaitMs: 10000
             jitter: 0.1
-            credentials: {}
+          credentials: {}
     ```
 
     Where:
