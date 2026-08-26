@@ -208,7 +208,15 @@ nav:
   - Vector search:
       - Overview: vector-search-overview.md
       - Create and manage embeddings: embeddings.md
-      - Automatic embedding with OpenAI-compatible providers: automatic-embedding-with-OpenAI-providers.md
+      - Automatic embedding:
+        - Automatic embedding with OpenAI-compatible providers: automatic-embedding-with-OpenAI-providers.md
+        - Configure with Ollama: configure-automatic-embedding-ollama.md
+        - Configure with OpenAI: configure-automatic-embedding-openai.md
+        - Configure with Azure OpenAI: configure-automatic-embedding-azure.md
+        - Configure embedding models: configure-embedding-models.md
+        - Create and query an autoEmbed index: autoembed-index.md
+        - Configuration reference: automatic-embedding-reference.md
+        - Troubleshooting: troubleshoot-automatic-embedding.md
       - Create a vector search index: create-vector-search-index.md
       - Update a vector search index: update-vector-search-index.md
       - Delete a vector search index: delete-vector-search-index.md
