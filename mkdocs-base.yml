@@ -210,7 +210,6 @@ nav:
       - Create and manage embeddings: embeddings.md
       - Automatic embedding:
         - About OpenAI-compatible automatic embedding: automatic-embedding-with-OpenAI-providers.md
-        - Configure embedding models: configure-embedding-models.md
         - Configure with Ollama: configure-automatic-embedding-ollama.md
         - Configure with OpenAI: configure-automatic-embedding-openai.md
         - Configure with Azure OpenAI: configure-automatic-embedding-azure.md
