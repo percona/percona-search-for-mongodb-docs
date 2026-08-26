@@ -25,7 +25,7 @@ The following walkthrough sets up a fully local pipeline:
 1. [Install Ollama :octicons-link-external-16:](https://docs.ollama.com/quickstart){:target="_blank"} and pull an embedding model:
 
     ```sh
-    curl -fsSL <https://ollama.com/install.sh> | sh
+    curl -fsSL https://ollama.com/install.sh | sh
     ollama pull nomic-embed-text
     ```
     - Verify that the OpenAI-compatible embeddings endpoint responds:
