@@ -147,6 +147,28 @@ The following walkthrough sets up a fully local pipeline:
     The Voyage warnings are expected if you haven't configured Voyage API credentials. They don't affect keyless `OPENAI_COMPATIBLE` models.
 
         
+5. Create an auto-embedding vector search index:
+
+    ```bash
+    use mydb
+    db.movies.insertMany([
+      { title: "The Martian", plot: "An astronaut becomes stranded on Mars and must use his ingenuity to survive until rescue" },
+      { title: "Finding Nemo", plot: "A clownfish father crosses the ocean to find his son who was captured by a scuba diver" },
+      { title: "The Godfather", plot: "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son" }
+    ])
+
+    db.movies.createSearchIndex("plot_semantic", "vectorSearch", {
+       fields: [{
+         type: "autoEmbed",
+         path: "plot",                  // the text field to embed
+        model: "nomic-embed-text",     // modelName from the catalog
+        modality: "text",
+        similarity: "cosine"           // cosine | dotProduct | euclidean
+       }]
+    })
+    
+
+
 
 
 
