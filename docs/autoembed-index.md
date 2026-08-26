@@ -1,0 +1,1 @@
+# Create and query an `autoEmbed` index

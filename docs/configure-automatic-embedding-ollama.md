@@ -9,11 +9,11 @@ Ollama exposes an OpenAI-compatible `/v1/embeddings` endpoint. This allows mongo
 Make sure that:
 {.power-number}
 
-1. Percona Server for MongoDB and mongot are installed and configured.
-2. Percona Server for MongoDB is running as a replica set.
-3. [Ollama :octicons-link-external-16:](https://docs.ollama.com/quickstart){:target="_blank"} is installed on a host that `mongot` can reach.
-4. An embedding model is available in Ollama.
-5. You know the output dimensions of the model you plan to use.
+- Percona Server for MongoDB and mongot are installed and configured.
+- Percona Server for MongoDB is running as a replica set.
+- [Ollama :octicons-link-external-16:](https://docs.ollama.com/quickstart){:target="_blank"} is installed on a host that `mongot` can reach.
+- An embedding model is available in Ollama.
+- You know the output dimensions of the model you plan to use.
 
 The following example uses `nomic-embed-text`, which produces 768-dimensional vectors in the Percona model catalog.
 
@@ -166,6 +166,10 @@ The following walkthrough sets up a fully local pipeline:
         similarity: "cosine"           // cosine | dotProduct | euclidean
        }]
     })
+
+## Next steps
+
+[Create and query an autoEmbed index :material-arrow-right:](autoembed-index.md){.md-button}
     
 
 
