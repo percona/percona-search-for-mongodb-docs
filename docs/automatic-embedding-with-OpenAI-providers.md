@@ -1,4 +1,4 @@
-# Automatic Embedding with OpenAI-Compatible Providers
+# Automatic embedding with OpenAI-Compatible Providers
 
 Percona Search for MongoDB can now generate vector embeddings using any embedding server that implements the OpenAI `/v1/embeddings` API. This is enabled by the new `OPENAI_COMPATIBLE` embedding provider.
 
