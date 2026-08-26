@@ -47,10 +47,29 @@ With manual embedding, your application is responsible for generating embeddings
 
 When you create a vector search index with an `autoEmbed` field, `mongot` embeds the indexed text during the initial collection scan and then keeps embedding it as documents change, using change streams. At query time, the text you pass to `$vectorSearch` goes through the same model, with the model's query prefix applied if one is configured, and is matched against the stored vectors.
 
-!!! note
-    The model catalog (`embedding-service-configs.yml`) defines which embedding service is used for each model name.
-
 ![image](_images/autoembed-with-OpenAI-compatible-providers.png)
+
+## How `mongot` selects an embedding provider
+
+The embedding provider isn't selected globally in `mongot.conf`.
+
+It is configured for each model in `embedding-service-configs.yml`.
+
+![image](_images/embedding-client-flow.png)
+
+`mongot` resolves the embedding provider and settings from the model name:
+{.power-number}
+
+1. The index definition names a model, for example `{ type: "autoEmbed", model: "nomic-embed-text", ... }`.
+2. `mongot` finds the catalog entry whose `modelName` matches.
+3. The entry's `embeddingProvider` field, either `VOYAGE` or `OPENAI_COMPATIBLE`, decides which client handles the traffic. Everything else the client needs, including `providerEndpoint`, credentials, prefixes, and batching, comes from the same entry.
+
+!!! note
+    Both provider types can run on the same `mongot` instance. When you create an `autoEmbed` index, the model name determines which provider and model configuration mongot uses. The embedding section in `mongot.conf` contains settings shared across the automatic embedding setup, such as the model catalog path and Voyage-specific configuration.
+
+
+
+
 
 
 
