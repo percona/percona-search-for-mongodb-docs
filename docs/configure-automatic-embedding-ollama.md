@@ -37,6 +37,7 @@ The following walkthrough sets up a fully local pipeline:
          "model": "nomic-embed-text",
          "input": ["hello"]
        }'
+    ```
 
     - A successful response contains an embedding vector. This confirms that the model is available and the `/v1/embeddings` endpoint is responding.
 
