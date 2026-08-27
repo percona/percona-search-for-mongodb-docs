@@ -182,6 +182,12 @@ To create an `autoEmbed` index, follow these steps:
             } 
         }
     ]);
+
+    ```bash
+    [
+        { "title": "The Martian", "score": 0.82 },
+        ...
+    ]
     ```
 
     ?? info "What happens under the hood"
@@ -189,6 +195,49 @@ To create an `autoEmbed` index, follow these steps:
     - The query vector is compared with the vectors in the index to find the closest matches.
     - The score is calculated at query time using `{ $meta: "vectorSearchScore" }`.
     - A higher score indicates a closer match based on the configured similarity function.
+
+
+5. Insert new documents.
+
+    Newly added or updated documents are automatically embedded in real-time through change streams. This process removes the need for manual reindexing, ensuring the index remains up-to-date seamlessly.
+
+    ??? example "Example: Real-time embedding for new documents"
+
+        ```javascript
+        db.movies.insertOne({
+            title: "Apollo 13",
+            category: "drama",
+            plot: "Astronauts work with mission control to survive a damaged spacecraft and return safely to Earth"
+        });
+        ```
+
+6. Monitor embedding requests:
+
+    You can use the `mongot` metrics endpoint to monitor embedding traffic by provider. For OpenAI-compatible embedding servers, filter metrics by the `OPENAI_COMPATIBLE `provider:\
+
+    ```bash
+    curl -s localhost:9946/metrics | grep 'provider="OPENAI_COMPATIBLE"'
+    ```
+    
+    The following metrics are useful for monitoring embedding requests:
+
+    - `mongot_embeddingClient_inputTokenDistribution_*`: Tracks input token usage by embedding model and workload. Workloads include `COLLECTION_SCAN`, `CHANGE_STREAM`, and `QUERY`.
+    - `mongot_embeddingClient_invalidRequestCounter`: Tracks embedding requests rejected as invalid.
+
+    These metrics can help you monitor embedding usage, understand which workloads generate the most traffic, and identify rejected requests.
+
+
+
+
+## Learn more
+
+[$vectorSearch aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/vectorSearch/){:target="_blank"}
+
+
+
+
+
+
 
 
 
