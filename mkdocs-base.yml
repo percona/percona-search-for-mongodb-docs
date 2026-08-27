@@ -212,7 +212,7 @@ nav:
         - About OpenAI-compatible automatic embedding: automatic-embedding-with-OpenAI-providers.md
         - Configure with Ollama: configure-automatic-embedding-ollama.md
         - Configure with OpenAI: configure-automatic-embedding-openai.md
-        - Configure with Azure: configure-automatic-embedding-openai-azure.md
+        - Configure with Azure OpenAI: configure-automatic-embedding-openai-azure.md
         - Create and query an autoEmbed index: autoembed-index.md
       - Create a vector search index: create-vector-search-index.md
       - Update a vector search index: update-vector-search-index.md
