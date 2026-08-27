@@ -7,7 +7,6 @@ Ollama exposes an OpenAI-compatible `/v1/embeddings` endpoint. This allows mongo
 ## Before you begin
 
 Make sure that:
-{.power-number}
 
 - Percona Server for MongoDB and mongot are installed and configured.
 - Percona Server for MongoDB is running as a replica set.
@@ -19,7 +18,7 @@ The following example uses `nomic-embed-text`, which produces 768-dimensional ve
 
 ## Procedure
 
-The following walkthrough sets up a fully local pipeline: 
+The following steps provide a comprehensive guide for setting up a fully local pipeline:
 {.power-number}
 
 1. [Install Ollama :octicons-link-external-16:](https://docs.ollama.com/quickstart){:target="_blank"} and pull an embedding model:
@@ -28,21 +27,21 @@ The following walkthrough sets up a fully local pipeline:
     curl -fsSL https://ollama.com/install.sh | sh
     ollama pull nomic-embed-text
     ```
-    - Verify that the OpenAI-compatible embeddings endpoint responds:
+        - Verify that the OpenAI-compatible embeddings endpoint responds:
 
-    ```bash
-    curl -s http://localhost:11434/v1/embeddings \
-       -H "Content-Type: application/json" \
-       -d '{
-         "model": "nomic-embed-text",
-         "input": ["hello"]
-       }'
-    ```
+        ```bash
+        curl -s http://localhost:11434/v1/embeddings \
+        -H "Content-Type: application/json" \
+        -d '{
+            "model": "nomic-embed-text",
+            "input": ["hello"]
+        }'
+        ```
 
-    - A successful response contains an embedding vector. This confirms that the model is available and the `/v1/embeddings` endpoint is responding.
+        - A successful response contains an embedding vector. This confirms that the model is available and the `/v1/embeddings` endpoint is responding.
 
-    !!! note
-        If Ollama runs on another host, replace `localhost` with an address that `mongot` can reach.
+        !!! note
+            If Ollama runs on another host, replace `localhost` with an address that `mongot` can reach.
 
 2. Configure PSMDB and `mongot`.
 
@@ -167,7 +166,8 @@ The following walkthrough sets up a fully local pipeline:
         similarity: "cosine"           // cosine | dotProduct | euclidean
        }]
     })
-
+    ```
+    
 ## Next steps
 
 [Create and query an autoEmbed index :material-arrow-right:](autoembed-index.md){.md-button}
