@@ -27,7 +27,7 @@ The following steps provide a comprehensive guide for setting up a fully local p
     curl -fsSL https://ollama.com/install.sh | sh
     ollama pull nomic-embed-text
     ```
-        - Verify that the OpenAI-compatible embeddings endpoint responds:
+    - Verify that the OpenAI-compatible embeddings endpoint responds:
 
         ```bash
         curl -s http://localhost:11434/v1/embeddings \
@@ -38,7 +38,7 @@ The following steps provide a comprehensive guide for setting up a fully local p
         }'
         ```
 
-        - A successful response contains an embedding vector. This confirms that the model is available and the `/v1/embeddings` endpoint is responding.
+    - A successful response contains an embedding vector. This confirms that the model is available and the `/v1/embeddings` endpoint is responding.
 
         !!! note
             If Ollama runs on another host, replace `localhost` with an address that `mongot` can reach.
@@ -60,7 +60,8 @@ The following steps provide a comprehensive guide for setting up a fully local p
        pwd: "<password>",           // must match mongot's passwordFile content
       roles: [{ role: "searchCoordinator", db: "admin" }]
     })
-
+    ```
+    
     In the mongot configuration file (`mongot.conf`), add the embedding section. For keyless local engines no credentials are required:
 
     ```bash
@@ -167,7 +168,7 @@ The following steps provide a comprehensive guide for setting up a fully local p
        }]
     })
     ```
-    
+
 ## Next steps
 
 [Create and query an autoEmbed index :material-arrow-right:](autoembed-index.md){.md-button}
