@@ -218,7 +218,7 @@ To create an `autoEmbed` index, follow these steps:
     ```bash
     curl -s localhost:9946/metrics | grep 'provider="OPENAI_COMPATIBLE"'
     ```
-    
+
     The following metrics are useful for monitoring embedding requests:
 
     - `mongot_embeddingClient_inputTokenDistribution_*`: Tracks input token usage by embedding model and workload. Workloads include `COLLECTION_SCAN`, `CHANGE_STREAM`, and `QUERY`.
@@ -226,12 +226,13 @@ To create an `autoEmbed` index, follow these steps:
 
     These metrics can help you monitor embedding usage, understand which workloads generate the most traffic, and identify rejected requests.
 
-
-
-
 ## Learn more
 
-[$vectorSearch aggregation stage :octicons-link-external-16:](https://www.mongodb.com/docs/manual/reference/operator/aggregation/vectorSearch/){:target="_blank"}
+- [Create a Vector Search Index :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/tutorials/quick-start/?deployment-type=self&embedding=auto&interface=mongosh){:target="_blank"}
+
+- [Run a Vector Search Query :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/tutorials/quick-start/?deployment-type=self&embedding=auto&interface=mongosh#run-a-vector-search-query){:target="_blank"}
+
+
 
 
 
