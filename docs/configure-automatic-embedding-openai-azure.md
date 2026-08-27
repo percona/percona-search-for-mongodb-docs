@@ -43,12 +43,12 @@ To configure automatic embedding with OpenAI, do the following:
 
     Add the embedding section to `mongot.conf`:
 
-        ```bash
+   
         embedding:
             isAutoEmbeddingViewWriter: true
-        ```
+    
 
-   Configure only one automatic embedding writer when multiple `mongot` instances process the same data.`
+    Configure only one automatic embedding writer when multiple `mongot` instances process the same data.`
 
 2. Configure the model in the catalog:
 
