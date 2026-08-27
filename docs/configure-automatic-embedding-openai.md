@@ -64,9 +64,9 @@ To configure automatic embedding with OpenAI, do the following:
           credentials:
              apiKey: "<your-openai-api-key>"
     ```
-4. Understand OpenAI authentication
+3. Authenticate with OpenAI
 
-    When `authHeaderName` isn't specified, mongot uses the standard Authorization header.
+    When `authHeaderName` isn't specified, `mongot` uses the standard Authorization header.
 
     The request uses:
 
@@ -74,7 +74,7 @@ To configure automatic embedding with OpenAI, do the following:
 
     You don't need to set `authHeaderName` for OpenAI.
 
-5. Configure vector dimensions
+4. Choose a vector dimension:
 
     `text-embedding-3 `models support the OpenAI dimensions request field.
 
@@ -93,7 +93,7 @@ To configure automatic embedding with OpenAI, do the following:
 
     - For models with a fixed output size, keep `forwardDimensions `disabled.
 
-6. Configure a custom model catalog:
+5. Configure a custom model catalog:
 
     If you maintain your own catalog, configure its location:
 
@@ -105,14 +105,16 @@ To configure automatic embedding with OpenAI, do the following:
 
     Restart `mongot` after changing the catalog.
 
-7. Start and verify `mongot`:
+6. Start and verify `mongot`:
 
     ```sh
     ./mongot --config mongot.conf
     ```
-    
+
     Check the logs for configuration or authentication errors.
 
+## Next steps
 
+[Create and query an autoEmbed index :material-arrow-right:](autoembed-index.md){.md-button}
 
 
