@@ -40,39 +40,39 @@ To configure automatic embedding with OpenAI, do the following:
 
     Add an entry to `embedding-service-configs.yml` with the OpenAI endpoint and your API key:
 
-    ```yaml
-    configs:
-      - modelName: text-embedding-3-small
-        embeddingProvider: OPENAI_COMPATIBLE
-        config:
-          providerEndpoint: https://api.openai.com/v1/embeddings
+        ```yaml
+        configs:
+        - modelName: text-embedding-3-small
+            embeddingProvider: OPENAI_COMPATIBLE
+            config:
+            providerEndpoint: https://api.openai.com/v1/embeddings
 
-          modelConfig:
-            batchSize: 96
-            batchTokenLimit: 120000
-            outputDimensions: 1536
-            quantization: float
-        # text-embedding-3 models support Matryoshka dimension reduction
-            forwardDimensions: true
+            modelConfig:
+                batchSize: 96
+                batchTokenLimit: 120000
+                outputDimensions: 1536
+                quantization: float
+            # text-embedding-3 models support Matryoshka dimension reduction
+                forwardDimensions: true
 
-          errorHandlingConfig:
-              maxRetries: 10
-              initialRetryWaitMs: 200
-              maxRetryWaitMs: 10000
-              jitter: 0.1
+            errorHandlingConfig:
+                maxRetries: 10
+                initialRetryWaitMs: 200
+                maxRetryWaitMs: 10000
+                jitter: 0.1
 
-          credentials:
-             apiKey: "<your-openai-api-key>"
-    ```
-3. Authenticate with OpenAI
+            credentials:
+                apiKey: "<your-openai-api-key>"
+        ```
+3. Authenticate with OpenAI.
 
-    When `authHeaderName` isn't specified, `mongot` uses the standard Authorization header.
+    - When `authHeaderName` isn't specified, `mongot` uses the standard Authorization header.
 
-    The request uses:
+    - The request uses:
 
-    Authorization: Bearer <key>
+      Authorization: Bearer <key>
 
-    You don't need to set `authHeaderName` for OpenAI.
+    - You don't need to set `authHeaderName` for OpenAI.
 
 4. Choose a vector dimension:
 
