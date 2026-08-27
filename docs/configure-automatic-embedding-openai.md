@@ -110,7 +110,7 @@ To configure automatic embedding with OpenAI, do the following:
     ```sh
     ./mongot --config mongot.conf
     ```
-
+    
     Check the logs for configuration or authentication errors.
 
 
