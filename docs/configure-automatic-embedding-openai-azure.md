@@ -141,7 +141,7 @@ To configure automatic embedding with Azure OpenAI, do the following:
 
     Review the logs for configuration, connectivity, or authentication errors.
 
-??? tip "Tips"
+??? tip "Tips: Azure OpenAI connectivity issues"
 
     Work through these in order. The first three cover most failures.
 
