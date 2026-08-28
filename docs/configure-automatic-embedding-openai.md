@@ -15,6 +15,8 @@ Make sure that:
 - Your OpenAI account has access to the desired embedding model.
 - Make sure the `text-embedding-3-small` model is available before creating an autoEmbed index that references it.
 
+The examples on this page use `text-embedding-3-small`, which produces 1536-dimensional vectors.
+
 ## Procedure
 
 To configure automatic embedding with OpenAI, do the following:
