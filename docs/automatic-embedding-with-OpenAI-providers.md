@@ -1,10 +1,15 @@
 # Automatic embedding with OpenAI-Compatible Providers
 
-Percona Search for MongoDB can now generate vector embeddings using any embedding server that implements the OpenAI `/v1/embeddings` API. This is enabled by the new `OPENAI_COMPATIBLE` embedding provider.
+Percona Search for MongoDB can generate vector embeddings using any embedding server that implements the OpenAI `/v1/embeddings` API. The `OPENAI_COMPATIBLE` embedding provider makes this possible.
+
+!!! warning "Technical preview"
+    Percona Search for MongoDB 1.70.4-2 is available as a technical preview.
+
+    We recommend that early adopters use this release for testing purposes only and not in production environments.
 
 ## Why this matters
 
-Until now, automatic embedding (`autoEmbed` vector search indexes) required a Voyage AI API key, which meant relying on a third-party cloud service with per-token costs.
+Automatic embedding for autoEmbed vector search indexes previously required a Voyage AI API key, which meant relying on a third-party cloud service with per-token costs.
 
 With the `OPENAI_COMPATIBLE` provider, you have more flexibility in how and where embeddings are generated. You can:
 
@@ -12,12 +17,14 @@ With the `OPENAI_COMPATIBLE` provider, you have more flexibility in how and wher
 
 - Use hosted services such as OpenAI or Azure OpenAI.
 
+- Configure Voyage and OpenAI-compatible models on the same mongot instance.
+
 ## OpenAI-compatible embedding providers
 
 The `OPENAI_COMPATIBLE` provider works with engines that implement the `OpenAI /v1/embeddings` API.
 
 !!! note
-    The following table shows common examples. Ports are typical defaults. Check the configuration of your embedding server before using them.
+    The following table lists common examples. The ports are typical defaults. Check the configuration of your embedding server before using them.
 
 | **Engine**| **Typical endpoint** | **Authentication**|
 | ------| -----------------| --------------|
@@ -32,12 +39,10 @@ The `OPENAI_COMPATIBLE` provider works with engines that implement the `OpenAI /
 
 ## What to know before you start
 
-- Only **float** vector output is currently supported. 
-- `int8` or binary quantization aren't supported.
-- `outputDimensions` in the catalog must match the dimensions returned by the model unless `forwardDimensions: true` is set.
+- Only **float** vector output is currently supported. `int8` and binary quantization aren't supported.
+- `outputDimensions` in the catalog must match the dimensions returned by the model, unless you set `forwardDimensions: true` is set.
 - Local engines commonly return vectors with a fixed dimension. They can reject requests that contain the OpenAI `dimensions` field.
-- The global `embedding.providerEndpoint` override applies to **VOYAGE models only**. 
-- Each `OPENAI_COMPATIBLE` model carries its own `providerEndpoint` in the catalog.
+- The global `embedding.providerEndpoint` override applies to **VOYAGE models only**. Each `OPENAI_COMPATIBLE` model carries its own `providerEndpoint` in the catalog.
 - Local engines can run without an API key when authentication isn't configured.
 
 ## How automatic embedding works
