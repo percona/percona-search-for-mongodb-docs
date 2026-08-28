@@ -45,7 +45,7 @@ To configure automatic embedding with OpenAI, do the following:
       isAutoEmbeddingViewWriter: true
     ```
 
-    !!! important
+    !!! info "Important"
 
         Set `isAutoEmbeddingViewWriter: true` on exactly one `mongot` node. That node writes the embedding materialized view. If several `mongot` instances serve the same data, configure only one of them as the writer.
 
@@ -109,9 +109,9 @@ To configure automatic embedding with OpenAI, do the following:
 
     When `forwardDimensions` is enabled, `mongot` forwards the resolved index dimension to OpenAI. Shorter vectors use less storage and memory, at some cost to accuracy.
 
-    !!! warning
+    !!! info "Important"
 
-        Use `forwardDimensions` only with models that support the `dimensions` parameter. For a model with a fixed output size, leave the setting unset or set it to `false`, and make sure `outputDimensions` matches the model's native dimension.
+        Use `forwardDimensions` only with models that support the `dimensions` parameter. For a model with a fixed output size, leave the setting at its default or set it to `false`, and make sure `outputDimensions` matches the model's native dimension.
 
 6. Start `mongot` and check the startup output:
 
@@ -124,5 +124,3 @@ To configure automatic embedding with OpenAI, do the following:
 ## Next steps
 
 [Create and query an autoEmbed index :material-arrow-right:](autoembed-index.md){.md-button}
-
-If authentication fails or the index doesn't finish building, see [Troubleshoot automatic embedding](troubleshoot-automatic-embedding.md).
