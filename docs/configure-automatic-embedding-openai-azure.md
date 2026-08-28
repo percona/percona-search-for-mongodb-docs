@@ -149,10 +149,6 @@ To configure automatic embedding with Azure OpenAI, do the following:
     - **Deployment name:** Confirm that the deployment name matches the model deployment in Azure OpenAI.
     - **Vector dimensions:** Verify that `outputDimensions` is valid for the selected model. If you use `forwardDimensions`, make sure the model supports configurable dimensions.
 
-<!-- TBD-ENG (Radek): step 3 uses `text-embedding-3-small` as `modelName`, but an earlier note said
-     to use the Azure deployment name there. Which is correct? The two readings conflict, and the
-     example only works as written if the deployment happens to share the model's name. -->
-
 ## Next steps
 
 [Create and query an autoEmbed index :material-arrow-right:](autoembed-index.md){.md-button}
