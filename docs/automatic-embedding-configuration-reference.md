@@ -1,6 +1,9 @@
 # Automatic embedding configuration reference
 
-This page lists all the settings for automatic embedding. The settings are split across two files: `mongot.conf` enables the subsystem and holds the values that apply across all models, and the [model catalog](automatic-embedding-model-catalog.md) defines the models themselves.
+This page lists the settings for automatic embedding. They are split across two files:
+
+- `mongot.conf` activates the subsystem and holds the values that apply across all models. Automatic embedding turns on as soon as this file has an embedding section.
+- The model catalog, `embedding-service-configs.yml`, defines the models themselves.
 
 ## Embedding section in `mongot.conf`
 
