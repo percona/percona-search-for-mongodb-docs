@@ -44,3 +44,9 @@ This page lists the settings for automatic embedding. They are split across two 
 | `jitter` | Randomization applied to the retry wait, to avoid synchronized retries. |
 
 Authentication failures aren't treated as transient and aren't retried.
+
+## Learn more
+
+[Automated Embedding overview :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"} in the MongoDB documentation.
+
+[How to Index Fields for Vector Search :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/index/vector-search-type/){:target="_blank"}
