@@ -77,11 +77,11 @@ The embedding provider isn't selected globally in `mongot.conf`. It is configure
 
 Choose the engine you want to connect:
 
-Configure automatic embedding with Ollama :material-arrow-right:{.md-button} 
+[Configure automatic embedding with Ollama :material-arrow-right:](configure-automatic-embedding-ollama.md){.md-button} 
 
-Configure automatic embedding with OpenAI :material-arrow-right:{.md-button} 
+[Configure automatic embedding with OpenAI :material-arrow-right:](configure-automatic-embedding-openai.md){.md-button} 
 
-Configure automatic embedding with Azure OpenAI :material-arrow-right:{.md-button}
+[Configure automatic embedding with Azure OpenAI :material-arrow-right:](configure-automatic-embedding-openai-azure.md){.md-button}
 
 
 
