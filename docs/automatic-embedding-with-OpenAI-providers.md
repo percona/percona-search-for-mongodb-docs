@@ -53,15 +53,13 @@ With manual embedding, your application is responsible for generating embeddings
 
 When you create a vector search index with an `autoEmbed` field, `mongot` embeds the indexed text during the initial collection scan and then keeps embedding it as documents change, using change streams. At query time, the text you pass to `$vectorSearch` goes through the same model, with the model's query prefix applied if one is configured, and is matched against the stored vectors.
 
-![image](_images/autoembed-with-OpenAI-compatible-providers.png)
+![Embedding request flow between PSMDB, mongot, and the engine](_images/autoembed-with-OpenAI-compatible-providers.png)
 
 ## How `mongot` selects an embedding provider
 
-The embedding provider isn't selected globally in `mongot.conf`.
+The embedding provider isn't selected globally in `mongot.conf`. It is configured for each model in `embedding-service-configs.yml`.
 
-It is configured for each model in `embedding-service-configs.yml`.
-
-![image](_images/embedding-client-flow.png)
+![Model name resolving through the catalog to an embedding client](_images/embedding-client-flow.png)
 
 `mongot` resolves the embedding provider and settings from the model name:
 {.power-number}
@@ -75,7 +73,15 @@ It is configured for each model in `embedding-service-configs.yml`.
 
 
 
+## Next steps
 
+Choose the engine you want to connect:
+
+Configure automatic embedding with Ollama :material-arrow-right:{.md-button} 
+
+Configure automatic embedding with OpenAI :material-arrow-right:{.md-button} 
+
+Configure automatic embedding with Azure OpenAI :material-arrow-right:{.md-button}
 
 
 
