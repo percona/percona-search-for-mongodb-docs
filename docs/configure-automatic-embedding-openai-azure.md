@@ -22,7 +22,6 @@ Make sure that:
 ## Procedure
 
 To configure automatic embedding with Azure OpenAI, do the following:
-
 {.power-number}
 
 1. Verify the Azure endpoint.
@@ -33,7 +32,7 @@ To configure automatic embedding with Azure OpenAI, do the following:
    https://<resource>.openai.azure.com/openai/deployments/<deployment>/embeddings?api-version=<api-version>
    ```
 
-   Test the endpoint before configuring `mongot`:
+   - Test the endpoint before configuring `mongot`:
 
    ```bash
    curl "https://<resource>.openai.azure.com/openai/deployments/<deployment>/embeddings?api-version=<api-version>" \
@@ -45,7 +44,7 @@ To configure automatic embedding with Azure OpenAI, do the following:
      }'
    ```
 
-   A successful response contains an embedding vector.
+    - A successful response contains an embedding vector.
 
 2. Enable automatic embedding.
 
