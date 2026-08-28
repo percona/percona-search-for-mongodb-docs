@@ -141,13 +141,15 @@ To configure automatic embedding with Azure OpenAI, do the following:
 
     Review the logs for configuration, connectivity, or authentication errors.
 
-    If `mongot` cannot connect to Azure OpenAI, check the following:
+??? tip "Tips"
 
-    - **Authentication:** Verify that the API key is correct and that `authHeaderName` is set to `api-key`.
-    - **Endpoint:** Confirm that `providerEndpoint` matches your Azure OpenAI resource and deployment.
-    - **API version:** Verify that the `api-version` parameter is supported by your deployment.
-    - **Deployment name:** Confirm that the deployment name matches the model deployment in Azure OpenAI.
-    - **Vector dimensions:** Verify that `outputDimensions` is valid for the selected model. If you use `forwardDimensions`, make sure the model supports configurable dimensions.
+    Work through these in order. The first three cover most failures.
+
+    - **Authentication:** The API key must be valid for the resource, and `authHeaderName` must be set to `api-key`. If the header name is missing or wrong, Azure rejects the request with HTTP 401 or 403, and `mongot` doesn't retry it.
+    - **Endpoint:** `providerEndpoint` must name the same resource and deployment you tested with `curl` in step 1.
+    - **API version:** The `api-version` parameter must be one your deployment supports. Azure rejects versions it doesn't recognize.
+    - **Deployment name:** The deployment named in the endpoint must exist in your Azure OpenAI resource, and the name is case-sensitive.
+    - **Vector dimensions:** `outputDimensions` must match what the deployment actually returns, unless `forwardDimensions` is enabled. Enable `forwardDimensions` only for models that accept the `dimensions` request field.
 
 ## Next steps
 
