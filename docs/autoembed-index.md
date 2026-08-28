@@ -1,45 +1,46 @@
-# Create and query an `autoEmbed` index
+# Create and query an autoEmbed index
 
-Once an embedding engine is connected, the workflow is the same regardless of which engine you chose. You create a Vector Search index with an `autoEmbed` field, wait for the initial build, and query with plain text.
+Once an embedding engine is connected, the workflow is the same whichever engine you chose. You create a Vector Search index with an `autoEmbed` field, wait for the initial build, and query with plain text.
 
-!!! tip "Info"
+!!! note
+
     This page uses the `nomic-embed-text` model from the [Ollama setup](configure-automatic-embedding-ollama.md). Substitute your own model name if you connected a different engine.
 
 ## Before you begin
 
-- Ensure that automatic embedding is enabled in `mongot`.
-- Verify that the embedding provider is configured.
-- Confirm that the model exists in `embedding-service-configs.yml`.
-- Check that the embedding endpoint is reachable.
-- Ensure the collection contains a text field you want to search.
+Make sure that:
+
+- Automatic embedding is enabled in `mongot`, and the embedding engine is reachable from the `mongot` host.
+- The model you plan to use exists in `embedding-service-configs.yml`.
+- The collection contains the text field you want to search.
+
+If `mongot` skipped your model at startup, fix that before you create an index. See [Troubleshoot automatic embedding](troubleshoot-automatic-embedding.md).
 
 ## Procedure
-
-To create an `autoEmbed` index, follow these steps:
+To create and query an `autoEmbed` index, do the following:
 {.power-number}
 
 1. Create sample data.
 
     ??? example "movies collection"
-        ```yaml
-        use mydb
-        ```
 
         ```javascript
+        use mydb
+
         db.movies.insertMany([
-            {
-                title: "The Martian",
-                plot: "An astronaut becomes stranded on Mars and must use his ingenuity to survive until rescue"
-            },
-            {
-                title: "Finding Nemo",
-                plot: "A clownfish father crosses the ocean to find his son who was captured by a scuba diver"
-            },
-            {
-                title: "The Godfather",
-                plot: "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son"
-            }
-    ]);
+          {
+            title: "The Martian",
+            plot: "An astronaut becomes stranded on Mars and must use his ingenuity to survive until rescue"
+          },
+          {
+            title: "Finding Nemo",
+            plot: "A clownfish father crosses the ocean to find his son who was captured by a scuba diver"
+          },
+          {
+            title: "The Godfather",
+            plot: "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son"
+          }
+        ]);
         ```
 
 2. Create the index.
@@ -50,201 +51,190 @@ To create an `autoEmbed` index, follow these steps:
     db.<collection>.createSearchIndex(
       "<index-name>",
       "vectorSearch",
-     {
-       fields: [
-         {
+      {
+        fields: [
+          {
             type: "autoEmbed",
             modality: "text",
             path: "<field-to-embed>",
             model: "<model-name>"
-         }
-       ]
+          }
+        ]
       }
     );
-    ``` 
-    
+    ```
+
     Replace the placeholders with your own values:
 
-    | **Placeholder**| **Value**|
-    |-----------------|------|
-    | `<collection>`    | The collection holding the documents you want to search.             |
-    | `<index-name>`    | A name for the index. You reference it later in `$vectorSearch`.      |
-    | `<field-to-embed>`| The text field that `mongot` embeds. Use dot notation for a nested field. |
-    | `<model-name>`    | A `modelName` from the model catalog. 
-    
+    | Placeholder | Value |
+    |---|---|
+    | `<collection>` | The collection holding the documents you want to search. |
+    | `<index-name>` | A name for the index. You reference it later in `$vectorSearch`. |
+    | `<field-to-embed>` | The text field that `mongot` embeds. Use dot notation for a nested field. |
+    | `<model-name>` | A `modelName` from the model catalog. |
+
     !!! note
-        - Ensure the `model` value matches a `modelName` defined in `embedding-service-configs.yml`.
-        - The `numDimensions` parameter is not required. `mongot` automatically determines the dimension based on the `outputDimensions` setting specified in the model catalog.
 
-    ??? example "Example: Vector search index"
+        The `model` value must match a `modelName` defined in `embedding-service-configs.yml`. You don't need to set `numDimensions`, because `mongot` resolves the dimension from the model's `outputDimensions` in the catalog.
 
-        Create a vector search index for the `plot` field:
+    ??? example "Vector search index for the plot field"
 
         ```javascript
         db.movies.createSearchIndex(
-        "plot_semantic",
-        "vectorSearch",
-        {
+          "plot_semantic",
+          "vectorSearch",
+          {
             fields: [
-            {
+              {
                 type: "autoEmbed",
-                path: "plot",
-                model: "nomic-embed-text",
                 modality: "text",
-                similarity: "cosine"
-            }
+                path: "plot",
+                model: "nomic-embed-text"
+              }
             ]
-        }
+          }
         );
         ```
 
-        ??? info "What happens under the hood"
-
-            During the initial build, `mongot`:
-            {.power-number}
-
-            1. Scans documents that contain the indexed field.
-            2. Sends the field value to the configured embedding provider.
-            3. Receives the generated vector.
-            4. Stores the generated embedding data.
-            5. Builds the Vector Search index.
+    To filter results before the vector search runs, add a `filter` field alongside the `autoEmbed` field. For the full set of index fields, see [How to Index Fields for Vector Search :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/index/vector-search-type/){:target="_blank"} in the MongoDB documentation.
 
 3. Check the index status.
 
-     ??? example "Index status"
+    ```javascript
+    db.movies.getSearchIndexes("plot_semantic");
+    ```
 
-        ```sh
-        db.movies.getSearchIndexes("plot_semantic")   // status: "BUILDING" -> "READY"
-        ```
+    The index stays in a build state while embeddings are generated, moving from `BUILDING` to `READY`. On a large collection this takes time, and the work happens on your embedding engine.
 
-    The index can remain in a build state while embeddings are being generated.
+    Wait until the index is ready before you run vector search queries.
 
-    Wait until the index is ready before running vector search queries.
+    ??? info "What happens during the initial build"
 
+        `mongot`:
+        {.power-number}
+
+        1. Scans documents that contain the indexed field.
+        2. Sends the field value to the configured embedding provider.
+        3. Receives the generated vector.
+        4. Stores the generated embedding data.
+        5. Builds the Vector Search index.
 
 4. Run a semantic query.
-    
-    Pass plain text to `$vectorSearch`. The query text is automatically embedded using the same model specified in the index:
+
+    Pass plain text to `$vectorSearch`. `mongot` embeds the query text with the same model named in the index:
 
     ```javascript
     db.<collection>.aggregate([
-        {
-            $vectorSearch: {
-                index: "<index-name>",
-                query: "<search-text>",
-                path: "<field-to-embed>",
-                numCandidates: <number-of-candidates>,
-                limit: <number-of-results>
-            }
-        },
-        {
-            $project: {
-                _id: 0,
-                <field1>: 1,
-                <field2>: 1,
-                score: { $meta: "vectorSearchScore" }
-            }
+      {
+        $vectorSearch: {
+          index: "<index-name>",
+          path: "<field-to-embed>",
+          query: {
+            text: "<search-text>"
+          },
+          numCandidates: <number-of-candidates>,
+          limit: <number-of-results>
         }
+      },
+      {
+        $project: {
+          _id: 0,
+          <field1>: 1,
+          <field2>: 1,
+          score: { $meta: "vectorSearchScore" }
+        }
+      }
     ]);
     ```
 
     Replace the placeholders with your own values:
 
-    | **Placeholder**         | **Value**                                                                 |
-    |--------------------------|---------------------------------------------------------------------------|
-    | `<collection>`           | The collection holding the documents you want to search.                 |
-    | `<index-name>`           | The name of the vector search index you created.                         |
-    | `<search-text>`          | The plain text query to search for.                                      |
-    | `<field-to-embed>`       | The text field that `mongot` embeds. Use dot notation for a nested field.|
-    | `<number-of-candidates>` | The number of candidate documents to consider during the search.         |
-    | `<number-of-results>`    | The number of top results to return.                                     |
-    | `<field1>`, `<field2>`   | The fields to include in the query result.                               |
-    ```
+    | Placeholder | Value |
+    |---|---|
+    | `<collection>` | The collection holding the documents you want to search. |
+    | `<index-name>` | The name of the vector search index you created. |
+    | `<field-to-embed>` | The text field that `mongot` embeds. Use dot notation for a nested field. |
+    | `<search-text>` | The plain text query to search for. |
+    | `<number-of-candidates>` | The number of candidates to consider during the search. Set it higher than `<number-of-results>`. |
+    | `<number-of-results>` | The number of top results to return. |
+    | `<field1>`, `<field2>` | The fields to include in the query result. |
 
-??? example "Example: Semantic query with plain text"
+    ??? example "Semantic query with plain text"
 
-    ```javascript
-    db.movies.aggregate([
-        { 
+        ```javascript
+        db.movies.aggregate([
+          {
             $vectorSearch: {
-                index: "plot_semantic",
-                path: "plot",
-                query: "space exploration survival mission",
-                numCandidates: 10,
-                limit: 3
+              index: "plot_semantic",
+              path: "plot",
+              query: {
+                text: "space exploration survival mission"
+              },
+              numCandidates: 10,
+              limit: 3
             }
-        },
-        { 
-            $project: { 
-                _id: 0, 
-                title: 1, 
-                score: { $meta: "vectorSearchScore" } 
-            } 
-        }
-    ]);
+          },
+          {
+            $project: {
+              _id: 0,
+              title: 1,
+              score: { $meta: "vectorSearchScore" }
+            }
+          }
+        ]);
+        ```
 
-    ```bash
-    [
-        { "title": "The Martian", "score": 0.82 },
-        ...
-    ]
-    ```
+        The output is similar to the following:
 
-    ?? info "What happens under the hood"
-    - `mongot` automatically generates an embedding for the query text.
-    - The query vector is compared with the vectors in the index to find the closest matches.
-    - The score is calculated at query time using `{ $meta: "vectorSearchScore" }`.
-    - A higher score indicates a closer match based on the configured similarity function.
+        ```json
+        [
+          { "title": "The Martian", "score": 0.82 }
+        ]
+        ```
 
+    ??? info "What happens at query time"
+
+        `mongot` generates an embedding for the query text, applying the model's `queryPrefix` if one is configured, then compares that vector against the vectors in the index to find the closest matches.
+
+        The score comes from `{ $meta: "vectorSearchScore" }` and is calculated at query time. A higher score means a closer match under the configured similarity function.
+
+    If you don't specify `model` in `$vectorSearch`, `mongot` uses the model named in the index. You can override it, but the model you name must be compatible with the one used at index time. Embeddings from unrelated models aren't comparable, so an incompatible override returns results that look plausible and aren't.
 
 5. Insert new documents.
 
-    Newly added or updated documents are automatically embedded in real-time through change streams. This process removes the need for manual reindexing, ensuring the index remains up-to-date seamlessly.
+    `mongot` embeds new and changed documents as they are written, using change streams, so there is no reindexing to schedule.
 
-    ??? example "Example: Real-time embedding for new documents"
+    ??? example "Embedding a newly inserted document"
 
         ```javascript
         db.movies.insertOne({
-            title: "Apollo 13",
-            category: "drama",
-            plot: "Astronauts work with mission control to survive a damaged spacecraft and return safely to Earth"
+          title: "Apollo 13",
+          category: "drama",
+          plot: "Astronauts work with mission control to survive a damaged spacecraft and return safely to Earth"
         });
         ```
 
-6. Monitor embedding requests:
+    When the indexed text changes, `mongot` generates a new embedding. When a document is deleted, its generated embedding is removed.
 
-    You can use the `mongot` metrics endpoint to monitor embedding traffic by provider. For OpenAI-compatible embedding servers, filter metrics by the `OPENAI_COMPATIBLE `provider:\
+6. Monitor embedding requests.
 
-    ```bash
+    Use the `mongot` metrics endpoint to watch embedding traffic by provider. For OpenAI-compatible engines, filter on the `OPENAI_COMPATIBLE` provider:
+
+    ```sh
     curl -s localhost:9946/metrics | grep 'provider="OPENAI_COMPATIBLE"'
     ```
 
     The following metrics are useful for monitoring embedding requests:
 
-    - `mongot_embeddingClient_inputTokenDistribution_*`: Tracks input token usage by embedding model and workload. Workloads include `COLLECTION_SCAN`, `CHANGE_STREAM`, and `QUERY`.
-    - `mongot_embeddingClient_invalidRequestCounter`: Tracks embedding requests rejected as invalid.
+    - `mongot_embeddingClient_inputTokenDistribution_*` tracks input token usage by model and by workload. The workload is one of `COLLECTION_SCAN`, `CHANGE_STREAM`, or `QUERY`.
+    - `mongot_embeddingClient_invalidRequestCounter` counts embedding requests rejected as invalid.
 
     These metrics can help you monitor embedding usage, understand which workloads generate the most traffic, and identify rejected requests.
+
+
 
 ## Learn more
 
 - [Create a Vector Search Index :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/tutorials/quick-start/?deployment-type=self&embedding=auto&interface=mongosh){:target="_blank"}
-
 - [Run a Vector Search Query :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/tutorials/quick-start/?deployment-type=self&embedding=auto&interface=mongosh#run-a-vector-search-query){:target="_blank"}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- [Automated Embedding overview :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}
