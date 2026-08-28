@@ -1,6 +1,7 @@
 # Configure automatic embedding with Azure OpenAI
 
-Azure OpenAI also uses the `OPENAI_COMPATIBLE` provider. It differs from the standard OpenAI endpoint in two ways:
+Azure OpenAI uses the `OPENAI_COMPATIBLE` provider. It differs from the standard OpenAI endpoint in two ways:
+
 {.power-number}
 
 1. The endpoint is specific to an Azure OpenAI deployment and includes an `api-version` parameter.
@@ -8,134 +9,145 @@ Azure OpenAI also uses the `OPENAI_COMPATIBLE` provider. It differs from the sta
 
 ## Before you begin
 
-- Ensure that Percona Server for MongoDB and `mongot` are properly configured and operational.
-- Deploy an embedding model to the Azure resource.
-- Obtain the Azure resource name.
-- Acquire the deployment name.
-- Generate an API key.
-- Verify the API version supported by your deployment.
-- Confirm network connectivity from `mongot` to Azure OpenAI.
+Make sure that:
 
+* Percona Server for MongoDB and `mongot` are configured and running.
+* An embedding model is deployed to your Azure OpenAI resource.
+* You know the Azure resource name.
+* You know the deployment name.
+* You have an Azure OpenAI API key.
+* You know the API version supported by your deployment.
+* The host running `mongot` can connect to Azure OpenAI.
 
 ## Procedure
 
-To configure automatic embedding with OpenAI, do the following:
+To configure automatic embedding with Azure OpenAI, do the following:
+
 {.power-number}
 
-1. Verify the Azure endpoint
+1. Verify the Azure endpoint.
 
-    The Percona configuration can use an Azure deployment-specific embedding URL such as: 
-    https://<resource>.openai.azure.com/openai/deployments/<deployment>/embeddings?api-version=<api-version>
+   Azure OpenAI uses a deployment-specific embedding endpoint:
 
-    Test the endpoint before configuring `mongot`.
-    - Verify that the embeddings endpoint responds and that your key works:
+   ```text
+   https://<resource>.openai.azure.com/openai/deployments/<deployment>/embeddings?api-version=<api-version>
+   ```
 
-    ```bash
-    curl "https://<resource>.openai.azure.com/openai/deployments/<deployment>/embeddings?api-version=<api-version>" \ 
-    -H "Content-Type: application/json" \ 
-    -H "api-key: <your-azure-openai-api-key>" \ 
-    -d '{ "model": "<deployment-name>", "input": "hello" }'
-    ```
+   Test the endpoint before configuring `mongot`:
 
-     - A successful response contains an embedding vector.
+   ```bash
+   curl "https://<resource>.openai.azure.com/openai/deployments/<deployment>/embeddings?api-version=<api-version>" \
+     -H "Content-Type: application/json" \
+     -H "api-key: <your-azure-openai-api-key>" \
+     -d '{
+       "model": "<deployment-name>",
+       "input": "hello"
+     }'
+   ```
 
-3. Enable automatic embedding:
+   A successful response contains an embedding vector.
 
-    Add the embedding section to `mongot.conf`:
+2. Enable automatic embedding.
 
-   
-        embedding:
-            isAutoEmbeddingViewWriter: true
-    
+   Add the `embedding` section to `mongot.conf`:
 
-    Configure only one automatic embedding writer when multiple `mongot` instances process the same data.`
+   ```yaml
+   embedding:
+     isAutoEmbeddingViewWriter: true
+   ```
 
-2. Configure the model in the catalog:
+   !!! important
+   If multiple `mongot` instances process the same data, configure only one instance as the automatic embedding writer.
 
-    Add an entry to `embedding-service-configs.yml` with the OpenAI endpoint and your API key:
+3. Configure the model in the catalog.
 
-    ```yaml
-    configs:
-      - modelName: text-embedding-3-small
-        embeddingProvider: OPENAI_COMPATIBLE
-        config:
-          providerEndpoint: <https://my-resource.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-02-01>
+   Add an entry to `embedding-service-configs.yml` with the Azure OpenAI endpoint and API key:
 
-          modelConfig:
-            batchSize: 96
-            batchTokenLimit: 120000
-            outputDimensions: 1536
-            quantization: float
-            forwardDimensions: true
-          errorHandlingConfig:
-              maxRetries: 10
-              initialRetryWaitMs: 200
-              maxRetryWaitMs: 10000
-              jitter: 0.1
-          credentials:
-             apiKey: "<your-azure-openai-api-key>"
-             authHeaderName: api-key
-    ```
-3. Configure Azure authentication:
+   ```yaml
+   configs:
+     - modelName: text-embedding-3-small
+       embeddingProvider: OPENAI_COMPATIBLE
+       config:
+         providerEndpoint: https://my-resource.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-02-01
 
-    - OpenAI normally uses:
+         modelConfig:
+           batchSize: 96
+           batchTokenLimit: 120000
+           outputDimensions: 1536
+           quantization: float
+           forwardDimensions: true
 
-        `Authorization: Bearer <key>`
+         errorHandlingConfig:
+           maxRetries: 10
+           initialRetryWaitMs: 200
+           maxRetryWaitMs: 10000
+           jitter: 0.1
 
-        For the Azure API key configuration shown here, use:
+         credentials:
+           apiKey: "<your-azure-openai-api-key>"
+           authHeaderName: api-key
+   ```
 
-        `api-key: <key>`
+   !!! note
+   Replace the resource name, deployment name, API version, and API key with values from your Azure OpenAI deployment.
 
-    - Set:
+4. Configure Azure authentication.
 
-        ```bash
-        credentials: 
-            apiKey: "<your-azure-openai-api-key>" 
-            authHeaderName: api-key
-        ```
+   Standard OpenAI authentication uses:
 
-    - When `authHeaderName` is set to `api-key`, `mongot` sends the raw key in that header instead of adding a Bearer prefix.
+   ```text
+   Authorization: Bearer <key>
+   ```
 
-4. Configure dimensions:
+   Azure OpenAI uses:
 
-    - If the Azure deployment uses a text-embedding-3 model, you can enable:
+   ```text
+   api-key: <key>
+   ```
 
-    `forwardDimensions: true`
+   Configure the credentials as follows:
 
-    This allows the requested vector dimension to be sent using the OpenAI-compatible dimensions field.
+   ```yaml
+   credentials:
+     apiKey: "<your-azure-openai-api-key>"
+     authHeaderName: api-key
+   ```
 
-    - For models that don't support configurable dimensions, leave this setting unset or set it to `false`.
+   When `authHeaderName` is set to `api-key`, `mongot` sends the API key directly in that header without adding the `Bearer` prefix.
 
-5. Start and verify `mongot`:
+5. Configure vector dimensions.
 
-    Restart `mongot` after adding the model:
+   If your Azure deployment uses a `text-embedding-3` model, you can enable:
 
-    ```sh
-    ./mongot --config mongot.conf
-    ```
+   ```yaml
+   forwardDimensions: true
+   ```
 
-    Check the logs for potential issues:
+   This allows `mongot` to send the resolved vector dimension using the OpenAI-compatible `dimensions` field.
 
-    - Check for authentication errors:
-        - Ensure the API key is correct and has the necessary permissions.
-        - Verify that the `api-key` header is properly configured.
+   For models that don't support configurable dimensions, omit `forwardDimensions` or set it to `false`.
 
-    - Validate the endpoint:
-        - Confirm that the Azure OpenAI endpoint is accurate and matches your deployment.
-        - Test the endpoint using `curl` or similar tools to ensure it is reachable.
+   !!! note
+   Make sure `outputDimensions` matches the vector dimensions expected by the model and index configuration.
 
-    - Verify the API version:
-        - Ensure the `api-version` parameter matches the version supported by your Azure deployment.
+6. Start and verify `mongot`.
 
-    - Check the deployment configuration:
-        - Confirm that the deployment name is correct and matches the one in your Azure resource.
+   Restart `mongot` after updating the model catalog:
 
-    - Resolve dimension errors:
-        - Verify that the `outputDimensions` setting matches the model's expected dimensions.
-        - If using `forwardDimensions`, ensure the model supports configurable dimensions.
+   ```bash
+   ./mongot --config mongot.conf
+   ```
+
+   Review the logs for configuration, connectivity, or authentication errors.
+
+   If `mongot` cannot connect to Azure OpenAI, check the following:
+
+   * **Authentication:** Verify that the API key is correct and that `authHeaderName` is set to `api-key`.
+   * **Endpoint:** Confirm that `providerEndpoint` matches your Azure OpenAI resource and deployment.
+   * **API version:** Verify that the `api-version` parameter is supported by your deployment.
+   * **Deployment name:** Confirm that the deployment name matches the model deployment in Azure OpenAI.
+   * **Vector dimensions:** Verify that `outputDimensions` is valid for the selected model. If you use `forwardDimensions`, make sure the model supports configurable dimensions.
 
 ## Next steps
 
-[Create and query an autoEmbed index :material-arrow-right:](autoembed-index.md){.md-button}
-
-
+[Create and query an `autoEmbed` index :material-arrow-right:](autoembed-index.md){.md-button}
