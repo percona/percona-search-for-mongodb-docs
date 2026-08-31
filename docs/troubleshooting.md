@@ -2,7 +2,7 @@
 
 Use this page to identify and resolve common issues with Percona Search for MongoDB.
 
-Start with the symptom you see in the logs, index status, or query response. Check the suggested cause and fix before changing multiple settings at once. This makes it easier to isolate the problem.
+Start with the problem you see in the logs, index status, or query response. Check the suggested cause and resolution before changing multiple settings at once. This makes it easier to isolate the problem.
 
 ## Automated embedding
 
@@ -11,9 +11,9 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
 1. Voyage embedding model is skipped during startup
 
-    mongot logs a message similar to:
+    `mongot` logs a message similar to:
 
-    ```sh
+    ```text
     Skipping Voyage embedding model '...'
     ```
 
@@ -33,7 +33,7 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
 2. `mongot` falls back to the bundled model catalog
 
-   `mongot` reports it could not load the configured model catalog and uses the bundled catalog.
+    `mongot` reports it could not load the configured model catalog and uses the bundled catalog.
 
     **Cause**
 
@@ -106,11 +106,11 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
 5. `OPENAI_COMPATIBLE` reports unsupported embeddings
 
-    `mongot` reports:
+      `mongot` reports:
 
-    ```sh
-    OPENAI_COMPATIBLE provider currently supports only float embeddings
-    ```
+        ```sh
+        OPENAI_COMPATIBLE provider currently supports only float embeddings
+        ```
 
     **Cause**
 
@@ -174,7 +174,7 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     From the host or container where `mongot` runs, test the Ollama endpoint before retrying the index build.  
 
-### Before you troubleshoot further
+## Before you troubleshoot further
 
 Check the following before changing the Percona Search configuration:
 
