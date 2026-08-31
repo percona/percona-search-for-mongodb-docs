@@ -2,177 +2,180 @@
 
 Use this page to identify and resolve common issues with Percona Search for MongoDB.
 
-Start with the problem you see in the logs, index status, or query response. Check the suggested cause and resolution before changing multiple settings at once. This makes it easier to isolate the problem.
+Start with the symptom you see in the logs, index status, or query response. Check the suggested cause and fix before changing multiple settings at once. This makes it easier to isolate the problem.
 
 ## Automated embedding
 
 The following issues apply when you use automated embedding with Voyage AI or an OpenAI-compatible embedding provider.
+
 {.power-number}
 
 1. Voyage embedding model is skipped during startup
 
-    `mongot` logs a message similar to:
+   `mongot` logs a message similar to:
 
-    ```text
-    Skipping Voyage embedding model '...'
-    ```
+   ```text
+   Skipping Voyage embedding model '...'
+   ```
 
-    **Cause**
+   **Cause**
 
-    This is expected when Voyage AI credentials are not configured. `mongot` skips Voyage models if `queryKeyFil`e and `indexingKeyFile` are not set.
+   This is expected when Voyage AI credentials are not configured. `mongot` skips Voyage models if `queryKeyFile` and `indexingKeyFile` are not set.
 
-    **Resolution**
+   **Resolution**
 
-    No action is required if you are not using Voyage AI.
+   No action is required if you are not using Voyage AI.
 
-    If you want to use Voyage AI models, configure both `queryKeyFile` and `indexingKeyFile`.
+   If you want to use Voyage AI models, configure both `queryKeyFile` and `indexingKeyFile`.
 
-    **Verify**
+   **Verify**
 
-     Restart `mongot` and check that the Voyage model is loaded without the skip message.
+   Restart `mongot` and check that the Voyage model is loaded without the skip message.
 
 2. `mongot` falls back to the bundled model catalog
 
-    `mongot` reports it could not load the configured model catalog and uses the bundled catalog.
+   `mongot` reports that it could not load the configured model catalog and uses the bundled catalog.
 
-    **Cause**
+   **Cause**
 
-    The file specified in `modelConfigFile` might:
+   The file specified in `modelConfigFile` might:
 
-    - Not exist
-    - Contain invalid syntax
-    - Be unreadable by the `mongot` process
-    - Point to the wrong location
+   * Not exist
+   * Contain invalid syntax
+   * Be unreadable by the `mongot` process
+   * Point to the wrong location
 
-    **Resolution**
+   **Resolution**
 
-    - Check the `modelConfigFile` path and validate the catalog file.
-    - Ensure the `mongot` process has read permissions for the file.
-    - Fix any issues in the file and restart `mongot`.
+   * Check the `modelConfigFile` path and validate the catalog file.
+   * Ensure the `mongot` process has read permissions for the file.
+   * Fix any issues in the file and restart `mongot`.
 
-    **Verify**
+   **Verify**
 
-    Check the startup logs to confirm that `mongot` loads the configured catalog without falling back to the bundled version.
+   Check the startup logs to confirm that `mongot` loads the configured catalog without falling back to the bundled version.
 
 3. An index remains in `PENDING` or `BUILDING` state
 
-    `mongot` logs a message similar to:
+   `mongot` logs a message similar to:
 
-    ```sh
-    Failed embedding call in retry time: N, retrying
-    ```
+   ```text
+   Failed embedding call in retry time: N, retrying
+   ```
 
-    **Cause**
+   **Cause**
 
-    `mongot` cannot successfully generate embeddings. Common causes include:
+   `mongot` cannot successfully generate embeddings. Common causes include:
 
-    - The embedding endpoint is unreachable.
-    - The configured model does not exist.
-    - The model has not been pulled in Ollama.
-    - The embedding service is temporarily unavailable.
+   * The embedding endpoint is unreachable.
+   * The configured model does not exist.
+   * The model has not been pulled in Ollama.
+   * The embedding service is temporarily unavailable.
 
-    **Resolution**
+   **Resolution**
 
-    - Check that the embedding service is running and that the configured model is available.
-    - Test the endpoint from the host or container where `mongot` runs.
-    - `mongot` retries failed embedding requests according to `errorHandlingConfig`. After the provider becomes available, indexing can continue automatically.
+   * Check that the embedding service is running and that the configured model is available.
+   * Test the endpoint from the host or container where `mongot` runs.
+   * `mongot` retries failed embedding requests according to `errorHandlingConfig`. After the provider becomes available, indexing can continue automatically.
 
-    **Verify**
+   **Verify**
 
-    Check the index status and confirm that it progresses from `PENDING` or `BUILDING` to `READY`.
- 
+   Check the index status and confirm that it progresses from `PENDING` or `BUILDING` to `READY`.
+
 4. Embedding requests return HTTP `401` or `403`
 
-    `mongot` reports an authentication failure.
+   `mongot` reports an authentication failure.
 
-    **Cause**
+   **Cause**
 
-    The API key is missing, invalid, or sent using the wrong HTTP header.
+   The API key is missing, invalid, or sent using the wrong HTTP header.
 
-    **Resolution**
+   **Resolution**
 
-    - Check the configured API key and `authHeaderName`.
-    - For Azure OpenAI deployments that use API key authentication, configure:
+   * Check the configured API key and `authHeaderName`.
 
-        ```yaml
-        authHeaderName: api-key
-        ```
+   * For Azure OpenAI deployments that use API key authentication, configure:
 
-    - Authentication errors are not retried. Correct the authentication configuration before retrying the request.
+     ```yaml
+     authHeaderName: api-key
+     ```
 
-    **Verify**
+   * Authentication errors are not retried. Correct the authentication configuration before retrying the request.
 
-    Retry the operation and confirm that the embedding provider accepts the request.
+   **Verify**
+
+   Retry the operation and confirm that the embedding provider accepts the request.
 
 5. `OPENAI_COMPATIBLE` reports unsupported embeddings
 
-      `mongot` reports:
+   `mongot` reports:
 
-        ```sh
-        OPENAI_COMPATIBLE provider currently supports only float embeddings
-        ```
+   ```text
+   OPENAI_COMPATIBLE provider currently supports only float embeddings
+   ```
 
-    **Cause**
+   **Cause**
 
-    The index definition requests an embedding representation that the provider does not support.
+   The index definition requests an embedding representation that the provider does not support.
 
-    **Resolution**
+   **Resolution**
 
-    - Configure:
+   Configure:
 
-        ```yaml
-        quantization: float
-        ```
+   ```yaml
+   quantization: float
+   ```
 
-    - You can also omit the setting if `float` is used by default.
+   You can also omit the setting if `float` is used by default.
 
-    **Verify**
+   **Verify**
 
-    Recreate or update the index and confirm that embedding generation starts successfully.
+   Recreate or update the index and confirm that embedding generation starts successfully.
 
 6. Search relevance is poor with some embedding models
 
-    Queries complete successfully, but the results are noticeably less relevant than expected.
+   Queries complete successfully, but the results are noticeably less relevant than expected.
 
-    **Cause**
+   **Cause**
 
-    Some embedding models use different prefixes for documents and queries.
+   Some embedding models use different prefixes for documents and queries.
 
-    For example, models such as `nomic-embed-text` can require `documentPrefix` and `queryPrefix`. Without these prefixes, indexing and queries can still succeed, but the vectors may not be comparable in the way the model expects.
+   For example, models such as `nomic-embed-text` can require `documentPrefix` and `queryPrefix`. Without these prefixes, indexing and queries can still succeed, but the vectors may not be comparable in the way the model expects.
 
-    **Resolution**
+   **Resolution**
 
-    - Check the embedding model documentation and configure the required `documentPrefix` and `queryPrefix` values in the model catalog.
-    - Rebuild the affected index if required.
+   * Check the embedding model documentation and configure the required `documentPrefix` and `queryPrefix` values in the model catalog.
+   * Rebuild the affected index if required.
 
-    **Verify**
+   **Verify**
 
-    Run the same representative queries again and compare the returned results.
+   Run the same representative queries again and compare the returned results.
 
 7. A remote `mongot` instance cannot connect to Ollama
 
-    Ollama works locally, but `mongot` running on another host cannot reach it.
+   Ollama works locally, but `mongot` running on another host cannot reach it.
 
-    **Cause**
+   **Cause**
 
-    Ollama listens on `127.0.0.1` by default. This allows connections only from the local host.
+   Ollama listens on `127.0.0.1` by default. This allows connections only from the local host.
 
-    **Resolution**
+   **Resolution**
 
-    - Configure Ollama to listen on an address reachable by `mongot`.
+   * Configure Ollama to listen on an address reachable by `mongot`.
 
-        For example:
+     For example:
 
-        ```sh
-        OLLAMA_HOST=0.0.0.0:11434 ollama serve
-        ```
+     ```sh
+     OLLAMA_HOST=0.0.0.0:11434 ollama serve
+     ```
 
-    - Then configure `providerEndpoint` with the hostname or IP address that `mongot` can reach.
-    - Do not use `localhost` unless Ollama and `mongot` run on the same host or network namespace.
+   * Configure `providerEndpoint` with the hostname or IP address that `mongot` can reach.
 
-    **Verify**
+   * Do not use `localhost` unless Ollama and `mongot` run on the same host or network namespace.
 
-    From the host or container where `mongot` runs, test the Ollama endpoint before retrying the index build.  
+   **Verify**
+
+   From the host or container where `mongot` runs, test the Ollama endpoint before retrying the index build.
 
 ## Before you troubleshoot further
 
