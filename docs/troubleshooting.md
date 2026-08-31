@@ -126,7 +126,7 @@ The following are some potential issues to be aware of when using automated embe
 
     **Cause**
 
-    The index definition requests an embedding representation that the provider does not support.
+    The model catalog requests an embedding representation that the provider does not support.
 
     **Resolution**
 
