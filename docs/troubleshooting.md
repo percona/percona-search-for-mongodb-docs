@@ -69,9 +69,9 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     `mongot` logs a message similar to:
 
-        ```text
+        
         Failed embedding call in retry time: N, retrying
-        ```
+        
 
     **Cause**
 
@@ -106,9 +106,9 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
       * For Azure OpenAI deployments that use API key authentication, configure:
 
-            ```yaml
-            authHeaderName: api-key
-            ```
+          ```yaml
+          authHeaderName: api-key
+          ```
 
       * Authentication errors are not retried. Correct the authentication configuration before retrying the request.
 
@@ -120,9 +120,9 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     `mongot` reports:
 
-        ```text
+        
         OPENAI_COMPATIBLE provider currently supports only float embeddings
-        ```
+    
 
     **Cause**
 
@@ -132,9 +132,9 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     Configure:
 
-    ```yaml
-    quantization: float
-    ```
+     ```yaml
+     quantization: float
+     ```
 
     You can also omit the setting if `float` is used by default.
 
