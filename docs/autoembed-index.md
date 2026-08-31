@@ -231,8 +231,6 @@ To create and query an `autoEmbed` index, do the following:
 
     These metrics can help you monitor embedding usage, understand which workloads generate the most traffic, and identify rejected requests.
 
-
-
 ## Learn more
 
 - [Create a Vector Search Index :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/tutorials/quick-start/?deployment-type=self&embedding=auto&interface=mongosh){:target="_blank"}
