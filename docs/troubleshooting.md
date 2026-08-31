@@ -33,7 +33,7 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
 2. `mongot` falls back to the bundled model catalog
 
-   `mongot` reports that it could not load the configured model catalog and uses the bundled catalog.
+     `mongot` reports that it could not load the configured model catalog and uses the bundled catalog.
 
    **Cause**
 
@@ -56,7 +56,7 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
 3. An index remains in `PENDING` or `BUILDING` state
 
-   `mongot` logs a message similar to:
+     `mongot` logs a message similar to:
 
    ```text
    Failed embedding call in retry time: N, retrying
@@ -83,7 +83,7 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
 4. Embedding requests return HTTP `401` or `403`
 
-   `mongot` reports an authentication failure.
+     `mongot` reports an authentication failure.
 
    **Cause**
 
@@ -133,7 +133,7 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
 6. Search relevance is poor with some embedding models
 
-   Queries complete successfully, but the results are noticeably less relevant than expected.
+    Queries complete successfully, but the results are noticeably less relevant than expected.
 
    **Cause**
 
@@ -152,7 +152,7 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
 7. A remote `mongot` instance cannot connect to Ollama
 
-   Ollama works locally, but `mongot` running on another host cannot reach it.
+    Ollama works locally, but `mongot` running on another host cannot reach it.
 
    **Cause**
 
