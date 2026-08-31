@@ -7,7 +7,6 @@ Start with the symptom you see in the logs, index status, or query response. Che
 ## Automated embedding
 
 The following issues apply when you use automated embedding with Voyage AI or an OpenAI-compatible embedding provider.
-
 {.power-number}
 
 1. Voyage embedding model is skipped during startup
