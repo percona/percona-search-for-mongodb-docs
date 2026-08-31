@@ -25,7 +25,9 @@ For [RAG applications :octicons-link-external-16:](https://www.mongodb.com/docs/
 
 ## Automatic embeddings
 
-With [automatic embeddings :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}, `mongot` sends the indexed text and query text to the configured Voyage AI embedding service. It generates document embeddings during indexing and a query embedding when the application runs a text-based vector search.
+With [automatic embeddings :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}, `mongot` sends the indexed text and query text to the configured embedding provider. It generates document embeddings during indexing and a query embedding when the application runs a text-based vector search.
+
+Percona Search for MongoDB supports the upstream Voyage AI provider and the `OPENAI_COMPATIBLE` provider. `OPENAI_COMPATIBLE` lets you configure local or hosted services that implement the OpenAI `/v1/embeddings` API.
 
 ## Next steps
 
