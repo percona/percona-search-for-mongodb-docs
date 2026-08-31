@@ -2,7 +2,18 @@
 
 Use this page to identify and resolve common issues with Percona Search for MongoDB.
 
-Start with the symptom you see in the logs, index status, or query response. Check the suggested cause and fix before changing multiple settings at once. This makes it easier to isolate the problem.
+Begin with the information available in the logs, index status, or query response. Review the suggested cause and resolution before altering multiple settings simultaneously. This approach simplifies the process of isolating the issue.
+
+## Before you troubleshoot further
+
+Check the following before changing the Percona Search configuration:
+
+* Confirm that the configured model exists on the embedding provider.
+* Test the embedding endpoint from the same host or container where `mongot` runs.
+* Check the `mongot` log for the first provider error rather than only the final index status.
+* Verify the model name, endpoint, authentication settings, and model catalog together.
+* Avoid using `localhost` in `providerEndpoint` unless the embedding server is reachable from the same network namespace as `mongot`.
+* If you use Voyage AI, configure both `queryKeyFile` and `indexingKeyFile`.
 
 ## Automated embedding
 
@@ -175,17 +186,6 @@ The following issues apply when you use automated embedding with Voyage AI or an
     **Verify**
 
     From the host or container where `mongot` runs, test the Ollama endpoint before retrying the index build.
-
-## Before you troubleshoot further
-
-Check the following before changing the Percona Search configuration:
-
-* Confirm that the configured model exists on the embedding provider.
-* Test the embedding endpoint from the same host or container where `mongot` runs.
-* Check the `mongot` log for the first provider error rather than only the final index status.
-* Verify the model name, endpoint, authentication settings, and model catalog together.
-* Avoid using `localhost` in `providerEndpoint` unless the embedding server is reachable from the same network namespace as `mongot`.
-* If you use Voyage AI, configure both `queryKeyFile` and `indexingKeyFile`.
 
 ## Learn more
 
