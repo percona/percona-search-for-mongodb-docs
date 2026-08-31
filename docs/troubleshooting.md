@@ -17,7 +17,7 @@ Check the following before changing the Percona Search configuration:
 
 ## Automated embedding
 
-The following issues apply when you use automated embedding with Voyage AI or an OpenAI-compatible embedding provider.
+The following are some potential issues to be aware of when using automated embedding with Voyage AI or an OpenAI-compatible embedding provider.
 {.power-number}
 
 1. Voyage embedding model is skipped during startup
