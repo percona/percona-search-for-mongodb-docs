@@ -20,7 +20,7 @@ Check the following before changing the Percona Search configuration:
 The following are some potential issues to be aware of when using automated embedding with Voyage AI or an OpenAI-compatible embedding provider.
 {.power-number}
 
-1. Voyage embedding model is skipped during startup
+1. Voyage embedding model is skipped during startup:
 
     `mongot` logs a message similar to:
 
@@ -42,7 +42,7 @@ The following are some potential issues to be aware of when using automated embe
 
     Restart `mongot` and check that the Voyage model is loaded without the skip message.
 
-2. `mongot` falls back to the bundled model catalog
+2. `mongot` falls back to the bundled model catalog:
 
     `mongot` reports that it could not load the configured model catalog and uses the bundled catalog.
 
@@ -65,7 +65,7 @@ The following are some potential issues to be aware of when using automated embe
 
     Check the startup logs to confirm that `mongot` loads the configured catalog without falling back to the bundled version.
 
-3. An index remains in `PENDING` or `BUILDING` state
+3. An index remains in `PENDING` or `BUILDING` state:
 
     `mongot` logs a message similar to:
 
@@ -92,7 +92,7 @@ The following are some potential issues to be aware of when using automated embe
 
     Check the index status and confirm that it progresses from `PENDING` or `BUILDING` to `READY`.
 
-4. Embedding requests return HTTP `401` or `403`
+4. Embedding requests return HTTP `401` or `403`:
 
     `mongot` reports an authentication failure.
 
@@ -116,7 +116,7 @@ The following are some potential issues to be aware of when using automated embe
 
     Retry the operation and confirm that the embedding provider accepts the request.
 
-5. `OPENAI_COMPATIBLE` reports unsupported embeddings
+5. `OPENAI_COMPATIBLE` reports unsupported embeddings:
 
     `mongot` reports:
 
@@ -142,7 +142,7 @@ The following are some potential issues to be aware of when using automated embe
 
     Recreate or update the index and confirm that embedding generation starts successfully.
 
-6. Search relevance is poor with some embedding models
+6. Search relevance is poor with some embedding models:
 
     Queries complete successfully, but the results are noticeably less relevant than expected.
 
@@ -161,7 +161,7 @@ The following are some potential issues to be aware of when using automated embe
 
     Run the same representative queries again and compare the returned results.
 
-7. A remote `mongot` instance cannot connect to Ollama
+7. A remote `mongot` instance cannot connect to Ollama:
 
     Ollama works locally, but `mongot` running on another host cannot reach it.
 
