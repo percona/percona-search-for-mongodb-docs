@@ -14,7 +14,7 @@ Make sure that:
 - The model you plan to use exists in `embedding-service-configs.yml`.
 - The collection contains the text field you want to search.
 
-If `mongot` skipped your model at startup, fix that before you create an index. See [Troubleshoot automatic embedding](troubleshoot-automatic-embedding.md).
+If `mongot` skipped your model at startup, fix that before you create an index. See [Troubleshoot automatic embedding](troubleshooting.md#automated-embedding).
 
 ## Procedure
 To create and query an `autoEmbed` index, do the following:
