@@ -4,7 +4,7 @@ Use this page to identify and resolve common issues with Percona Search for Mong
 
 Begin with the information available in the logs, index status, or query response. Review the suggested cause and resolution before altering multiple settings simultaneously. This approach simplifies the process of isolating the issue.
 
-## Before you troubleshoot further
+## Before you troubleshoot
 
 Check the following before changing the Percona Search configuration:
 
