@@ -1,8 +1,8 @@
 # Automatic embedding with OpenAI-Compatible Providers
 
-Percona Search for MongoDB can generate vector embeddings using any embedding server that implements the OpenAI `/v1/embeddings` API. The `OPENAI_COMPATIBLE` embedding provider makes this possible.
+## Overview
 
-## Why this matters
+Percona Search for MongoDB can generate vector embeddings using any embedding server that implements the OpenAI `/v1/embeddings` API. The `OPENAI_COMPATIBLE` embedding provider makes this possible.
 
 Percona Search for MongoDB provides automatic embedding without requiring a paid third-party model, eliminating the associated API costs and external service dependency.
 
@@ -50,7 +50,7 @@ When you create a vector search index with an `autoEmbed` field, `mongot` embeds
 
 ![Embedding request flow between PSMDB, mongot, and the engine](_images/autoembed-with-OpenAI-compatible-providers.png)
 
-## How `mongot` selects an embedding provider
+### How `mongot` selects an embedding provider
 
 The embedding provider isn't selected globally in `mongot.conf`. It is configured for each model in `embedding-service-configs.yml`.
 
