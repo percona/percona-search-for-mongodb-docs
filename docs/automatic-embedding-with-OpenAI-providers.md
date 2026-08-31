@@ -2,17 +2,7 @@
 
 Percona Search for MongoDB supports automatic embedding with Voyage AI and OpenAI-compatible embedding providers. With the `OPENAI_COMPATIBLE` provider, `mongot` can generate embeddings using services that expose an OpenAI-compatible `/v1/embeddings` endpoint.
 
-You can choose where embeddings are generated:
-
-- Run embedding models locally to keep data within your infrastructure and avoid usage-based API costs.
-
-- Use hosted services such as OpenAI or Azure OpenAI.
-
-- Configure Voyage and OpenAI-compatible models on the same `mongot` instance. The model specified in an autoEmbed index determines which provider `mongot` uses.
-
 ## OpenAI-compatible embedding providers
-
-The `OPENAI_COMPATIBLE` provider works with engines that implement the `OpenAI /v1/embeddings` API.
 
 !!! note
     The following table lists common examples. The ports are typical defaults. Check the configuration of your embedding server before using them.
