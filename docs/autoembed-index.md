@@ -116,7 +116,7 @@ To create and query an `autoEmbed` index, do the following:
         1. Scans documents that contain the indexed field.
         2. Sends the field value to the configured embedding provider.
         3. Receives the generated vector.
-        4. Stores the generated vectors in a dedicated internal database on the cluster.
+        4. Stores the generated vectors in a dedicated internal collection on `mongod`.
         5. Builds the Vector Search index.
 
 4. Run a semantic query.
