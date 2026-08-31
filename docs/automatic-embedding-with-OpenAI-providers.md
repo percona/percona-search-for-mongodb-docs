@@ -9,7 +9,7 @@ Percona Search for MongoDB can generate vector embeddings using any embedding se
 
 ## Why this matters
 
-Automatic embedding for autoEmbed vector search indexes in MongoDB upstream requires a Voyage AI API key, creating a dependency on a third-party cloud service and per-token costs. Percona Search removes this dependency by providing automatic embedding without requiring a paid third-party model, eliminating the associated API costs and external service dependency.
+Automatic embedding for autoEmbed vector search indexes in MongoDB upstream requires a Voyage AI API key, creating a dependency on a third-party cloud service and per-token costs. Percona Search for MongoDB removes this dependency by providing automatic embedding without requiring a paid third-party model, eliminating the associated API costs and external service dependency.
 
 With the `OPENAI_COMPATIBLE` provider, you have more flexibility in how and where embeddings are generated. You can:
 
