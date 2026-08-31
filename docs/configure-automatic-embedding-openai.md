@@ -94,7 +94,7 @@ To configure automatic embedding with OpenAI, do the following:
 
     This is what OpenAI expects, so you don't need to set `authHeaderName`. The key is redacted from `mongot` logs and error messages.
 
-    Azure OpenAI uses a different header. See [Configure automatic embedding with Azure OpenAI](automatic-embedding-azure-openai.md).
+    Azure OpenAI uses a different header. See [Configure automatic embedding with Azure OpenAI](configure-automatic-embedding-openai-azure.md).
 
 5. Choose a vector dimension.
 
