@@ -63,6 +63,15 @@ Choose the engine you want to connect:
 
 [Configure automatic embedding with Azure OpenAI :material-arrow-right:](configure-automatic-embedding-openai-azure.md){.md-button}
 
+## Learn more
+
+- [Automated Embedding :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}
+
+- [How Automated Embedding Works :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/overview/){:target="_blank"}
+
+- [How to Index Fields for Vector Search :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/index/vector-search-type/){:target="_blank"}
+
+
 
 
 
