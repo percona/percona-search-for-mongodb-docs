@@ -140,7 +140,7 @@ The following are some potential issues to be aware of when using automated embe
 
     **Verify**
 
-    Recreate or update the index and confirm that embedding generation starts successfully.
+    Restart `mongot`, then recreate or update the index and confirm that embedding generation starts successfully.
 
 6. Search relevance is poor with some embedding models:
 
