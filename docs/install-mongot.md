@@ -32,24 +32,24 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
 
         === "ARM64"
 
-            Download the [ARM64 tarball :octicons-link-external-16:](https://downloads.percona.com/downloads/percona-search-mongodb/percona-search-mongodb-1.70.3/binary/tarball/percona-search-mongodb-1.70.3-linux_aarch64.tar.gz){:target="_blank"}.
+            Download the [ARM64 tarball :octicons-link-external-16:](https://downloads.percona.com/downloads/percona-search-mongodb/percona-search-mongodb-1.70.4/binary/tarball/percona-search-mongodb-1.70.4-linux_aarch64.tar.gz){:target="_blank"}.
 
         === "AMD64 (x86_64)"
 
-            Download the [AMD64 tarball :octicons-link-external-16:](https://downloads.percona.com/downloads/percona-search-mongodb/percona-search-mongodb-1.70.3/binary/tarball/percona-search-mongodb-1.70.3-linux_x86_64.tar.gz){:target="_blank"}.
+            Download the [AMD64 tarball :octicons-link-external-16:](https://downloads.percona.com/downloads/percona-search-mongodb/percona-search-mongodb-1.70.4/binary/tarball/percona-search-mongodb-1.70.4-linux_x86_64.tar.gz){:target="_blank"}.
 
     2. Extract the tarball.
 
         === "ARM64"
 
             ```sh
-            tar -zxvf percona-search-mongodb-1.70.3-linux_aarch64.tar.gz
+            tar -zxvf percona-search-mongodb-1.70.4-linux_aarch64.tar.gz
             ```
 
         === "AMD64 (x86_64)"
 
             ```sh
-            tar -zxvf percona-search-mongodb-1.70.3-linux_x86_64.tar.gz
+            tar -zxvf percona-search-mongodb-1.70.4-linux_x86_64.tar.gz
             ```
 
         The extracted archive contains the `mongot` binary, the sample configuration file, the `mongot` launcher script, and the Percona Search for MongoDB license files.
