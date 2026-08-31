@@ -38,7 +38,7 @@ To configure automatic embedding with OpenAI, do the following:
 
 2. Enable automatic embedding in `mongot`.
 
-    Add an `embedding` section to `mongot.conf`. The presence of this section is what activates automatic embedding:
+    Add an `embedding` section to the active `mongot` configuration file. For the documented systemd installation, edit `/etc/mongot/config.yml`. The presence of this section activates automatic embedding:
 
     ```yaml
     embedding:
