@@ -10,7 +10,7 @@ Azure OpenAI uses the `OPENAI_COMPATIBLE` provider. It differs from the standard
 
 Make sure that:
 
-- Percona Server for MongoDB and `mongot` are configured and running.
+- Percona Server for MongoDB and Percona Search for MongoDB are configured and running.
 - An embedding model is deployed to your Azure OpenAI resource.
 - You know the Azure resource name.
 - You know the deployment name.

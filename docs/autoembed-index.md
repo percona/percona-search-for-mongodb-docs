@@ -10,7 +10,7 @@ Once an embedding engine is connected, the workflow is the same whichever engine
 
 Make sure that:
 
-- Automatic embedding is enabled in `mongot`, and the embedding engine is reachable from the `mongot` host.
+- Automatic embedding is enabled in `Percona Search for MongoDB`, and the embedding engine is reachable from the `mongot` host.
 - The model you plan to use exists in `embedding-service-configs.yml`.
 - The collection contains the text field you want to search.
 

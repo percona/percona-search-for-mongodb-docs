@@ -8,7 +8,7 @@ Ollama exposes an OpenAI-compatible `/v1/embeddings` endpoint. This allows mongo
 
 Make sure that:
 
-- Percona Server for MongoDB and mongot are installed and configured.
+- Percona Server for MongoDB and Percona Search for MongoDB are installed and configured.
 - Percona Server for MongoDB is running as a replica set.
 - [Ollama :octicons-link-external-16:](https://docs.ollama.com/quickstart){:target="_blank"} is installed on a host that `mongot` can reach.
 - An embedding model is available in Ollama.
@@ -142,7 +142,7 @@ To set up a fully local embedding pipeline, do the following:
 5. Start `mongot` and verify:
 
     ```sh
-    ./mongot --config mongot.conf
+    systemctl start mongot
     ```
 
     ??? example "Log"

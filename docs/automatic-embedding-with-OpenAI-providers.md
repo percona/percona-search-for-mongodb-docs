@@ -9,7 +9,7 @@ Percona Search for MongoDB can generate vector embeddings using any embedding se
 
 ## Why this matters
 
-Automatic embedding for autoEmbed vector search indexes previously required a Voyage AI API key, which meant relying on a third-party cloud service with per-token costs.
+Automatic embedding for autoEmbed vector search indexes in MongoDB upstream requires a Voyage AI API key, creating a dependency on a third-party cloud service and per-token costs. Percona Search removes this dependency by providing automatic embedding without requiring a paid third-party model, eliminating the associated API costs and external service dependency.
 
 With the `OPENAI_COMPATIBLE` provider, you have more flexibility in how and where embeddings are generated. You can:
 
@@ -40,7 +40,7 @@ The `OPENAI_COMPATIBLE` provider works with engines that implement the `OpenAI /
 ## What to know before you start
 
 - Only **float** vector output is currently supported. `int8` and binary quantization aren't supported.
-- `outputDimensions` in the catalog must match the dimensions returned by the model, unless you set `forwardDimensions: true` is set.
+- `outputDimensions` in the catalog must match the dimensions returned by the model, unless you set `forwardDimensions: true`.
 - Local engines commonly return vectors with a fixed dimension. They can reject requests that contain the OpenAI `dimensions` field.
 - The global `embedding.providerEndpoint` override applies to **VOYAGE models only**. Each `OPENAI_COMPATIBLE` model carries its own `providerEndpoint` in the catalog.
 - Local engines can run without an API key when authentication isn't configured.

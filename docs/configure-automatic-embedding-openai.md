@@ -116,7 +116,7 @@ To configure automatic embedding with OpenAI, do the following:
 6. Start `mongot` and check the startup output:
 
     ```sh
-    ./mongot --config mongot.conf
+    systemctl start mongot
     ```
 
     Confirm that your OpenAI model appears in the loaded model count. Warnings about skipped Voyage models are expected if you haven't configured Voyage credentials.
