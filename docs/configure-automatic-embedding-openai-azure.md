@@ -136,7 +136,7 @@ To configure automatic embedding with Azure OpenAI, do the following:
     Restart `mongot` after updating the model catalog:
 
     ```sh
-    ./mongot --config mongot.conf
+    sudo systemctl restart mongot
     ```
 
     Review the logs for configuration, connectivity, or authentication errors.
