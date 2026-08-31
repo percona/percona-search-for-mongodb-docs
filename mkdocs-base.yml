@@ -225,6 +225,7 @@ nav:
       - release_notes/1.70.3-1.md 
 
   - Reference:
+    - Troubleshooting: troubleshooting.md
       - Percona Software and Platform Lifecycle: lifecycle.md
       - Code of conduct: code-of-conduct.md
       - Copyright: copyright.md
