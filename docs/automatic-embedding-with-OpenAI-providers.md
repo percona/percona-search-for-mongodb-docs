@@ -20,11 +20,17 @@ Percona Search for MongoDB supports automatic embedding with Voyage AI and OpenA
 
 ## What to know before you start
 
+Automatic embedding uses two configuration files. The embedding section in `mongot.conf` defines settings shared across all models. The model catalog, `embedding-service-configs.yml`, defines each embedding model and contains most model-specific settings.
+
+Before configuring automatic embedding, review these settings and provider requirements:
+
 - Only **float** vector output is currently supported. `int8` and binary quantization aren't supported.
 - `outputDimensions` in the catalog must match the dimensions returned by the model, unless you set `forwardDimensions: true`.
 - Local engines commonly return vectors with a fixed dimension. They can reject requests that contain the OpenAI `dimensions` field.
 - The global `embedding.providerEndpoint` override applies to **VOYAGE models only**. Each `OPENAI_COMPATIBLE` model carries its own `providerEndpoint` in the catalog.
 - Local engines can run without an API key when authentication isn't configured.
+
+For details about these settings and their defaults, see the [Automatic embedding configuration reference](automatic-embedding-configuration-reference.md).
 
 ## How automatic embedding works
 
