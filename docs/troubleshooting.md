@@ -50,16 +50,16 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     The file specified in `modelConfigFile` might:
 
-    * Not exist
-    * Contain invalid syntax
-    * Be unreadable by the `mongot` process
-    * Point to the wrong location
+      * Not exist
+      * Contain invalid syntax
+      * Be unreadable by the `mongot` process
+      * Point to the wrong location
 
     **Resolution**
 
-    * Check the `modelConfigFile` path and validate the catalog file.
-    * Ensure the `mongot` process has read permissions for the file.
-    * Fix any issues in the file and restart `mongot`.
+      * Check the `modelConfigFile` path and validate the catalog file.
+      * Ensure the `mongot` process has read permissions for the file.
+      * Fix any issues in the file and restart `mongot`.
 
     **Verify**
 
@@ -69,24 +69,24 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     `mongot` logs a message similar to:
 
-    ```text
-    Failed embedding call in retry time: N, retrying
-    ```
+        ```text
+        Failed embedding call in retry time: N, retrying
+        ```
 
     **Cause**
 
     `mongot` cannot successfully generate embeddings. Common causes include:
 
-    * The embedding endpoint is unreachable.
-    * The configured model does not exist.
-    * The model has not been pulled in Ollama.
-    * The embedding service is temporarily unavailable.
+      * The embedding endpoint is unreachable.
+      * The configured model does not exist.
+      * The model has not been pulled in Ollama.
+      * The embedding service is temporarily unavailable.
 
     **Resolution**
 
-    * Check that the embedding service is running and that the configured model is available.
-    * Test the endpoint from the host or container where `mongot` runs.
-    * `mongot` retries failed embedding requests according to `errorHandlingConfig`. After the provider becomes available, indexing can continue automatically.
+      * Check that the embedding service is running and that the configured model is available.
+      * Test the endpoint from the host or container where `mongot` runs.
+      * `mongot` retries failed embedding requests according to `errorHandlingConfig`. After the provider becomes available, indexing can continue automatically.
 
     **Verify**
 
@@ -102,15 +102,15 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     **Resolution**
 
-    * Check the configured API key and `authHeaderName`.
+      * Check the configured API key and `authHeaderName`.
 
-    * For Azure OpenAI deployments that use API key authentication, configure:
+      * For Azure OpenAI deployments that use API key authentication, configure:
 
-        ```yaml
-        authHeaderName: api-key
-        ```
+            ```yaml
+            authHeaderName: api-key
+            ```
 
-    * Authentication errors are not retried. Correct the authentication configuration before retrying the request.
+      * Authentication errors are not retried. Correct the authentication configuration before retrying the request.
 
     **Verify**
 
@@ -120,9 +120,9 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     `mongot` reports:
 
-    ```text
-    OPENAI_COMPATIBLE provider currently supports only float embeddings
-    ```
+        ```text
+        OPENAI_COMPATIBLE provider currently supports only float embeddings
+        ```
 
     **Cause**
 
@@ -154,8 +154,8 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     **Resolution**
 
-    * Check the embedding model documentation and configure the required `documentPrefix` and `queryPrefix` values in the model catalog.
-    * Rebuild the affected index if required.
+      * Check the embedding model documentation and configure the required `documentPrefix` and `queryPrefix` values in the model catalog.
+      * Rebuild the affected index if required.
 
     **Verify**
 
@@ -171,7 +171,7 @@ The following issues apply when you use automated embedding with Voyage AI or an
 
     **Resolution**
 
-    * Configure Ollama to listen on an address reachable by `mongot`.
+      * Configure Ollama to listen on an address reachable by `mongot`.
 
         For example:
 
@@ -179,9 +179,9 @@ The following issues apply when you use automated embedding with Voyage AI or an
         OLLAMA_HOST=0.0.0.0:11434 ollama serve
         ```
 
-    * Configure `providerEndpoint` with the hostname or IP address that `mongot` can reach.
+      * Configure `providerEndpoint` with the hostname or IP address that `mongot` can reach.
 
-    * Do not use `localhost` unless Ollama and `mongot` run on the same host or network namespace.
+      * Do not use `localhost` unless Ollama and `mongot` run on the same host or network namespace.
 
     **Verify**
 
