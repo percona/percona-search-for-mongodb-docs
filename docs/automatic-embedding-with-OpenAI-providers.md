@@ -56,7 +56,7 @@ The embedding provider isn't selected globally in `mongot.conf`. It is configure
 3. The entry's `embeddingProvider` field, either `VOYAGE` or `OPENAI_COMPATIBLE`, decides which client handles the traffic. Everything else the client needs, including `providerEndpoint`, credentials, prefixes, and batching, comes from the same entry.
 
 !!! note
-    Both provider types can run on the same `mongot` instance. When you create an `autoEmbed` index, the model name determines which provider and model configuration mongot uses. The embedding section in `mongot.conf` contains settings shared across the automatic embedding setup, such as the model catalog path and Voyage-specific configuration.
+    Both provider types can be configured on the same `mongot` instance. When you create an `autoEmbed` index, the model name determines which provider and model configuration `mongot` uses. The embedding section in `mongot.conf` contains settings shared across the automatic embedding setup, such as the model catalog path and Voyage-specific configuration.
 
 
 ## Next steps
