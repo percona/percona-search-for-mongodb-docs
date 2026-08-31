@@ -2,14 +2,9 @@
 
 Percona Search for MongoDB can generate vector embeddings using any embedding server that implements the OpenAI `/v1/embeddings` API. The `OPENAI_COMPATIBLE` embedding provider makes this possible.
 
-!!! warning "Technical preview"
-    Percona Search for MongoDB 1.70.3-1 is available as a technical preview.
-
-    We recommend that early adopters use this release for testing purposes only and not in production environments.
-
 ## Why this matters
 
-Automatic embedding for autoEmbed vector search indexes in MongoDB upstream requires a Voyage AI API key, creating a dependency on a third-party cloud service and per-token costs. Percona Search for MongoDB removes this dependency by providing automatic embedding without requiring a paid third-party model, eliminating the associated API costs and external service dependency.
+Percona Search for MongoDB provides automatic embedding without requiring a paid third-party model, eliminating the associated API costs and external service dependency.
 
 With the `OPENAI_COMPATIBLE` provider, you have more flexibility in how and where embeddings are generated. You can:
 
@@ -17,7 +12,7 @@ With the `OPENAI_COMPATIBLE` provider, you have more flexibility in how and wher
 
 - Use hosted services such as OpenAI or Azure OpenAI.
 
-- Configure Voyage and OpenAI-compatible models on the same mongot instance.
+- Configure Voyage and OpenAI-compatible models on the same `mongot` instance.
 
 ## OpenAI-compatible embedding providers
 
