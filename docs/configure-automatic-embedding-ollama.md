@@ -66,7 +66,7 @@ To set up a fully local embedding pipeline, do the following:
 
     The password must match the contents of the file that `mongot` references in `passwordFile`.
 
-    In the `mongot` configuration file, `mongot.conf`, add the `embedding` section. Keyless local engines need no credentials:
+    In the active `mongot` configuration file, add the `embedding` section. For the systemd setup in [Install and configure mongot](install-mongot.md), edit `/etc/mongot/config.yml`. Keyless local engines need no credentials:
 
     ```yaml
     syncSource:
