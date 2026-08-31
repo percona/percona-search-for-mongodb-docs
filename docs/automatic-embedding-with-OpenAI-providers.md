@@ -3,7 +3,7 @@
 Percona Search for MongoDB can generate vector embeddings using any embedding server that implements the OpenAI `/v1/embeddings` API. The `OPENAI_COMPATIBLE` embedding provider makes this possible.
 
 !!! warning "Technical preview"
-    Percona Search for MongoDB 1.70.4-2 is available as a technical preview.
+    Percona Search for MongoDB 1.70.3-1 is available as a technical preview.
 
     We recommend that early adopters use this release for testing purposes only and not in production environments.
 
