@@ -26,7 +26,7 @@ The `OPENAI_COMPATIBLE` provider works with engines that implement the `OpenAI /
 !!! note
     The following table lists common examples. The ports are typical defaults. Check the configuration of your embedding server before using them.
 
-| **Engine**| **Typical endpoint** | **Authentication**|
+| **Engine**| **Default endpoint** | **Authentication**|
 | ------| -----------------| --------------|
 | [Ollama :octicons-link-external-16:](https://ollama.com/){:target="_blank"}               | `http://localhost:11434/v1/embeddings` | Not required by default       |
 | vLLM                                         | `http://localhost:8000/v1/embeddings`  | Not required by default       |
