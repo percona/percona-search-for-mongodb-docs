@@ -17,6 +17,19 @@ This page lists the settings for automatic embedding. They are split across two 
 
 ## OPENAI_COMPATIBLE model settings
 
+Define each `OPENAI_COMPATIBLE` model under the `configs` key in the model catalog. By default, the model catalog is `embedding-service-configs.yml`.
+
+For example:
+
+```sh
+configs:
+  - modelName: <model-name>
+    provider: OPENAI_COMPATIBLE
+    providerEndpoint: <endpoint>
+```
+
+The following settings apply to each model entry under `configs`:
+
 | **Setting** | **Required** | **Description** |
 | --- | --- | --- |
 | `modelName` | Yes | Name of the embedding model. `mongot` sends this value in the request `model` field and uses it to match the model referenced in an `autoEmbed` index definition. |
