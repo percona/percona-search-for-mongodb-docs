@@ -157,7 +157,7 @@ To set up a fully local embedding pipeline, do the following:
         INFO  Initialized auto-embedding with 2 models
         ```
 
-        The Voyage warnings are expected if you haven't configured Voyage API credentials. They don't affect keyless `OPENAI_COMPATIBLE` models.
+        The Voyage warnings are expected if you haven't configured Voyage API credentials. They don't affect `OPENAI_COMPATIBLE` models.
 
 ## Next steps
 
