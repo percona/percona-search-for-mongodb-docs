@@ -26,7 +26,7 @@ Before configuring automatic embedding, review these settings and provider requi
 
 | **Setting**  | **Supported values and requirements** |
 | ---------| ----------------------------------|
-| Vector output format         | Only floating-point vector output is currently supported. Scalar and binary output formats aren't supported.                             |
+| Vector output format         | Only **float** vector output is currently supported. Scalar and binary output formats aren't  supported.                             |
 | `numDimensions`              | Supported values are `256`, `512`, `1024`, and `2048`. |
 | `outputDimensions`           | Must match the dimensions returned by the model, unless you set `forwardDimensions: true`.                                               |
 | OpenAI `dimensions` field    | Local engines commonly return vectors with a fixed dimension and may reject requests that include the OpenAI `dimensions` field.         |
