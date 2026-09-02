@@ -24,11 +24,14 @@ Automatic embedding uses two configuration files. The embedding section in `mong
 
 Before configuring automatic embedding, review these settings and provider requirements:
 
-- Only **float** vector output is currently supported. `int8` and binary quantization aren't supported.
-- `outputDimensions` in the catalog must match the dimensions returned by the model, unless you set `forwardDimensions: true`.
-- Local engines commonly return vectors with a fixed dimension. They can reject requests that contain the OpenAI `dimensions` field.
-- The global `embedding.providerEndpoint` override applies to **VOYAGE models only**. Each `OPENAI_COMPATIBLE` model carries its own `providerEndpoint` in the catalog.
-- Local engines can run without an API key when authentication isn't configured.
+| **Setting**  | **Supported values and requirements** |
+| ---------| ----------------------------------|
+| Vector output format         | Only floating-point vector output is currently supported. Scalar and binary output formats aren't supported.                             |
+| `numDimensions`              | Supported values are `256`, `512`, `1024`, and `2048`. |
+| `outputDimensions`           | Must match the dimensions returned by the model, unless you set `forwardDimensions: true`.                                               |
+| OpenAI `dimensions` field    | Local engines commonly return vectors with a fixed dimension and may reject requests that include the OpenAI `dimensions` field.         |
+| `embedding.providerEndpoint` | The global override applies to **VOYAGE** models only. Each `OPENAI_COMPATIBLE` model defines its own `providerEndpoint` in the catalog. |
+| API key                      | Local engines can run without an API key when authentication isn't configured.|
 
 For details about these settings and their defaults, see the [Automatic embedding configuration reference](automatic-embedding-configuration-reference.md).
 
@@ -40,7 +43,7 @@ With manual embedding, your application is responsible for generating embeddings
 
 When you create a vector search index with an `autoEmbed` field, `mongot` embeds the indexed text during the initial collection scan and then keeps embedding it as documents change, using change streams. At query time, the text you pass to `$vectorSearch` goes through the same model, with the model's query prefix applied if one is configured, and is matched against the stored vectors.
 
-![Embedding request flow between PSMDB, mongot, and the engine](_images/autoembed-with-OpenAI-compatible-providers.png)
+![Embedding request flow between PSMDB, `mongot`, and the engine](_images/autoembed-with-OpenAI-compatible-providers.png)
 
 ### How `mongot` selects an embedding provider
 
@@ -57,7 +60,6 @@ The embedding provider isn't selected globally in `mongot.conf`. It is configure
 
 !!! note
     Both provider types can be configured on the same `mongot` instance. When you create an `autoEmbed` index, the model name determines which provider and model configuration `mongot` uses. The embedding section in `mongot.conf` contains settings shared across the automatic embedding setup, such as the model catalog path and Voyage-specific configuration.
-
 
 ## Next steps
 
@@ -76,12 +78,3 @@ Choose the engine you want to connect:
 - [How Automated Embedding Works :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/overview/){:target="_blank"}
 
 - [How to Index Fields for Vector Search :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/index/vector-search-type/){:target="_blank"}
-
-
-
-
-
-
-
-
-
