@@ -8,7 +8,7 @@ You can use OpenAI embedding models with Percona Search for MongoDB through the 
 
 Make sure that:
 
-- Percona Server for MongoDB and `mongot` are configured and running.
+- Percona Server for MongoDB and Percona Search for MongoDB are configured and running.
 - The `mongot` host has network access to the OpenAI API.
 - You have an OpenAI API key.
 - Your OpenAI account has access to the embedding model you plan to use.
