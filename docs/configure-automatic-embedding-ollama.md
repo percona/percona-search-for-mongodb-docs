@@ -162,20 +162,3 @@ To set up a fully local embedding pipeline, do the following:
 ## Next steps
 
 [Create and query an autoEmbed index :material-arrow-right:](autoembed-index.md){.md-button}
-    
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
