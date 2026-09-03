@@ -80,7 +80,7 @@ To configure automatic embedding with OpenAI, do the following:
 
     Restart `mongot` after you change the catalog.
 
-    !!! important
+    !!! Info "Important"
 
         The catalog now holds a secret. Restrict the file so that only the account running `mongot` can read it, and keep it out of version control.
 
