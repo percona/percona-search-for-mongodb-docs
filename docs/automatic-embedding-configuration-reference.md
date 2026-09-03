@@ -60,6 +60,6 @@ Authentication failures aren't treated as transient and aren't retried.
 
 ## Learn more
 
-[Automated Embedding overview :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"} in the MongoDB documentation.
+[Automated Embedding overview :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}
 
 [How to Index Fields for Vector Search :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/index/vector-search-type/){:target="_blank"}
