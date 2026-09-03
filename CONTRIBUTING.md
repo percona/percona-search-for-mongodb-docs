@@ -52,13 +52,15 @@ The steps are the following:
 2. Clone the repository on your machine:
 
 ```sh
-git clone git@github.com:<your_name>/psmdb-docs.git
+git clone git@github.com:<your_name>/percona-search-for-mongodb-docs.git
 ```
 
-3. Change the directory to ``psmdb-docs`` and add the remote upstream repository:
+3. Change the directory to ``
+percona-search-for-mongodb-docs`` and add the remote upstream repository:
 
 ```sh
-git remote add upstream git@github.com:percona/psmdb-docs.git
+git remote add upstream git@github.com:percona/
+percona-search-for-mongodb-docs.git
 ```
 
 4. Pull the latest changes from upstream
@@ -67,8 +69,6 @@ git remote add upstream git@github.com:percona/psmdb-docs.git
 git fetch upstream
 git merge upstream/<branch>
 ```
-
-Make sure that your local branch and the branch you merge changes from are the same. So if you are on ``8.0`` branch, merge changes from ``upstream/8.0``.
 
 5. Create a separate branch for your changes
 
