@@ -208,6 +208,13 @@ nav:
   - Vector search:
       - Overview: vector-search-overview.md
       - Create and manage embeddings: embeddings.md
+      - Automatic embedding:
+        - About OpenAI-compatible automatic embedding: automatic-embedding-with-OpenAI-providers.md
+        - Configure with Ollama: configure-automatic-embedding-ollama.md
+        - Configure with OpenAI: configure-automatic-embedding-openai.md
+        - Configure with Azure OpenAI: configure-automatic-embedding-openai-azure.md
+        - Create and query an autoEmbed index: autoembed-index.md
+        - Configuration reference: automatic-embedding-configuration-reference.md
       - Create a vector search index: create-vector-search-index.md
       - Update a vector search index: update-vector-search-index.md
       - Delete a vector search index: delete-vector-search-index.md
@@ -218,6 +225,7 @@ nav:
       - release_notes/1.70.3-1.md 
 
   - Reference:
+      - Troubleshooting: troubleshooting.md
       - Percona Software and Platform Lifecycle: lifecycle.md
       - Code of conduct: code-of-conduct.md
       - Copyright: copyright.md
