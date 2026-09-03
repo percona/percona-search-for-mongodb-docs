@@ -54,7 +54,7 @@ To configure automatic embedding with Azure OpenAI, do the following:
       isAutoEmbeddingViewWriter: true
     ```
 
-    !!! important
+    !!! info "Important"
 
         If multiple `mongot` instances process the same data, configure only one instance as the automatic embedding writer.
 
