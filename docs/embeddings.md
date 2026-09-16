@@ -25,7 +25,7 @@ For [RAG applications :octicons-link-external-16:](https://www.mongodb.com/docs/
 
 ## Automatic embeddings
 
-With [automatic embeddings :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}, `mongot` sends the indexed text and query text to the configured Voyage AI embedding service. It generates document embeddings during indexing and a query embedding when the application runs a text-based vector search.
+With [automatic embeddings :octicons-link-external-16:](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/){:target="_blank"}, `mongot` sends the indexed text and query text to the configured embedding service (Voyage AI or an OpenAI-compatible provider). It generates document embeddings during indexing and a query embedding when the application runs a text-based vector search.
 
 ## Next steps
 
