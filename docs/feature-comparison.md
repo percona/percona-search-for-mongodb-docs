@@ -11,7 +11,6 @@ The following table compares the current capabilities of Percona Search for Mong
 | Number of Search nodes | 1 | any | any | any |
 | Full-text search | Yes | Yes | Yes | Yes |
 | Vector search | Yes | Yes | Yes | Yes |
-| Hybrid Search | Yes | Yes | Yes | Yes |
 | Manual embeddings | Yes | Yes | Yes | Yes |
 | Automatic embeddings | open model choice| locked to Voyage AI | locked to Voyage AI | locked to Voyage AI |
 | Self-hosted / Open Embedding Models | Ollama, vLLM, llama.cpp, TEI, etc. | No | No | No |
