@@ -2,7 +2,7 @@
 
 With the `OPENAI_COMPATIBLE` provider, `mongot` can generate embeddings using any service that exposes an OpenAI-compatible `/v1/embeddings` endpoint, whether it is a hosted service or an embedding server that you run yourself.
 
-This page covers what is specific to OpenAI-compatible providers. For the list of all supported providers, how automatic embedding works, and the general configuration procedure, see [Automatic embedding configuration](configure-automatic-embedding-openai.md).
+This page covers what is specific to OpenAI-compatible providers. For the list of all supported providers, how automatic embedding works, and the general configuration procedure, see [Automatic embedding configuration](configure-automatic-embedding.md).
 
 ## OpenAI-compatible embedding providers
 
@@ -38,8 +38,6 @@ For details about these settings and their defaults, see the [Automatic embeddin
 Choose the engine you want to connect:
 
 [Configure automatic embedding with Ollama :material-arrow-right:](configure-automatic-embedding-ollama.md){.md-button} 
-
-[Configure automatic embedding with OpenAI :material-arrow-right:](configure-automatic-embedding-openai.md#procedure){.md-button} 
 
 [Configure automatic embedding with Azure OpenAI :material-arrow-right:](configure-automatic-embedding-openai-azure.md){.md-button}
 

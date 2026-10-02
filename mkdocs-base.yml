@@ -208,7 +208,7 @@ nav:
       - Overview: vector-search-overview.md
       - Create and manage embeddings: embeddings.md
       - Automatic embedding:
-        - Automatic embedding configuration: configure-automatic-embedding-openai.md
+        - Automatic embedding configuration: configure-automatic-embedding.md
         - About OpenAI-compatible automatic embedding: automatic-embedding-with-OpenAI-providers.md
         - Configure with Ollama: configure-automatic-embedding-ollama.md
         - Configure with Azure OpenAI: configure-automatic-embedding-openai-azure.md
