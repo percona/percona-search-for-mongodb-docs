@@ -8,7 +8,7 @@ You can contribute to documentation in the following ways:
 
 1. **Request a doc change through a Jira issue**. If you’ve spotted a doc issue (a typo, broken links, inaccurate instructions, etc.) but don’t have time nor desire to fix it yourself - let us know about it.
 
-	- Click the **open a Jira ticket** link at the bottom of the page. This opens the [Jira issue tracker](https://jira.percona.com/projects/PSMDB/issues) for the doc project.
+	- Click the **open a Jira ticket** link at the bottom of the page. This opens the [Jira issue tracker](https://jira.percona.com/projects/PS4M/issues) for the doc project.
 	- Sign in (create a Jira account if you don’t have one) and click **Create** to create an issue.
 	- Describe the issue you have detected in the Summary, Description, Steps To Reproduce, Affects Version fields.
 
@@ -24,17 +24,6 @@ To contribute to the documentation, you should be familiar with the following te
 - [MkDocs](https://www.mkdocs.org/getting-started/) documentation generator. We use it to convert source ``.md`` files to .html and PDF documents.
 - [git](https://git-scm.com/) and [GitHub](https://guides.github.com/activities/hello-world/)
 - [Docker](https://docs.docker.com/get-docker/). It allows you to run MkDocs in a virtual environment instead of installing it and its dependencies on your machine.
-
-There are several active versions of the documentation. Each version has a branch in the repository named accordingly:
-
-- 3.6 (EOL)
-- 4.0 (EOL)
-- 4.2 (EOL)
-- 4.4 (EOL)
-- 5.0 (EOL)
-- 6.0
-- 7.0
-- 8.0
 
 The .md files are in the ``docs`` directory. 
 
@@ -63,13 +52,15 @@ The steps are the following:
 2. Clone the repository on your machine:
 
 ```sh
-git clone git@github.com:<your_name>/psmdb-docs.git
+git clone git@github.com:<your_name>/percona-search-for-mongodb-docs.git
 ```
 
-3. Change the directory to ``psmdb-docs`` and add the remote upstream repository:
+3. Change the directory to ``
+percona-search-for-mongodb-docs`` and add the remote upstream repository:
 
 ```sh
-git remote add upstream git@github.com:percona/psmdb-docs.git
+git remote add upstream git@github.com:percona/
+percona-search-for-mongodb-docs.git
 ```
 
 4. Pull the latest changes from upstream
@@ -78,8 +69,6 @@ git remote add upstream git@github.com:percona/psmdb-docs.git
 git fetch upstream
 git merge upstream/<branch>
 ```
-
-Make sure that your local branch and the branch you merge changes from are the same. So if you are on ``8.0`` branch, merge changes from ``upstream/8.0``.
 
 5. Create a separate branch for your changes
 
