@@ -1,6 +1,8 @@
 # Automatic embedding with OpenAI-Compatible Providers
 
-Percona Search for MongoDB supports automatic embedding with Voyage AI and OpenAI-compatible embedding providers. With the `OPENAI_COMPATIBLE` provider, `mongot` can generate embeddings using services that expose an OpenAI-compatible `/v1/embeddings` endpoint.
+With the `OPENAI_COMPATIBLE` provider, `mongot` can generate embeddings using any service that exposes an OpenAI-compatible `/v1/embeddings` endpoint, whether it is a hosted service or an embedding server that you run yourself.
+
+This page covers what is specific to OpenAI-compatible providers. For the list of all supported providers, how automatic embedding works, and the general configuration procedure, see [Automatic embedding configuration](configure-automatic-embedding-openai.md).
 
 ## OpenAI-compatible embedding providers
 
@@ -20,46 +22,16 @@ Percona Search for MongoDB supports automatic embedding with Voyage AI and OpenA
 
 ## What to know before you start
 
-Automatic embedding uses two configuration files. The embedding section in `mongot.conf` defines settings shared across all models. The model catalog, `embedding-service-configs.yml`, defines each embedding model and contains most model-specific settings.
-
-Before configuring automatic embedding, review these settings and provider requirements:
+Before configuring an OpenAI-compatible provider, review these settings and requirements:
 
 | **Setting**  | **Supported values and requirements** |
 | ---------| ----------------------------------|
-| Vector output format         | Only **float** vector output is currently supported. Scalar and binary output formats aren't  supported.                             |
 | `numDimensions`              | Supported values are `256`, `512`, `1024`, and `2048`. |
-| `outputDimensions`           | Must match the dimensions returned by the model, unless you set `forwardDimensions: true`.                                               |
 | OpenAI `dimensions` field    | Local engines commonly return vectors with a fixed dimension and may reject requests that include the OpenAI `dimensions` field.         |
 | `embedding.providerEndpoint` | The global override applies to **VOYAGE** models only. Each `OPENAI_COMPATIBLE` model defines its own `providerEndpoint` in the catalog. |
 | API key                      | Local engines can run without an API key when authentication isn't configured.|
 
 For details about these settings and their defaults, see the [Automatic embedding configuration reference](automatic-embedding-configuration-reference.md).
-
-## How automatic embedding works
-
-### Overview
-
-With manual embedding, your application is responsible for generating embeddings before storing or querying data. However, automatic embedding moves this work to `mongot`.
-
-When you create a vector search index with an `autoEmbed` field, `mongot` embeds the indexed text during the initial collection scan and then keeps embedding it as documents change, using change streams. At query time, the text you pass to `$vectorSearch` goes through the same model, with the model's query prefix applied if one is configured, and is matched against the stored vectors.
-
-![Embedding request flow between PSMDB, `mongot`, and the engine](_images/autoembed-with-OpenAI-compatible-providers.png)
-
-### How `mongot` selects an embedding provider
-
-The embedding provider isn't selected globally in `mongot.conf`. It is configured for each model in `embedding-service-configs.yml`.
-
-![Model name resolving through the catalog to an embedding client](_images/embedding-client-flow.png)
-
-`mongot` resolves the embedding provider and settings from the model name:
-{.power-number}
-
-1. The index definition names a model, for example `{ type: "autoEmbed", model: "nomic-embed-text", ... }`.
-2. `mongot` finds the catalog entry whose `modelName` matches.
-3. The entry's `embeddingProvider` field, either `VOYAGE` or `OPENAI_COMPATIBLE`, decides which client handles the traffic. Everything else the client needs, including `providerEndpoint`, credentials, prefixes, and batching, comes from the same entry.
-
-!!! note
-    Both provider types can be configured on the same `mongot` instance. When you create an `autoEmbed` index, the model name determines which provider and model configuration `mongot` uses. The embedding section in `mongot.conf` contains settings shared across the automatic embedding setup, such as the model catalog path and Voyage-specific configuration.
 
 ## Next steps
 
@@ -67,9 +39,13 @@ Choose the engine you want to connect:
 
 [Configure automatic embedding with Ollama :material-arrow-right:](configure-automatic-embedding-ollama.md){.md-button} 
 
-[Configure automatic embedding with OpenAI :material-arrow-right:](configure-automatic-embedding-openai.md){.md-button} 
+[Configure automatic embedding with OpenAI :material-arrow-right:](configure-automatic-embedding-openai.md#procedure){.md-button} 
 
 [Configure automatic embedding with Azure OpenAI :material-arrow-right:](configure-automatic-embedding-openai-azure.md){.md-button}
+
+To use models hosted by Hugging Face without an OpenAI-compatible endpoint, use the dedicated `HUGGINGFACE_INFERENCE` provider:
+
+[Configure automatic embedding with the Hugging Face Inference API :material-arrow-right:](configure-automatic-embedding-huggingface.md){.md-button}
 
 ## Learn more
 
