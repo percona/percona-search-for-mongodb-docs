@@ -41,7 +41,7 @@ Choose a model that meets these requirements:
 
 ### Free tier and billing
 
-Inference Providers is billed pay-as-you-go, and every account gets a monthly allowance of included credits. Free accounts get a small allowance. PRO, Team, and Enterprise accounts get a larger one. `hf-inference` bills by compute time multiplied by the hardware price.
+Inference Providers is billed pay-as-you-go, and every account gets a monthly allowance of included credits. Free accounts get no allowance. `hf-inference` bills by compute time multiplied by the hardware price.
 
 Embedding requests to small CPU models are inexpensive. However, the initial sync of a large collection sends every document to the model and can use up a free allowance quickly.
 
