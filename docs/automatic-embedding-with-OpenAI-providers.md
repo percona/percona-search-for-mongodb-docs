@@ -26,7 +26,7 @@ Before configuring an OpenAI-compatible provider, review these settings and requ
 
 | **Setting**  | **Supported values and requirements** |
 | ---------| ----------------------------------|
-| `numDimensions`              | Supported values are `256`, `512`, `1024`, and `2048`. |
+| `numDimensions`              | Optional. Must match the size of the vectors that the model returns, from `1` to `8192`. If you omit it, `mongot` uses the model's `outputDimensions`. |
 | OpenAI `dimensions` field    | Local engines commonly return vectors with a fixed dimension and may reject requests that include the OpenAI `dimensions` field.         |
 | `embedding.providerEndpoint` | The global override applies to **VOYAGE** models only. Each `OPENAI_COMPATIBLE` model defines its own `providerEndpoint` in the catalog. |
 | API key                      | Local engines can run without an API key when authentication isn't configured.|

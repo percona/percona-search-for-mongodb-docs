@@ -1,6 +1,6 @@
 # Configure automatic embedding with the Hugging Face Inference API
 
-You can use embedding models hosted by Hugging Face with Percona Search for MongoDB through the `HUGGINGFACE_INFERENCE` provider. You don't need to run your own embedding server, and the monthly credits included with every Hugging Face account let you get started at no cost.
+You can use embedding models hosted by Hugging Face with Percona Search for MongoDB through the `HUGGINGFACE_INFERENCE` provider. You don't need to run your own embedding server.
 
 `mongot` sends document and query text to the Hugging Face [Inference Providers :octicons-link-external-16:](https://huggingface.co/docs/inference-providers/index){:target="_blank"} router, which forwards it to the `hf-inference` feature-extraction pipeline:
 
@@ -41,9 +41,9 @@ Choose a model that meets these requirements:
 
 ### Free tier and billing
 
-Inference Providers is billed pay-as-you-go, and every account gets a monthly allowance of included credits. Free accounts get no allowance. `hf-inference` bills by compute time multiplied by the hardware price.
+Inference Providers is billed pay-as-you-go. PRO accounts and Team or Enterprise organizations get a monthly allowance of included credits. Free accounts get no allowance and must buy credits. `hf-inference` bills by compute time multiplied by the hardware price.
 
-Embedding requests to small CPU models are inexpensive. However, the initial sync of a large collection sends every document to the model and can use up a free allowance quickly.
+Embedding requests to small CPU models are inexpensive. However, the initial sync of a large collection sends every document to the model and can use up your included credits quickly.
 
 For current limits and prices, see [Inference Providers pricing :octicons-link-external-16:](https://huggingface.co/docs/inference-providers/pricing){:target="_blank"}. You can track your usage on your [Hugging Face billing page :octicons-link-external-16:](https://huggingface.co/settings/billing){:target="_blank"}.
 
@@ -116,7 +116,7 @@ To configure automatic embedding with the Hugging Face Inference API, do the fol
     - `modelName` is the name that you reference in `autoEmbed` index definitions. `mongot` converts it to lowercase.
     - `modelConfig.modelId` is the exact Hugging Face Hub repository ID, which is case-sensitive. Set it whenever the repository ID includes an organization prefix, such as `BAAI/`, or uppercase letters. If you omit it, `mongot` uses `modelName`.
 
-    The `modelConfig`, `errorHandlingConfig`, and `credentials` sections are required. If you omit `batchSize` or `batchTokenLimit`, `mongot` uses `32` and `120000`, the values shown in the example.
+    The `modelConfig` and `errorHandlingConfig` sections are required. The `credentials` section is required for the hosted Hugging Face API; you can omit it for a server that doesn't require authentication. If you omit `batchSize` or `batchTokenLimit`, `mongot` uses `32` and `120000`, the values shown in the example.
 
     !!! info "Important"
 
@@ -132,7 +132,7 @@ To configure automatic embedding with the Hugging Face Inference API, do the fol
       quantization: float
     ```
 
-    `mongot` uses `outputDimensions` to size the index. Always set it: if you omit it, `mongot` uses `1024`. If `numDimensions` is set in the index definition, it takes precedence over `outputDimensions`. If the model returns vectors of a different size, embedding fails with an error such as `returned N-dimensional vectors but the index expects M`.
+    `mongot` uses `outputDimensions` to size the index. Always set it: if you omit it, creating an `autoEmbed` index for this model fails with `numDimensions cannot be resolved from model config`. If `numDimensions` is set in the index definition, it takes precedence over `outputDimensions`. If the model returns vectors of a different size, embedding fails with an error such as `returned N-dimensional vectors but the index expects M`.
 
     The `HUGGINGFACE_INFERENCE` provider supports only `float` vectors. Don't set a different quantization in the catalog or in the index definition.
 
@@ -216,7 +216,7 @@ Dedicated Hugging Face Inference Endpoints that run Text Embeddings Inference (T
 
 | **Symptom** | **Cause and fix** |
 | --- | --- |
-| `Skipping Hugging Face embedding model '…': no credentials.apiToken configured` at startup | The catalog entry has no token, or the token is empty, and no `providerEndpoint` is set. Add `credentials.apiToken`. For a keyless self-hosted TEI server, set `providerEndpoint` instead. |
+| `Skipping Hugging Face embedding model '…': no credentials.apiToken configured for every workload` at startup | No `providerEndpoint` is set, and at least one workload (`query`, `collectionScan`, or `changeStream`) has no token. A workload uses its own `credentials` override when it has one, otherwise the base `credentials.apiToken`, so an override with `credentials: {}` or an empty `apiToken` also causes this. Add the token, or set `providerEndpoint` for a keyless self-hosted TEI server. |
 | `Authentication failed (HTTP 401/403)` | The token is invalid or lacks the required permission. Use a fine-grained token with the **Make calls to Inference Providers** permission. If you set a custom `providerEndpoint`, the server might require a token that the entry doesn't have. |
 | `Payment required (HTTP 402)` | Your monthly Inference Providers credits are used up. Add credits or upgrade your plan. |
 | `Got client error (HTTP 404)` | `hf-inference` doesn't serve this model for feature extraction, or `modelId` has the wrong case or organization prefix. |

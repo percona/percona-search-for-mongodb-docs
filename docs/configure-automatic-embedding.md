@@ -238,7 +238,7 @@ To configure automatic embedding, do the following:
 
     !!! info "Important"
 
-        Use `forwardDimensions` only with models that support the `dimensions` parameter. Most local engines and Hugging Face models return a fixed dimension and may reject the field. For these models, leave `forwardDimensions` unset and make sure `outputDimensions` matches the model's native dimension.
+        Use `forwardDimensions` only with `OPENAI_COMPATIBLE` models that support the `dimensions` parameter. Most local engines return a fixed dimension and may reject the field; for these models, leave `forwardDimensions` unset. `HUGGINGFACE_INFERENCE` models don't use this setting. They always return the model's native dimension, so make sure `outputDimensions` matches it.
 
 6. Start `mongot` and check the startup output:
 
