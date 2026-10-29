@@ -13,7 +13,7 @@ This page lists the settings for automatic embedding. They are split across two 
 | `modelConfigFile` | No | Path to a custom embedding model catalog. |
 | `queryKeyFile` | Voyage only | File containing the Voyage API key used for queries. |
 | `indexingKeyFile` | Voyage only | File containing the Voyage API key used during indexing. |
-| `providerEndpoint` | No | Overrides the endpoint for `VOYAGE` models only. It doesn't affect `OPENAI_COMPATIBLE` models. |
+| `providerEndpoint` | No | Overrides the endpoint for `VOYAGE` models only. It doesn't affect `OPENAI_COMPATIBLE` or `HUGGINGFACE_INFERENCE` models. |
 
 ## OPENAI_COMPATIBLE model settings
 
@@ -44,6 +44,26 @@ The following settings apply to each model entry under `configs`:
 | `config.errorHandlingConfig` | Yes | Defines how `mongot` handles transient embedding request failures. Configure `maxRetries`, `initialRetryWaitMs`, `maxRetryWaitMs`, and `jitter`. |
 | `config.credentials.apiKey` | No | API key used to authenticate with the embedding provider. Omit this setting, or use `credentials: {}`, for local engines that don't require authentication. |
 | `config.credentials.authHeaderName` | No. Default: `Authorization` | HTTP header used to send the API key. With the default `Authorization` header, `mongot` uses the `Bearer <key>` scheme. Set this to `api-key` for Azure OpenAI. |
+
+## HUGGINGFACE_INFERENCE model settings
+
+Define each `HUGGINGFACE_INFERENCE` model under the `configs` key in the model catalog. For a setup walkthrough, see [Configure automatic embedding with the Hugging Face Inference API](configure-automatic-embedding-huggingface.md).
+
+| **Setting** | **Required** | **Description** |
+| --- | --- | --- |
+| `modelName` | Yes | Name that `autoEmbed` index definitions reference. `mongot` converts it to lowercase. |
+| `config.providerEndpoint` | No. Default: `https://router.huggingface.co/hf-inference/models/<modelId>/pipeline/feature-extraction` | Replaces the Hugging Face router URL exactly as specified. Use it for a dedicated Inference Endpoint or the `/embed` route of a self-hosted TEI server. |
+| `config.modelConfig.modelId` | No. Default: `modelName` | Exact, case-sensitive Hugging Face Hub repository ID, for example `BAAI/bge-small-en-v1.5`. Set it whenever the repository ID has an organization prefix or uppercase letters. |
+| `config.modelConfig.outputDimensions` | Yes | Native dimension of the model's vectors. It sizes the index and must match what the model returns. |
+| `config.modelConfig.batchSize` | No. Default: `32` | Maximum number of inputs in a single request. Lower it if you receive `HTTP 413`. |
+| `config.modelConfig.batchTokenLimit` | No. Default: `120000` | Approximate maximum number of input tokens in one request batch. |
+| `config.modelConfig.truncate` | No. Default: `true` | Truncates inputs longer than the model's maximum sequence length instead of failing the batch. |
+| `config.modelConfig.normalize` | No | Sent only when set. Otherwise, the server default applies. |
+| `config.modelConfig.queryPrefix` | No | Text added before query input for asymmetric models. Include the separator in the value. |
+| `config.modelConfig.documentPrefix` | No | Text added before document input for asymmetric models. Include the separator in the value. |
+| `config.modelConfig.quantization` | No. Default: `float` | Vector output format. Only `float` is supported. |
+| `config.errorHandlingConfig` | Yes | Defines how `mongot` retries transient failures, such as `HTTP 429` and `HTTP 503`. See [Retry settings](#retry-settings). |
+| `config.credentials.apiToken` | Yes for the hosted API | Hugging Face access token, sent as `Authorization: Bearer <token>`. Optional when `providerEndpoint` points at a server that doesn't require authentication. |
 
 ## Retry settings
 
