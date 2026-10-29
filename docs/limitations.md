@@ -1,6 +1,6 @@
 # Known limitations
 
-Percona Search for MongoDB packages `mongot`, the same search engine that powers self-managed MongoDB Search and Vector Search. Because this technical preview builds directly on upstream `mongot`, it inherits the same underlying limitations and unsupported behavior as upstream self-managed deployments.
+Percona Search for MongoDB packages `mongot`, the same search engine that powers self-managed MongoDB Search and Vector Search. Because Percona Search for MongoDB builds directly on upstream `mongot`, it inherits the same underlying limitations and unsupported behavior as upstream self-managed deployments.
 
 This page summarizes the limitations most relevant to Percona Search for MongoDB. For the complete list, see [Known Limitations for Self-managed mongot :octicons-link-external-16:](https://www.mongodb.com/docs/search/self-managed/current/limitations/){:target="_blank"} in the MongoDB documentation.
 

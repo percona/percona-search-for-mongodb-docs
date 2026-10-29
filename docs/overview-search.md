@@ -2,10 +2,6 @@
 
 Percona Search for MongoDB adds full-text search and vector search to Percona Server for MongoDB (PSMDB) 8.3 and later. It runs `mongot`, a dedicated search service, alongside mongod to build search indexes on your collections and process search queries.
 
-!!! warning "Technical Preview" 
-
-    Percona Search for MongoDB is available as a technical preview. We recommend that early adopters use it for testing and evaluation only, and not in production environments.
-
 You can create search indexes on your collections and use aggregation pipeline stages such as `$search`, `$searchMeta`, and `$vectorSearch `to retrieve relevant results.
 
 
