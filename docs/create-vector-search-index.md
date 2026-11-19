@@ -152,7 +152,7 @@ Follow these steps to create and query a vector search index.
     | `filter` | Optional | Limits which documents are considered before the vector comparison runs. |
     | `exact` | Optional | Set to `true` to run an exact nearest neighbor search instead of approximate. |
 
-    For the complete field reference, including filtering and exact nearest neighbor search, see [Query with `$vectorSearch`](query-with-vectorsearch.md).
+    For the complete field reference, including filtering and exact nearest neighbor search, see [Query with `$vectorSearch`](query-vector-search.md).
 
     ??? example "Example"
 
