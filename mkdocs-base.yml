@@ -1,7 +1,7 @@
 # MkDocs configuration for builds with material theme
 
 site_name: Percona Search for MongoDB
-site_description: Documentation
+site_description: "Percona Search for MongoDB, which adds full-text and vector search to Percona Server for MongoDB through the mongot service, with installation, configuration and search query guides"
 site_author: Percona LLC
 copyright: >
   <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2026 — <a href="#__consent">Cookie Consent</a>
