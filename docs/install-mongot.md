@@ -19,6 +19,8 @@ Additional requirements depend on the installation method:
 
 For more information, see [Vector Search compatibility](vector-search-compatibility.md).
 
+For SBOM locations and scanning instructions, see [Software Bill of Materials](sbom.md).
+
 ## Procedure
 
 === "Tarballs"

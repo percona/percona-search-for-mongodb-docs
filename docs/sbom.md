@@ -66,10 +66,10 @@ grype sbom:/usr/share/doc/percona-search-mongodb/percona-search-mongodb-<version
 
 ### Docker images
 
-The Percona Search for MongoDB image has an SBOM attached as an OCI artifact. Use Trivy to scan the image and its attached SBOM without downloading the SBOM separately:
+The Percona Search for MongoDB image has an SBOM attached as an OCI artifact. To avoid the operating system identification limitation described above, use Trivy to scan the image directly rather than its attached SBOM:
 
 ```bash
-trivy image --severity HIGH,CRITICAL --sbom-sources oci \
+trivy image --severity HIGH,CRITICAL \
     docker.io/percona/percona-server-mongodb-mongot:<tag>
 ```
 
