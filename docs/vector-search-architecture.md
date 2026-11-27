@@ -17,7 +17,7 @@ Applications continue to connect to MongoDB in the same way they do for other da
 
 ## Component interaction in a sharded cluster
 
-In a replica set, `mongod` forwards a `$search`, `$searchMeta`, or `$vectorSearch` stage to `mongot` and assembles the final result, as described in [Search overview](search-overview.md). Sharded clusters work the same way at each shard, with `mongos` handling the extra step of combining results across shards.
+In a replica set, `mongod` forwards a `$search`, `$searchMeta`, or `$vectorSearch` stage to `mongot` and assembles the final result, as described in [Search overview](overview-search.md). Sharded clusters work the same way at each shard, with `mongos` handling the extra step of combining results across shards.
 
 Each shard runs its own `mongot`, which indexes only the data on that shard. When a query reaches `mongos`, it forwards the search stage to every shard, and each shard's `mongod` and `mongot` execute the search locally. `mongos` then merges the results from all shards into a single response before returning it to the application.
 

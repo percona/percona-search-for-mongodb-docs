@@ -1,7 +1,7 @@
 # MkDocs configuration for builds with material theme
 
 site_name: Percona Search for MongoDB
-site_description: Documentation
+site_description: "Percona Search for MongoDB, which adds full-text and vector search to Percona Server for MongoDB through the mongot service, with installation, configuration and search query guides"
 site_author: Percona LLC
 copyright: >
   <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2026 — <a href="#__consent">Cookie Consent</a>
@@ -172,6 +172,15 @@ plugins:
       path_to_pdf: ""
       include_css: true
       enabled: true
+  # llms.txt, llms-full.txt and a .md copy of every page, for AI agents.
+  # percona-llmstxt fills in the sections (from nav), base_url and the rest.
+  llmstxt:
+    full_output: llms-full.txt
+    markdown_description: >-
+      Each page below is also available as markdown. For the documentation of
+      all Percona products, see https://docs.percona.com/llms.txt.
+    sections: {}
+  percona-llmstxt: {}
 
 extra:
   version:
@@ -208,10 +217,11 @@ nav:
       - Overview: vector-search-overview.md
       - Create and manage embeddings: embeddings.md
       - Automatic embedding:
+        - Automatic embedding configuration: configure-automatic-embedding.md
         - About OpenAI-compatible automatic embedding: automatic-embedding-with-OpenAI-providers.md
         - Configure with Ollama: configure-automatic-embedding-ollama.md
-        - Configure with OpenAI: configure-automatic-embedding-openai.md
         - Configure with Azure OpenAI: configure-automatic-embedding-openai-azure.md
+        - Configure with Hugging Face Inference API: configure-automatic-embedding-huggingface.md
         - Create and query an autoEmbed index: autoembed-index.md
         - Configuration reference: automatic-embedding-configuration-reference.md
       - Create a vector search index: create-vector-search-index.md
@@ -221,6 +231,7 @@ nav:
   
   - Release notes:
       - Release notes index: release_notes/index.md
+      - release_notes/1.70.5-3.md
       - release_notes/1.70.4-2.md 
       - release_notes/1.70.3-1.md 
 

@@ -29,6 +29,6 @@ With [automatic embeddings :octicons-link-external-16:](https://www.mongodb.com/
 
 ## Next steps
 
-[`$vectorSearch` :material-arrow-right:](query-with-vectorsearch.md){.md-button}
+[`$vectorSearch` :material-arrow-right:](query-vector-search.md){.md-button}
 
 [Create a vector search index :material-arrow-right:](create-vector-search-index.md){.md-button}
