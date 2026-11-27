@@ -19,6 +19,8 @@ Additional requirements depend on the installation method:
 
 For more information, see [Vector Search compatibility](vector-search-compatibility.md).
 
+For SBOM locations and scanning instructions, see [Software Bill of Materials](sbom.md).
+
 ## Procedure
 
 === "Tarballs"
@@ -253,13 +255,13 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
     2. Pull the `mongot` Docker image.
 
         ```bash
-        docker pull percona/percona-server-mongodb-mongot:<TAG>
+        docker pull percona/percona-search-mongodb:<TAG>
         ```
 
     3. Verify the downloaded images.
 
         ```bash
-        docker image ls | grep percona-server-mongodb
+        docker image ls | grep -E 'percona-search-mongodb|percona-server-mongodb'
         ```
 
     4. Create a Docker network.
@@ -444,7 +446,7 @@ For more information, see [Vector Search compatibility](vector-search-compatibil
           -v <path-to-mongot-conf>:/mongot-community/config.default.yml:ro \
           -v <path-to-password-file>:/passwordFile:ro \
           --network <network-name> \
-          percona/percona-server-mongodb-mongot:<TAG>
+          percona/percona-search-mongodb:<TAG>
         ```
 
         To view the `mongot` logs:
