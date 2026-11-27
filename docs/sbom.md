@@ -22,12 +22,12 @@ An SBOM helps you:
 | DEB package | `/usr/share/doc/percona-search-mongodb/percona-search-mongodb-<version>.cdx.json` |
 | Docker image | Attached as an OCI artifact. See [Docker images](#docker-images). |
 
-## Verifying and scanning the SBOM
+## Locating and scanning the SBOM
 
 The examples below use [Grype](https://github.com/anchore/grype).
 
 !!! note
-    Trivy can scan the SBOM embedded in a tarball or container image when you scan the filesystem or image. For an OCI-attached image SBOM, scan the image itself with Trivy. A standalone SBOM scan may skip OS packages because the attached SBOM identifies the operating system as `rhel`, which Trivy does not recognize as the Red Hat distribution name.
+    The bundle SBOM does not include operating system packages. To include image operating system packages in Trivy results, scan the container image itself with `trivy image`.
 
 ### Binary tarball
 
@@ -66,32 +66,34 @@ grype sbom:/usr/share/doc/percona-search-mongodb/percona-search-mongodb-<version
 
 ### Docker images
 
-The Percona Search for MongoDB image has an SBOM attached as an OCI artifact. To avoid the operating system identification limitation described above, use Trivy to scan the image directly rather than its attached SBOM:
+To include operating system packages in vulnerability results, scan the image directly with Trivy:
 
 ```bash
 trivy image --severity HIGH,CRITICAL \
-    docker.io/percona/percona-server-mongodb-mongot:<tag>
+    docker.io/percona/percona-search-mongodb:<tag>
 ```
 
 #### Advanced: Inspect OCI-attached SBOMs with ORAS
 
-Use the [ORAS CLI](https://oras.land/) to discover and download an OCI-attached SBOM.
+The image includes a separate SBOM for each architecture. Choose `linux/amd64` or `linux/arm64` to match your image.
+
+Use the [ORAS CLI](https://oras.land/) to inspect the attached SBOM.
 
 1. Discover the attached artifacts for the image:
 
     ```bash
-    oras discover --format tree \
-        docker.io/percona/percona-server-mongodb-mongot:<tag>
+    oras discover --platform linux/amd64 --format tree \
+        docker.io/percona/percona-search-mongodb:<tag>
     ```
 
-2. Copy the SBOM artifact digest from the output and replace `<sbom_artifact_digest>` with the value shown after `sha256:`:
+2. Select the CycloneDX SBOM referrer in the output. Copy its hexadecimal digest after `sha256:`. Replace `<sbom_artifact_digest>` with that value:
 
     ```bash
-    oras pull docker.io/percona/percona-server-mongodb-mongot@sha256:<sbom_artifact_digest>
+    oras pull docker.io/percona/percona-search-mongodb@sha256:<sbom_artifact_digest>
     ```
 
-3. Confirm that the SBOM file was downloaded:
+3. List the downloaded CycloneDX SBOM file:
 
     ```bash
-    ls
+    ls -1 percona-search-mongodb-*.cdx.json
     ```
